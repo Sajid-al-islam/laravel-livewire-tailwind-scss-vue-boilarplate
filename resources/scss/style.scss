@@ -1,0 +1,7 @@
+@import "./header";
+body {
+    transition: all linear .3s;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
