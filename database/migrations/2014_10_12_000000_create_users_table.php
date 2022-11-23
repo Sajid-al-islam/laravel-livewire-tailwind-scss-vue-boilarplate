@@ -45,6 +45,15 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+        Schema::create('permission_user', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('user_id')->nullable();
+            $table->bigInteger('permission_serial')->nullable();
+
+            $table->rememberToken();
+            $table->timestamps();
+        });
     }
 
     /**
@@ -56,5 +65,6 @@ class CreateUsersTable extends Migration
     {
         Schema::dropIfExists('users');
         Schema::dropIfExists('role_user');
+        Schema::dropIfExists('permission_user');
     }
 }

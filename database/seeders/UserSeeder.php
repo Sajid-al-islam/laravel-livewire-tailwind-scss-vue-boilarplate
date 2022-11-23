@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\User;
+use App\Models\UserPermission;
 use App\Models\UserRole;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
@@ -33,6 +34,23 @@ class UserSeeder extends Seeder
         $user_role->role_serial = 3;
         $user_role->save();
 
+        UserPermission::truncate();
+
+        $user_role = new UserPermission();
+        $user_role->title = 'can_create';
+        $user_role->permission_serial = 1;
+        $user_role->save();
+
+        $user_role = new UserPermission();
+        $user_role->title = 'can_edit';
+        $user_role->permission_serial = 2;
+        $user_role->save();
+
+        $user_role = new UserPermission();
+        $user_role->title = 'can_delete';
+        $user_role->permission_serial = 3;
+        $user_role->save();
+
         User::truncate();
 
         $user = new User();
@@ -46,6 +64,7 @@ class UserSeeder extends Seeder
         $user->password = Hash::make('12345678');
         $user->save();
         $user->roles()->attach([1,2,3]);
+        $user->permissions()->attach([1,2,3]);
 
         $user = new User();
         $user->first_name = 'mr';
