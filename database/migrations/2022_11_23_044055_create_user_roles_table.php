@@ -17,6 +17,10 @@ class CreateUserRolesTable extends Migration
             $table->id();
             $table->string('name',100)->nullable();
             $table->integer('role_serial')->nullable()->unique();
+
+            $table->tinyInteger('creator')->nullable();
+            $table->string('slug',50)->nullable();
+            $table->tinyInteger('status')->default(1);
             $table->timestamps();
         });
     }
