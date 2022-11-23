@@ -19,8 +19,18 @@ class UserSeeder extends Seeder
         UserRole::truncate();
 
         $user_role = new UserRole();
-        $user_role->name = 'admin';
+        $user_role->name = 'super_admin';
         $user_role->role_serial = 1;
+        $user_role->save();
+
+        $user_role = new UserRole();
+        $user_role->name = 'admin';
+        $user_role->role_serial = 2;
+        $user_role->save();
+
+        $user_role = new UserRole();
+        $user_role->name = 'user';
+        $user_role->role_serial = 3;
         $user_role->save();
 
         User::truncate();
@@ -28,11 +38,33 @@ class UserSeeder extends Seeder
         $user = new User();
         $user->first_name = 'super';
         $user->last_name = 'admin';
-        $user->user_name = 'admin';
+        $user->user_name = 'super admin';
         $user->telegram_id = '812239513';
         $user->role_id = 1;
-        $user->mobile_number = '01646343015';
+        $user->mobile_number = '016123';
+        $user->email = 'superadmin@gmail.com';
+        $user->password = Hash::make('12345678');
+        $user->save();
+
+        $user = new User();
+        $user->first_name = 'mr';
+        $user->last_name = 'admin';
+        $user->user_name = 'admin';
+        $user->telegram_id = '812239513';
+        $user->role_id = 2;
+        $user->mobile_number = '016124';
         $user->email = 'admin@gmail.com';
+        $user->password = Hash::make('12345678');
+        $user->save();
+
+        $user = new User();
+        $user->first_name = 'mr';
+        $user->last_name = 'user';
+        $user->user_name = 'user';
+        $user->telegram_id = '812239513';
+        $user->role_id = 3;
+        $user->mobile_number = '016125';
+        $user->email = 'user@gmail.com';
         $user->password = Hash::make('12345678');
         $user->save();
 
