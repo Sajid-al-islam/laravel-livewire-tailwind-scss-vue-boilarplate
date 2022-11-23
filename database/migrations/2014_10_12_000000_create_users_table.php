@@ -40,7 +40,7 @@ class CreateUsersTable extends Migration
         Schema::create('role_user', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->nullable();
-            $table->bigInteger('user_role_id')->nullable();
+            $table->bigInteger('role_serial')->nullable();
 
             $table->rememberToken();
             $table->timestamps();

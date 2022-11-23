@@ -26,4 +26,9 @@ Route::get('/register', Register::class);
 
 Route::get('/admin',function(){
     return view('backend.dashboard');
-})->name('route name');
+});
+
+Route::get('/test',function(){
+    $user = \App\Models\User::first();
+    dd($user->roles()->get());
+});

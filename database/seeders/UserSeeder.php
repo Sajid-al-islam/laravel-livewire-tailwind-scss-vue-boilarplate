@@ -45,6 +45,7 @@ class UserSeeder extends Seeder
         $user->email = 'superadmin@gmail.com';
         $user->password = Hash::make('12345678');
         $user->save();
+        $user->roles()->attach([1,2,3]);
 
         $user = new User();
         $user->first_name = 'mr';
