@@ -40,16 +40,19 @@ class UserSeeder extends Seeder
         UserPermission::truncate();
 
         $permission = new UserPermission();
+        $user_role->id = 10;
         $permission->title = 'can_create';
         $permission->permission_serial = 1;
         $permission->save();
 
         $permission = new UserPermission();
+        $user_role->id = 20;
         $permission->title = 'can_edit';
         $permission->permission_serial = 2;
         $permission->save();
 
         $permission = new UserPermission();
+        $user_role->id = 30;
         $permission->title = 'can_delete';
         $permission->permission_serial = 3;
         $permission->save();

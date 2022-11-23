@@ -17,7 +17,7 @@ class CreateUserPermissionsTable extends Migration
             $table->id();
 
             $table->string('title',100)->nullable();
-            $table->string('permission_serial',100)->nullable();
+            $table->string('permission_serial',100)->nullable()->unique();
 
             $table->tinyInteger('creator')->nullable();
             $table->string('slug',50)->nullable();
