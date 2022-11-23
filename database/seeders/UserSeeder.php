@@ -20,36 +20,39 @@ class UserSeeder extends Seeder
         UserRole::truncate();
 
         $user_role = new UserRole();
+        $user_role->id = 10;
         $user_role->name = 'super_admin';
         $user_role->role_serial = 1;
         $user_role->save();
 
         $user_role = new UserRole();
+        $user_role->id = 20;
         $user_role->name = 'admin';
         $user_role->role_serial = 2;
         $user_role->save();
 
         $user_role = new UserRole();
+        $user_role->id = 30;
         $user_role->name = 'user';
         $user_role->role_serial = 3;
         $user_role->save();
 
         UserPermission::truncate();
 
-        $user_role = new UserPermission();
-        $user_role->title = 'can_create';
-        $user_role->permission_serial = 1;
-        $user_role->save();
+        $permission = new UserPermission();
+        $permission->title = 'can_create';
+        $permission->permission_serial = 1;
+        $permission->save();
 
-        $user_role = new UserPermission();
-        $user_role->title = 'can_edit';
-        $user_role->permission_serial = 2;
-        $user_role->save();
+        $permission = new UserPermission();
+        $permission->title = 'can_edit';
+        $permission->permission_serial = 2;
+        $permission->save();
 
-        $user_role = new UserPermission();
-        $user_role->title = 'can_delete';
-        $user_role->permission_serial = 3;
-        $user_role->save();
+        $permission = new UserPermission();
+        $permission->title = 'can_delete';
+        $permission->permission_serial = 3;
+        $permission->save();
 
         User::truncate();
 
@@ -58,7 +61,7 @@ class UserSeeder extends Seeder
         $user->last_name = 'admin';
         $user->user_name = 'super admin';
         $user->telegram_id = '812239513';
-        $user->role_id = 1;
+        // $user->role_id = 1;
         $user->mobile_number = '016123';
         $user->email = 'superadmin@gmail.com';
         $user->password = Hash::make('12345678');
@@ -71,7 +74,7 @@ class UserSeeder extends Seeder
         $user->last_name = 'admin';
         $user->user_name = 'admin';
         $user->telegram_id = '812239513';
-        $user->role_id = 2;
+        // $user->role_id = 2;
         $user->mobile_number = '016124';
         $user->email = 'admin@gmail.com';
         $user->password = Hash::make('12345678');
@@ -82,7 +85,7 @@ class UserSeeder extends Seeder
         $user->last_name = 'user';
         $user->user_name = 'user';
         $user->telegram_id = '812239513';
-        $user->role_id = 3;
+        // $user->role_id = 3;
         $user->mobile_number = '016125';
         $user->email = 'user@gmail.com';
         $user->password = Hash::make('12345678');

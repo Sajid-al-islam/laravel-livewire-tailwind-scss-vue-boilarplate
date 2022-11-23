@@ -30,7 +30,11 @@ Route::get('/admin',function(){
 
 Route::get('/test',function(){
     $user = \App\Models\User::first();
-    dd($user->roles()->get());
+    dd(
+        $user->roles()->toSql() ,
+        $user->toArray(),$user->roles()->get()->toArray(),
+        $user->toArray(),$user->permissions()->get()->toArray(),
+    );
 });
 
 Route::get('/data-reload', function () {

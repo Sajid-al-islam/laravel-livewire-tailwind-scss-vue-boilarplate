@@ -18,7 +18,7 @@ class CreateUsersTable extends Migration
             $table->string('first_name',100)->nullable();
             $table->string('last_name',100)->nullable();
             $table->string('user_name',100)->nullable()->unique();
-            $table->integer('role_id')->default(6); //subscriber
+            // $table->integer('role_id')->default(6); //subscriber
 
             $table->string('telegram_id',100)->nullable();
             $table->text('telegram_name')->nullable();
@@ -37,21 +37,19 @@ class CreateUsersTable extends Migration
             $table->timestamps();
         });
 
-        Schema::create('role_user', function (Blueprint $table) {
+        Schema::create('user_user_role', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->nullable();
-            $table->bigInteger('role_serial')->nullable();
+            $table->bigInteger('user_role_id')->nullable();
 
-            $table->rememberToken();
             $table->timestamps();
         });
 
-        Schema::create('permission_user', function (Blueprint $table) {
+        Schema::create('user_user_permission', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->nullable();
-            $table->bigInteger('permission_serial')->nullable();
+            $table->bigInteger('user_permission_id')->nullable();
 
-            $table->rememberToken();
             $table->timestamps();
         });
     }
@@ -64,7 +62,7 @@ class CreateUsersTable extends Migration
     public function down()
     {
         Schema::dropIfExists('users');
-        Schema::dropIfExists('role_user');
-        Schema::dropIfExists('permission_user');
+        Schema::dropIfExists('user_user_role');
+        Schema::dropIfExists('user_user_permission');
     }
 }
