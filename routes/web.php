@@ -21,25 +21,33 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', ShowPosts::class);
-Route::get('/login', Login::class);
-Route::get('/register', Register::class);
+Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
+    Route::get('/', "ShowPosts");
+    Route::get('/login', "Login");
+    Route::get('/register', "Register");
+});
 
-Route::get('/admin',function(){
+Route::group( ['prefix'=>'','namespace' => "Controllers" ],function(){
+    Route::get('/website','WebsiteController@website');
+});
+
+Route::get('/admin', function () {
     return view('backend.dashboard');
 });
 
-Route::get('/get-token','Auth\ApiLoginController@get_token');
+Route::get('/get-token', 'Auth\ApiLoginController@get_token');
 // Route::get('/get-token',[ApiLoginController::class,'get_token']);
 
-Route::get('/test',function(){
+Route::get('/test', function () {
     $user = \App\Models\User::first();
     auth()->login($user);
     dd(
         auth()->check(),
-        $user->roles()->toSql() ,
-        $user->toArray(),$user->roles()->get()->toArray(),
-        $user->toArray(),$user->permissions()->get()->toArray(),
+        $user->roles()->toSql(),
+        $user->toArray(),
+        $user->roles()->get()->toArray(),
+        $user->toArray(),
+        $user->permissions()->get()->toArray(),
     );
 });
 
