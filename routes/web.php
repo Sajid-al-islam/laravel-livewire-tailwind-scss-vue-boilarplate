@@ -30,7 +30,9 @@ Route::get('/admin',function(){
 
 Route::get('/test',function(){
     $user = \App\Models\User::first();
+    auth()->login($user);
     dd(
+        auth()->check(),
         $user->roles()->toSql() ,
         $user->toArray(),$user->roles()->get()->toArray(),
         $user->toArray(),$user->permissions()->get()->toArray(),
