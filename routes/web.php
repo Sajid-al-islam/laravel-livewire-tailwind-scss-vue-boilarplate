@@ -35,9 +35,6 @@ Route::get('/admin', function () {
     return view('backend.dashboard');
 });
 
-Route::get('/get-token', 'Auth\ApiLoginController@get_token');
-// Route::get('/get-token',[ApiLoginController::class,'get_token']);
-
 Route::get('/test', function () {
     $user = \App\Models\User::first();
     auth()->login($user);

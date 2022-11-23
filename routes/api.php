@@ -19,7 +19,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(
-    ['prefix' => 'v1'],
+    ['prefix' => 'v1', 'namespace' => 'Controllers'],
     function () {
         Route::group(['prefix' => '/user', 'middleware' => ['guest:api']], function () {
             Route::post('/get-token', 'Auth\ApiLoginController@get_token');
