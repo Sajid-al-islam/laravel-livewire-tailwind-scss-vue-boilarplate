@@ -32,3 +32,10 @@ Route::get('/test',function(){
     $user = \App\Models\User::first();
     dd($user->roles()->get());
 });
+
+Route::get('/data-reload', function () {
+    \Illuminate\Support\Facades\Artisan::call('migrate:fresh', ['--seed' => true]);
+    \Illuminate\Support\Facades\Artisan::call('migrate', ['--path' => 'vendor/laravel/passport/database/migrations', '--force' => true]);
+    \Illuminate\Support\Facades\Artisan::call('passport:install');
+    return redirect()->back();
+});
