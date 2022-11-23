@@ -1,13 +1,13 @@
-POST  http://report.pro/api/v1/user/api-login HTTP/1.1
+POST  http://127.0.0.1:8000/api/v1/user/api-login HTTP/1.1
 content-type: application/json
 
 {
-    "email": "myphoto204@gmail.com",
-    "password": "@12345678"
+    "email": "superadmin@gmail.com",
+    "password": "12345678"
 }
 
 ###
-GET  http://127.0.0.1:8006/api/v1/user/auth-check HTTP/1.1
+GET  http://127.0.0.1:8000/api/v1/user/auth-check HTTP/1.1
 content-type: application/json
 
 {

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\ApiLoginController;
 use App\Http\Livewire\Login;
 use App\Http\Livewire\Register;
 use App\Http\Livewire\ShowPosts;
@@ -27,6 +28,9 @@ Route::get('/register', Register::class);
 Route::get('/admin',function(){
     return view('backend.dashboard');
 });
+
+Route::get('/get-token','Auth\ApiLoginController@get_token');
+// Route::get('/get-token',[ApiLoginController::class,'get_token']);
 
 Route::get('/test',function(){
     $user = \App\Models\User::first();

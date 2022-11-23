@@ -75,7 +75,7 @@ class ApiLoginController extends Controller
 
                 if (env('EMAIL_VERIFICATION') == false) {
                     auth()->login($check_auth_user, $request->remember);
-                    $user = User::where('id', Auth::user()->id)->with('role_information')->first();
+                    $user = User::where('id', Auth::user()->id)->with('roles')->first();
                     $data['access_token'] = $user->createToken('accessToken')->accessToken;
                     $data['user'] = $user;
                     return response()->json($data, 200);
@@ -122,7 +122,7 @@ class ApiLoginController extends Controller
         } else {
             if ($verification['code'] == request()->code) {
                 auth()->login($verification['user']);
-                $user = User::where('id', Auth::user()->id)->with('role_information')->first();
+                $user = User::where('id', Auth::user()->id)->with('roles')->first();
                 $data['access_token'] = $user->createToken('accessToken')->accessToken;
                 $data['user'] = $user;
 
@@ -192,7 +192,7 @@ class ApiLoginController extends Controller
             $user->save();
 
             Auth::login($user);
-            $user = User::where('id', Auth::user()->id)->with('role_information')->first();
+            $user = User::where('id', Auth::user()->id)->with('roles')->first();
             $user->access_token = $user->createToken('accessToken')->accessToken;
             return response()->json($user, 200);
         }
@@ -252,7 +252,7 @@ class ApiLoginController extends Controller
         $data['password'] = Hash::make($request->password);
         $user = User::find(Auth::user()->id)->fill($data)->save();
 
-        $data['user'] = User::where('id', Auth::user()->id)->with('role_information')->first();
+        $data['user'] = User::where('id', Auth::user()->id)->with('roles')->first();
         return response()->json($data, 200);
     }
 
