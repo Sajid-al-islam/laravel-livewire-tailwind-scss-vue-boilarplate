@@ -5,7 +5,7 @@ mix.sourceMaps();
 mix.js('resources/js/app.js', 'public/js');
 mix.js('resources/js/vue/backend/dashboard.js', 'public/js/vue').vue({ version: 2 });
 
-mix.sass('resources/scss/backend.scss', 'public/css')
+mix.sass('resources/scss/backend/backend.scss', 'public/css')
     .options({
         postCss: [
             require('autoprefixer')

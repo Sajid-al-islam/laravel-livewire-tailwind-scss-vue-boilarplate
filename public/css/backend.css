@@ -1,0 +1,6 @@
+.content-body {
+  border: 1px solid;
+  min-height: calc(100vh - 205px);
+  max-height: calc(100vh - 205px);
+  overflow-y: scroll;
+}

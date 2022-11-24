@@ -81,6 +81,17 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\nvar __WE
 
 /***/ }),
 
+/***/ "./resources/scss/backend/backend.scss":
+/*!*********************************************!*\
+  !*** ./resources/scss/backend/backend.scss ***!
+  \*********************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Nzcy9iYWNrZW5kL2JhY2tlbmQuc2Nzcy5qcyIsIm1hcHBpbmdzIjoiO0FBQUEiLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvc2Nzcy9iYWNrZW5kL2JhY2tlbmQuc2Nzcz80NmUwIl0sInNvdXJjZXNDb250ZW50IjpbIi8vIGV4dHJhY3RlZCBieSBtaW5pLWNzcy1leHRyYWN0LXBsdWdpblxuZXhwb3J0IHt9OyJdLCJuYW1lcyI6W10sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/scss/backend/backend.scss\n");
+
+/***/ }),
+
 /***/ "./resources/scss/style.scss":
 /*!***********************************!*\
   !*** ./resources/scss/style.scss ***!
@@ -88,7 +99,7 @@ eval("/* module decorator */ module = __webpack_require__.nmd(module);\nvar __WE
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Nzcy9zdHlsZS5zY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9zY3NzL3N0eWxlLnNjc3M/NmNhZiJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/scss/style.scss\n");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvc2Nzcy9zdHlsZS5zY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy9zY3NzL3N0eWxlLnNjc3M/ZTNjZiJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/scss/style.scss\n");
 
 /***/ }),
 
@@ -99,7 +110,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvdGFpbHdpbmQvdGFpbHdpbmQuY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy90YWlsd2luZC90YWlsd2luZC5jc3M/OWYxOCJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/tailwind/tailwind.css\n");
+eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiLi9yZXNvdXJjZXMvdGFpbHdpbmQvdGFpbHdpbmQuY3NzLmpzIiwibWFwcGluZ3MiOiI7QUFBQSIsInNvdXJjZXMiOlsid2VicGFjazovLy8uL3Jlc291cmNlcy90YWlsd2luZC90YWlsd2luZC5jc3M/MzM2MSJdLCJzb3VyY2VzQ29udGVudCI6WyIvLyBleHRyYWN0ZWQgYnkgbWluaS1jc3MtZXh0cmFjdC1wbHVnaW5cbmV4cG9ydCB7fTsiXSwibmFtZXMiOltdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/tailwind/tailwind.css\n");
 
 /***/ }),
 
@@ -238,7 +249,8 @@ eval("/* provided dependency */ var Buffer = __webpack_require__(/*! buffer */ \
 /******/ 		var installedChunks = {
 /******/ 			"/js/app": 0,
 /******/ 			"css/tailwind/tailwind": 0,
-/******/ 			"css/style": 0
+/******/ 			"css/style": 0,
+/******/ 			"css/backend": 0
 /******/ 		};
 /******/ 		
 /******/ 		// no chunk on demand loading
@@ -290,9 +302,10 @@ eval("/* provided dependency */ var Buffer = __webpack_require__(/*! buffer */ \
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	__webpack_require__.O(undefined, ["css/tailwind/tailwind","css/style"], function() { return __webpack_require__("./resources/js/app.js"); })
-/******/ 	__webpack_require__.O(undefined, ["css/tailwind/tailwind","css/style"], function() { return __webpack_require__("./resources/scss/style.scss"); })
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/tailwind/tailwind","css/style"], function() { return __webpack_require__("./resources/tailwind/tailwind.css"); })
+/******/ 	__webpack_require__.O(undefined, ["css/tailwind/tailwind","css/style","css/backend"], function() { return __webpack_require__("./resources/js/app.js"); })
+/******/ 	__webpack_require__.O(undefined, ["css/tailwind/tailwind","css/style","css/backend"], function() { return __webpack_require__("./resources/scss/backend/backend.scss"); })
+/******/ 	__webpack_require__.O(undefined, ["css/tailwind/tailwind","css/style","css/backend"], function() { return __webpack_require__("./resources/scss/style.scss"); })
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["css/tailwind/tailwind","css/style","css/backend"], function() { return __webpack_require__("./resources/tailwind/tailwind.css"); })
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
