@@ -1,3 +1,23 @@
+.custom_scroll, .content-body {
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+.custom_scroll::-webkit-scrollbar, .content-body::-webkit-scrollbar {
+  width: 10px;
+}
+.custom_scroll::-webkit-scrollbar-track, .content-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.custom_scroll::-webkit-scrollbar-thumb, .content-body::-webkit-scrollbar-thumb {
+  background: #283046;
+  border-radius: 25px;
+}
+.custom_scroll::-webkit-scrollbar-thumb:hover, .content-body::-webkit-scrollbar-thumb:hover {
+  background: #7367f0;
+}
+
 .content-body {
   border: 1px solid;
   min-height: calc(100vh - 205px);

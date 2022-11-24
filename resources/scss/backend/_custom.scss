@@ -1,6 +1,32 @@
+@import "./variables";
+
+.custom_scroll {
+    /* width */
+    &::-webkit-scrollbar {
+        width: 10px;
+    }
+
+    /* Track */
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+        background: $light_dark;
+        border-radius: 25px;
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+        background: $purple;
+    }
+}
 .content-body {
     border: 1px solid;
     min-height: calc(100vh - 205px);
     max-height: calc(100vh - 205px);
     overflow-y: scroll;
+
+    @extend .custom_scroll;
 }
