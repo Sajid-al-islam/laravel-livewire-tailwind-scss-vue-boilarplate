@@ -1,6 +1,6 @@
 <template>
     <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-        <li class="nav-item">
+        <li class="nav-item has-sub">
             <a class="d-flex align-items-center" href="#">
                 <i data-feather="home"></i>
                 <span class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span>
@@ -31,11 +31,10 @@
                 <span class="menu-title text-truncate" data-i18n="Email">Email</span>
             </a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item has-sub" >
             <a class="d-flex align-items-center" href="#">
-                <i data-feather="home"></i>
-                <span class="menu-title text-truncate" data-i18n="Settings">Settings</span>
-                <span class="badge badge-light-warning rounded-pill ms-auto me-1">2</span>
+                <i data-feather="user"></i>
+                <span class="menu-title text-truncate" data-i18n="User">User</span>
             </a>
             <ul class="menu-content">
                 <li>

@@ -1,6 +1,7 @@
 @import "./variables";
 
 .custom_scroll {
+
     /* width */
     &::-webkit-scrollbar {
         width: 10px;
@@ -22,11 +23,16 @@
         background: $purple;
     }
 }
+
 .content-body {
-    border: 1px solid;
+    // border: 1px solid;
     min-height: calc(100vh - 205px);
     max-height: calc(100vh - 205px);
     overflow-y: scroll;
 
     @extend .custom_scroll;
+}
+
+.vertical-layout.vertical-menu-modern .main-menu .navigation li a:hover {
+    background-color: rgba(67, 89, 113, .3);
 }
