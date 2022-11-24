@@ -1,0 +1,66 @@
+<template>
+    <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+        <li class="nav-item">
+            <a class="d-flex align-items-center" href="#">
+                <i data-feather="home"></i>
+                <span class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span>
+                <span class="badge badge-light-warning rounded-pill ms-auto me-1">2</span>
+            </a>
+            <ul class="menu-content">
+                <li>
+                    <router-link :to="{name:'Dashboard'}" class="d-flex align-items-center" href="#">
+                        <i data-feather="circle"></i>
+                        <span class="menu-item text-truncate" data-i18n="Analytics">Analytics</span>
+                    </router-link>
+                </li>
+                <li>
+                    <a class="d-flex align-items-center" href="#">
+                        <i data-feather="circle"></i>
+                        <span class="menu-item text-truncate" data-i18n="eCommerce">eCommerce</span>
+                    </a>
+                </li>
+            </ul>
+        </li>
+        <li class="navigation-header">
+            <span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span>
+            <i data-feather="more-horizontal"></i>
+        </li>
+        <li class="nav-item">
+            <a class="d-flex align-items-center" href="#">
+                <i data-feather="mail"></i>
+                <span class="menu-title text-truncate" data-i18n="Email">Email</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="d-flex align-items-center" href="#">
+                <i data-feather="home"></i>
+                <span class="menu-title text-truncate" data-i18n="Settings">Settings</span>
+                <span class="badge badge-light-warning rounded-pill ms-auto me-1">2</span>
+            </a>
+            <ul class="menu-content">
+                <li>
+                    <router-link :to="{name:'settingProfile'}" class="d-flex align-items-center" href="#">
+                        <i data-feather="circle"></i>
+                        <span class="menu-item text-truncate" data-i18n="Profile">Profile</span>
+                    </router-link>
+                </li>
+                <li>
+                    <router-link :to="{name:'settingPassword'}" class="d-flex align-items-center" href="#">
+                        <i data-feather="circle"></i>
+                        <span class="menu-item text-truncate" data-i18n="Password">Password</span>
+                    </router-link>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</template>
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>

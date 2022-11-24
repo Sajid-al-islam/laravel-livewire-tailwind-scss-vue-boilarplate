@@ -1,26 +1,31 @@
 <template>
     <div>
-        <h1>
-            header
-            <ul>
-                <li>
-                    <router-link :to="{ name: 'Dashboard' }">Dashboard</router-link>
-                </li>
-                <li>
-                    <router-link :to="{ name: 'settingProfile' }">settingProfile</router-link>
-                </li>
-                <li>
-                    <router-link :to="{ name: 'settingPassword' }">settingPassword</router-link>
-                </li>
-            </ul>
-        </h1>
-        <router-view></router-view>
-        <h1>footer</h1>
+        <top-nav></top-nav>
+        <main-menu></main-menu>
+        <!-- BEGIN: Content-->
+        <div class="app-content content ">
+            <div class="content-overlay"></div>
+            <div class="header-navbar-shadow"></div>
+            <div class="content-wrapper container-xxl p-0">
+                <bread-cumb></bread-cumb>
+                <div class="content-body">
+                    <router-view></router-view>
+
+
+                </div>
+            </div>
+        </div>
+        <!-- END: Content-->
     </div>
 </template>
 
 <script>
-export default {};
+import BreadCumb from './layouts/main_body/BreadCumb.vue';
+import MainMenu from './layouts/main_menu/MainMenu.vue';
+import TopNav from './layouts/TopNav.vue';
+export default {
+    components: { TopNav, MainMenu, BreadCumb },
+}
 </script>
 
 <style>
