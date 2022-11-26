@@ -12,6 +12,7 @@
     <meta name="twitter:description" content="{{$title}}">
     <meta name="twitter:image" content="{{$meta_image}}">
     <meta name="twitter:card" content="summary_large_image">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
     @livewireStyles
     <script src="/js/app.js" defer></script>
 </head>

@@ -1,4 +1,32 @@
 @tailwind preflight;
+.container{
+    width: 100%
+}
+@media (min-width: 640px){
+    .container{
+        max-width: 640px
+    }
+}
+@media (min-width: 768px){
+    .container{
+        max-width: 768px
+    }
+}
+@media (min-width: 1024px){
+    .container{
+        max-width: 1024px
+    }
+}
+@media (min-width: 1280px){
+    .container{
+        max-width: 1280px
+    }
+}
+@media (min-width: 1536px){
+    .container{
+        max-width: 1536px
+    }
+}
 .collapse{
     visibility: collapse
 }
@@ -68,6 +96,9 @@
 }
 .mb-2{
     margin-bottom: 0.5rem
+}
+.mb-4{
+    margin-bottom: 1rem
 }
 .flex{
     display: -webkit-box;

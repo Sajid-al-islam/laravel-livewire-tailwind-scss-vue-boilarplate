@@ -28,7 +28,6 @@ import NavThemeMode from './NavThemeMode.vue';
 import TopNavWatch from './TopNavWatch.vue';
 export default {
     components: { NavRightProfileMenu,  NavSearch, NavNotifications, NavThemeMode, NavSidebarToggler, TopNavWatch },
-
 }
 </script>
 
