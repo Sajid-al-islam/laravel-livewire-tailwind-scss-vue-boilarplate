@@ -1,3 +1,8 @@
+{{-- @extends('layouts.app',[
+    'title' => 'login',
+    'meta_image' => 'https://www.prossodprokashon.com/uploads/file_manager/fm_image_350x500_106195df55457491637211989.jpg',
+]) --}}
+{{-- @section('content') --}}
 <div>
     <div class="container">
         <div class="row justify-content-center">
@@ -7,14 +12,14 @@
                         <h1>login</h1>
                     </div>
                     <div class="card-body">
-                        <form action="">
+                        <form wire:submit.prevent="login_submit" action="">
                             <div class="form-group mb-4">
                                 <label for="">email</label>
-                                <input type="text" class="form-control" name="email">
+                                <input wire:model="email" type="email" class="form-control" name="email">
                             </div>
                             <div class="form-group mb-4">
-                                <label for="">email</label>
-                                <input type="text" class="form-control" name="email">
+                                <label for="">password</label>
+                                <input wire:model="password" type="password" class="form-control" name="password">
                             </div>
                             <button class="btn btn-success btn-sm">Login</button>
                         </form>
@@ -24,3 +29,6 @@
         </div>
     </div>
 </div>
+
+
+{{-- @endsection --}}
