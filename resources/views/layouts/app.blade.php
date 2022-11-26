@@ -18,7 +18,7 @@
 </head>
 <body>
 
-    <div wire:loading.delay>...</div>
+
     <nav>
         <a href="/login">login</a>
         <a href="/register">register</a>
@@ -29,17 +29,24 @@
 
     <script defer>
         document.addEventListener("DOMContentLoaded", () => {
-            Livewire.hook('component.initialized', (component) => {})
-            Livewire.hook('element.initialized', (el, component) => {})
+            Livewire.hook('component.initialized', (component) => {
+                //
+                // console.log('34',component.data);
+            })
+            Livewire.hook('element.initialized', (el, component) => {
+                // console.log('37',component.data);
+                // component.data.auth_check?window.location.href='/admin':'';
+            })
             Livewire.hook('element.updating', (fromEl, toEl, component) => {})
             Livewire.hook('element.updated', (el, component) => {})
             Livewire.hook('element.removed', (el, component) => {})
             Livewire.hook('message.sent', (message, component) => {})
             Livewire.hook('message.failed', (message, component) => {})
             Livewire.hook('message.received', (message, component) => {
-                console.log(component.data);
+                // console.log('45');
             })
             Livewire.hook('message.processed', (message, component) => {
+                // console.log('48');
             })
         });
         document.addEventListener("turbolinks:load", function(event) {

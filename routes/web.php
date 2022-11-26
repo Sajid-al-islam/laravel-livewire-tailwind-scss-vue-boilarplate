@@ -33,7 +33,7 @@ Route::group( ['prefix'=>'','namespace' => "Controllers" ],function(){
 
 Route::get('/admin', function () {
     return view('backend.dashboard');
-});
+})->name('admin');
 
 Route::get('/test', function () {
     $user = \App\Models\User::first();

@@ -9,6 +9,7 @@
             <div class="col-lg-6">
                 <div class="card">
                     <div class="card-header">
+                        <div wire:loading.delay>...</div>
                         <h1>login</h1>
                     </div>
                     <div class="card-body">
