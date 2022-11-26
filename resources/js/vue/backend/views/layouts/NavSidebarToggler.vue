@@ -1,11 +1,9 @@
 <template>
-    <ul class="nav navbar-nav ">
-        <li class="nav-item">
-            <a class="nav-link menu-toggle" href="#">
-                <i class="ficon" data-feather="menu"></i>
-            </a>
-        </li>
-    </ul>
+    <li class="nav-item">
+        <a class="nav-link menu-toggle" href="#">
+            <i class="ficon" data-feather="menu"></i>
+        </a>
+    </li>
 </template>
 
 <script>

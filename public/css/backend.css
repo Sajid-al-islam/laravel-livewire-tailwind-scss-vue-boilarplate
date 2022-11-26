@@ -1,3 +1,40 @@
+.watch {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #7367f0;
+  padding: 5px;
+  border-radius: 2px;
+  font-family: clock;
+  font-size: 18px;
+  color: #b4b7be;
+  position: fixed;
+  bottom: 5px;
+  width: calc(100% - 10px);
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%);
+}
+.watch.to_nav_watch {
+  position: unset;
+  -webkit-transform: unset;
+      -ms-transform: unset;
+          transform: unset;
+  background-color: unset;
+}
+.watch .title,
+.watch .hour,
+.watch .min,
+.watch .sec,
+.watch .meridian {
+  margin: 0px 2px;
+  min-width: 17.2px;
+  text-align: center;
+  font-family: Montserrat, Helvetica, Arial, serif;
+  text-transform: capitalize;
+}
+
 .custom_scroll, .content-body {
   /* width */
   /* Track */

@@ -1,4 +1,7 @@
-require('../../bootstrap');
+require('./plugins/axios_setup');
+require('./plugins/moment_setup');
+require('./plugins/preview_image');
+require('./plugins/auto_logout')
 
 
 /*********************
