@@ -88,6 +88,9 @@
 .-mt-px{
     margin-top: -1px
 }
+.mb-4{
+    margin-bottom: 1rem
+}
 .mb-0{
     margin-bottom: 0px
 }
@@ -96,9 +99,6 @@
 }
 .mb-2{
     margin-bottom: 0.5rem
-}
-.mb-4{
-    margin-bottom: 1rem
 }
 .flex{
     display: -webkit-box;
