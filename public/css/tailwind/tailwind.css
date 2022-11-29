@@ -61,6 +61,10 @@
     margin-top: 0.75rem;
     margin-bottom: 0.75rem
 }
+.my-4{
+    margin-top: 1rem;
+    margin-bottom: 1rem
+}
 .ml-1{
     margin-left: 0.25rem
 }
@@ -166,6 +170,12 @@
 .rounded-lg{
     border-radius: 0.5rem
 }
+.rounded-sm{
+    border-radius: 0.125rem
+}
+.rounded{
+    border-radius: 0.25rem
+}
 .border{
     border-width: 1px
 }
@@ -199,6 +209,12 @@
 }
 .p-0{
     padding: 0px
+}
+.p-3{
+    padding: 0.75rem
+}
+.p-1{
+    padding: 0.25rem
 }
 .py-4{
     padding-top: 1rem;
@@ -241,6 +257,9 @@
 }
 .uppercase{
     text-transform: uppercase
+}
+.capitalize{
+    text-transform: capitalize
 }
 .leading-7{
     line-height: 1.75rem
