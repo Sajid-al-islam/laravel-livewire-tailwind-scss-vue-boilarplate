@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Layout from '../views/Layout'
 import Dashboard from '../views/Dashboard'
+import Login from '../views/auth/Login'
 
 import settingLayout from '../views/settings/Layout'
 import settingProfile from '../views/settings/Profile'
@@ -12,37 +13,42 @@ Vue.use(VueRouter);
 window.Fire = new Vue();
 
 const routes = [{
-    path: '/',
-    component: Layout,
-    children: [{
-            path: '',
-            name: 'Dashboard',
-            component: Dashboard,
-        },
-        {
-            path: 'setting',
-            component: settingLayout,
-            children: [
-                {
-                    path: '',
-                    name: 'settingProfile',
-                    component: settingProfile,
-                },
-                {
-                    path: 'password',
-                    name: 'settingPassword',
-                    component: settingPassword,
-                },
-                // {
-                //     path: 'details/:id',
-                //     name: 'chapterDetails',
-                //     component: chapterDetails,
-                // },
-            ],
-        },
+        path: '/',
+        component: Layout,
+        children: [{
+                path: '',
+                name: 'Dashboard',
+                component: Dashboard,
+            },
+            {
+                path: 'setting',
+                component: settingLayout,
+                children: [{
+                        path: '',
+                        name: 'settingProfile',
+                        component: settingProfile,
+                    },
+                    {
+                        path: 'password',
+                        name: 'settingPassword',
+                        component: settingPassword,
+                    },
+                    // {
+                    //     path: 'details/:id',
+                    //     name: 'chapterDetails',
+                    //     component: chapterDetails,
+                    // },
+                ],
+            },
 
-    ]
-}, ];
+        ]
+    },
+    {
+        path: '/login',
+        name: 'Login',
+        component: Login
+    }
+];
 
 const management_router = new VueRouter({
     routes,
