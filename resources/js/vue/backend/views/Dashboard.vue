@@ -3,7 +3,9 @@
         <div class="row">
             <!-- Invoice repeater -->
             <div class="col-12">
-                <div v-for="i in 30" :key="i" class="card mb-5">
+                
+
+                <div class="card mb-5">
                     <div class="card-header">
                         <h4 class="card-title">Dashboard</h4>
                     </div>
