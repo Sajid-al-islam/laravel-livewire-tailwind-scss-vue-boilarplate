@@ -219,6 +219,7 @@
         })
     </script>
 </body>
-<!-- END: Body-->
+<!-- END: Body https://pixinvent.com/demo/vuexy-html-bootstrap-admin-template/html/vertical-menu-template-dark/ -->
+
 
 </html>
