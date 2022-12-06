@@ -49,6 +49,10 @@
     margin-left: auto;
     margin-right: auto
 }
+.my-4{
+    margin-top: 1rem;
+    margin-bottom: 1rem
+}
 .my-1{
     margin-top: 0.25rem;
     margin-bottom: 0.25rem
@@ -60,10 +64,6 @@
 .my-3{
     margin-top: 0.75rem;
     margin-bottom: 0.75rem
-}
-.my-4{
-    margin-top: 1rem;
-    margin-bottom: 1rem
 }
 .ml-1{
     margin-left: 0.25rem
@@ -108,6 +108,9 @@
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex
+}
+.table{
+    display: table
 }
 .grid{
     display: grid
@@ -170,11 +173,11 @@
 .rounded-lg{
     border-radius: 0.5rem
 }
-.rounded-sm{
-    border-radius: 0.125rem
-}
 .rounded{
     border-radius: 0.25rem
+}
+.rounded-sm{
+    border-radius: 0.125rem
 }
 .border{
     border-width: 1px
@@ -204,17 +207,14 @@
 .p-6{
     padding: 1.5rem
 }
+.p-3{
+    padding: 0.75rem
+}
 .p-5{
     padding: 1.25rem
 }
 .p-0{
     padding: 0px
-}
-.p-3{
-    padding: 0.75rem
-}
-.p-1{
-    padding: 0.25rem
 }
 .py-4{
     padding-top: 1rem;
