@@ -34,6 +34,10 @@
     <link rel="stylesheet" href="/css/tailwind/tailwind.css">
     <link rel="stylesheet" href="/css/backend.css">
     <script src="/js/vue/dashboard.js" defer></script>
+
+    <script>
+        window.s_alert = () => '';
+    </script>
 </head>
 <!-- END: Head-->
 

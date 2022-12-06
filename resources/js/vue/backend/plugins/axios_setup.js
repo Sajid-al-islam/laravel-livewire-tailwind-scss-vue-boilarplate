@@ -106,7 +106,6 @@ window.axios.interceptors.response.use(
 
         if(error.response.status == 401){
             window.clear_session();
-            window.location = "/";
         }
 
         window.s_alert('error',error.response?.statusText)
