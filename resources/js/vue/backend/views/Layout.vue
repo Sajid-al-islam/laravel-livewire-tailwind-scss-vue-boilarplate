@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="get_check_auth">
         <top-nav></top-nav>
         <main-menu></main-menu>
         <!-- BEGIN: Content-->
@@ -28,7 +28,11 @@ export default {
         this.fetch_check_auth();
     },
     watch: {
-        get_check_auth: function(newv){}
+        get_check_auth: function(newv){
+            setTimeout(() => {
+                $('.navigation li a.active').parents('li.has-sub').addClass('open');
+            }, 500);
+        }
     },
     methods: {
         ...mapActions(['fetch_check_auth']),

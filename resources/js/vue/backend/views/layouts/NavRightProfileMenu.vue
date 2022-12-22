@@ -1,6 +1,6 @@
 <template>
     <li class="nav-item dropdown dropdown-user">
-        <a class="nav-link dropdown-toggle dropdown-user-link"
+        <a @click.prevent="show_menu=!show_menu" class="nav-link dropdown-toggle dropdown-user-link"
             id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             <div class="user-nav d-sm-flex d-none">
@@ -14,7 +14,7 @@
                 <span class="avatar-status-online"></span>
             </span>
         </a>
-        <div class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
+        <div :class="{show:show_menu}" class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-user">
             <a class="dropdown-item" href="#">
                 <i class="me-50" data-feather="user"> </i>
                 Profile
@@ -36,7 +36,11 @@
 
 <script>
 export default {
-
+    data: function(){
+        return {
+            show_menu: false,
+        }
+    }
 }
 </script>
 

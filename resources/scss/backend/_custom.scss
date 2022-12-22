@@ -64,3 +64,23 @@
         }
     }
 }
+
+.navigation li{
+    position: relative;
+    &.has-sub{
+        &::after{
+            content: '\f105';
+            font-family: 'FontAwesome';
+            position: absolute;
+            right: 22px;
+            top: 22px;
+            transform: translateY(-50%);
+            color: $white;
+        }
+        &.open{
+            &::after{
+                content: '\f107';
+            }
+        }
+    }
+}

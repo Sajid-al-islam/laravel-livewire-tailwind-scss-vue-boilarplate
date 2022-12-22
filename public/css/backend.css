@@ -96,3 +96,21 @@ html.nav-hide .header-navbar {
     width: calc(100vw - (100vw - 100%) - 4rem - 260px);
   }
 }
+
+.navigation li {
+  position: relative;
+}
+.navigation li.has-sub::after {
+  content: "\f105";
+  font-family: "FontAwesome";
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  -webkit-transform: translateY(-50%);
+      -ms-transform: translateY(-50%);
+          transform: translateY(-50%);
+  color: #b4b7be;
+}
+.navigation li.has-sub.open::after {
+  content: "\f107";
+}
