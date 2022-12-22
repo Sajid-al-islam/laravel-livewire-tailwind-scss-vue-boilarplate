@@ -60,21 +60,17 @@ const management_router = new VueRouter({
 });
 
 management_router.beforeEach((to, from, next) => {
-    // let isAuthenticated = window.localStorage?.token?.length ? true : false;
-    // if (isAuthenticated) {
-    //     window.axios.defaults.headers.common["Authorization"] = `Bearer ${window.localStorage?.token}`;
-    // } else {
-    //     window.axios.defaults.headers.common["Authorization"] = null;
-    // }
+    let isAuthenticated = window.localStorage?.token?.length ? true : false;
+    if (isAuthenticated) {
+        window.axios.defaults.headers.common["Authorization"] = `Bearer ${window.localStorage?.token}`;
+        next();
+    } else {
+        window.axios.defaults.headers.common["Authorization"] = null;
+        window.location.href = '/login'
+        return 0;
+    }
 
-    // if (isAuthenticated == false) {
-    //     next({
-    //         to: '/login'
-    //     })
-    // } else {
-    //     next()
-    // }
-    next()
+    // next()
 })
 
 export default management_router

@@ -21,11 +21,11 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-// Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
-//     Route::get('/', "ShowPosts");
-//     Route::get('/login', "Login");
-//     Route::get('/register', "Register");
-// });
+Route::group(['prefix' => '', 'namespace' => "Livewire"], function () {
+    Route::get('/', "ShowPosts");
+    Route::get('/login', "Login");
+    Route::get('/register', "Register");
+});
 
 Route::group( ['prefix'=>'','namespace' => "Controllers" ],function(){
     Route::get('/website','WebsiteController@website');
