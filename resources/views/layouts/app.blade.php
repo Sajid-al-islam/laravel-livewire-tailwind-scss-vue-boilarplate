@@ -43,7 +43,11 @@
             Livewire.hook('message.sent', (message, component) => {})
             Livewire.hook('message.failed', (message, component) => {})
             Livewire.hook('message.received', (message, component) => {
-                // console.log('45');
+                let access_token = message.response.serverMemo.data?.access_token;
+                if(access_token){
+                    window.localStorage.setItem('token',access_token);
+                    window.location.href = "/admin";
+                }
             })
             Livewire.hook('message.processed', (message, component) => {
                 // console.log('48');

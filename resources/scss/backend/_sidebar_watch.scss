@@ -9,7 +9,7 @@
     border-radius: 2px;
     font-family: clock;
     font-size: 18px;
-    color: $white;
+    color: $deep_dark;
     position: fixed;
     bottom: 5px;
     width: calc(100% - 10px);
@@ -20,6 +20,10 @@
         position: unset;
         transform: unset;
         background-color: unset;
+
+        html.dark-layout & {
+            color: $white;
+        }
     }
 
     .title,

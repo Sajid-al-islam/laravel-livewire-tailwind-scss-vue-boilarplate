@@ -65,7 +65,7 @@ management_router.beforeEach((to, from, next) => {
         window.axios.defaults.headers.common["Authorization"] = `Bearer ${window.localStorage?.token}`;
         next();
     } else {
-        window.axios.defaults.headers.common["Authorization"] = null;
+        delete window.axios.defaults.headers.common["Authorization"];
         window.location.href = '/login'
         return 0;
     }

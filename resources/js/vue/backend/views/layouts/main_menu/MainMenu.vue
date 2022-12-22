@@ -1,6 +1,6 @@
 <template>
     <!-- BEGIN: Main Menu-->
-    <div class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
+    <div  class="main-menu menu-fixed menu-dark menu-accordion menu-shadow" data-scroll-to-active="true">
         <main-menu-navbar-top></main-menu-navbar-top>
         <div class="shadow-bottom"></div>
         <div class="main-menu-content">

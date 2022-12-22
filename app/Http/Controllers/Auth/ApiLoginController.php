@@ -61,13 +61,13 @@ class ApiLoginController extends Controller
 
         } else {
 
-            $active_user = DB::table('oauth_access_tokens')->where('revoked', 0)->first();
-            if ($active_user && env('EMAIL_VERIFICATION') == true) {
-                $user = User::find($active_user->user_id);
-                return response()->json([
-                    'message' => 'The software is active in another device via ' . $user->email,
-                ], 406);
-            }
+            // $active_user = DB::table('oauth_access_tokens')->where('revoked', 0)->first();
+            // if ($active_user && env('EMAIL_VERIFICATION') == true) {
+            //     $user = User::find($active_user->user_id);
+            //     return response()->json([
+            //         'message' => 'The software is active in another device via ' . $user->email,
+            //     ], 406);
+            // }
 
             // $req_data = request()->only('email', 'password');
             $check_auth_user = User::where('email', $request->email)->orWhere('user_name', $request->email)->first();

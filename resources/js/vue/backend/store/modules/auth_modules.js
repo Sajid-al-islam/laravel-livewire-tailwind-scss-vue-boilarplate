@@ -24,8 +24,8 @@ const actions = {
                 this.commit('set_check_auth', true);
             })
             .catch((err)=>{
-                this.commit('set_check_auth', false);
-                window.localStorage.removeItem('token');
+                // this.commit('set_check_auth', false);
+                // window.localStorage.removeItem('token');
                 console.log('user not authenticated');
                 window.location.href = '/login';
             })

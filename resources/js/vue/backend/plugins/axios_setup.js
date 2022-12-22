@@ -104,9 +104,10 @@ window.axios.interceptors.response.use(
             console.log(error.response);
         }
 
-        if(error.response.status == 401){
-            window.clear_session();
-        }
+        // if(error.response.status == 401){
+        //     window.clear_session();
+        // }
+        console.log(error);
 
         window.s_alert('error',error.response?.statusText)
         throw error;

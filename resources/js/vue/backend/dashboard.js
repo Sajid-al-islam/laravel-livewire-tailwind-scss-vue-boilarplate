@@ -10,7 +10,6 @@ require('./plugins/auto_logout')
 
 import Vue from 'vue'
 import router from './router/router';
-import { mapGetters } from 'vuex'
 import store from './store/index';
 
 Vue.component('ex-app', require('./App.vue').default);
@@ -20,11 +19,7 @@ if (document.getElementById('app')) {
         router,
         el: '#app',
         created: function () {
-            console.log('dashboard started', this.get_check_auth);
-            // console.log(this.$store);
+            console.log('dashboard started');
         },
-        computed: {
-            ...mapGetters(['get_check_auth'])
-        }
     })
 }

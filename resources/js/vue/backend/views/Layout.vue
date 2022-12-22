@@ -21,8 +21,21 @@
 import BreadCumb from './layouts/main_body/BreadCumb.vue';
 import MainMenu from './layouts/main_menu/MainMenu.vue';
 import TopNav from './layouts/TopNav.vue';
+import {mapActions, mapGetters} from 'vuex';
 export default {
     components: { TopNav, MainMenu, BreadCumb },
+    created: function(){
+        this.fetch_check_auth();
+    },
+    watch: {
+        get_check_auth: function(newv){}
+    },
+    methods: {
+        ...mapActions(['fetch_check_auth']),
+    },
+    computed: {
+        ...mapGetters(['get_check_auth'])
+    }
 }
 </script>
 

@@ -10,6 +10,7 @@ class Login extends Component
     public $email;
     public $password;
     public $auth_check;
+    public $access_token;
 
     public function mount()
     {
@@ -41,6 +42,7 @@ class Login extends Component
         if($user){
             auth()->login($user);
             $this->auth_check = auth()->check();
+            $this->access_token = $user->createToken('accessToken')->accessToken;
         }
     }
 }

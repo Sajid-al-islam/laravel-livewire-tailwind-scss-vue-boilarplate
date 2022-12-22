@@ -2,8 +2,8 @@
     <div>
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
             <li class="nav-item has-sub">
-                <a class="d-flex align-items-center" href="#">
-                    <i data-feather="home"></i>
+                <a @click.prevent="toggleLi($event)" class="d-flex align-items-center" href="#">
+                    <i class="fa fa-home"></i>
                     <span class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span>
                     <span class="badge badge-light-warning rounded-pill ms-auto me-1">2</span>
                 </a>
@@ -33,7 +33,7 @@
                 </a>
             </li>
             <li class="nav-item has-sub" >
-                <a class="d-flex align-items-center" href="#">
+                <a @click.prevent="toggleLi($event)" class="d-flex align-items-center" href="#">
                     <i data-feather="user"></i>
                     <span class="menu-title text-truncate" data-i18n="User">User</span>
                 </a>
@@ -62,7 +62,11 @@ import NavTimeLeftWatch from "./NavTimeLeftWatch.vue";
 
 export default{
     components: { NavTimeLeftWatch },
-
+    methods: {
+        toggleLi: function(e){
+            e.currentTarget.parentNode.classList.toggle('open');
+        }
+    }
 }
 </script>
 

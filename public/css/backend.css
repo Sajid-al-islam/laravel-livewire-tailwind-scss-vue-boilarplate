@@ -7,7 +7,7 @@
   border-radius: 2px;
   font-family: clock;
   font-size: 18px;
-  color: #b4b7be;
+  color: #161d31;
   position: fixed;
   bottom: 5px;
   width: calc(100% - 10px);
@@ -22,6 +22,9 @@
       -ms-transform: unset;
           transform: unset;
   background-color: unset;
+}
+html.dark-layout .watch.to_nav_watch {
+  color: #b4b7be;
 }
 .watch .title,
 .watch .hour,
@@ -63,4 +66,33 @@
 
 .vertical-layout.vertical-menu-modern .main-menu .navigation li a:hover {
   background-color: rgba(67, 89, 113, 0.3);
+}
+
+html.nav-hide .vertical-layout.vertical-menu-modern .main-menu {
+  width: 0px;
+}
+@media (max-width: 1199.98px) {
+  html.nav-hide .vertical-layout.vertical-menu-modern .main-menu {
+    width: 260px;
+  }
+}
+
+html.nav-hide .vertical-layout.vertical-menu-modern .app-content {
+  margin-left: 0;
+}
+@media (max-width: 1199.98px) {
+  html.nav-hide .vertical-layout.vertical-menu-modern .app-content {
+    margin-left: 260px;
+  }
+}
+
+html.nav-hide .header-navbar {
+  width: 99%;
+  left: 0;
+}
+@media (max-width: 1199.98px) {
+  html.nav-hide .header-navbar {
+    left: 260px;
+    width: calc(100vw - (100vw - 100%) - 4rem - 260px);
+  }
 }
