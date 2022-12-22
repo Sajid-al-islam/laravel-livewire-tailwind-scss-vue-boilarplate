@@ -1,6 +1,6 @@
 <template>
-    <li @click="toggle_nav" class="nav-item">
-        <a class="nav-link menu-toggle" href="#">
+    <li class="nav-item">
+        <a @click.prevent="toggle_nav" class="nav-link menu-toggle" href="#">
             <i class="fa fa-align-left"></i>
         </a>
     </li>
