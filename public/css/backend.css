@@ -86,7 +86,7 @@ html.dark-layout .watch.to_nav_watch {
   content: "\f107";
 }
 
-@media (max-width: 1199.98px) {
+@media screen and (max-width: 1199.9px) {
   .vertical-layout.vertical-menu-modern .main-menu {
     width: 80px;
   }
@@ -166,7 +166,10 @@ html.dark-layout .watch.to_nav_watch {
     display: block;
   }
 }
-@media (min-height: 1200px) {
+@media (min-width: 1199.9px) {
+  .vertical-layout.vertical-menu-modern .main-menu {
+    width: 260px;
+  }
   html.nav-hide .vertical-layout.vertical-menu-modern .main-menu {
     width: 80px;
   }
@@ -220,7 +223,7 @@ html.dark-layout .watch.to_nav_watch {
   }
 }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 1199.9px) {
   .vertical-layout.vertical-menu-modern .app-content {
     left: 80px;
     width: calc(100vw - 80px);
@@ -229,13 +232,13 @@ html.dark-layout .watch.to_nav_watch {
 html.nav-hide .vertical-layout.vertical-menu-modern .app-content {
   margin-left: 80px;
 }
-@media (max-width: 1199.98px) {
+@media (max-width: 1199.9px) {
   html.nav-hide .vertical-layout.vertical-menu-modern .app-content {
     margin-left: 260px;
   }
 }
 
-@media (max-width: 1199.98px) {
+@media (max-width: 1199.9px) {
   .header-navbar.fixed-top,
   .header-navbar.floating-nav {
     left: 80px;
@@ -247,7 +250,7 @@ html.nav-hide .header-navbar.floating-nav {
   width: 92%;
   left: 80px;
 }
-@media (max-width: 1199.98px) {
+@media (max-width: 1199.9px) {
   html.nav-hide .header-navbar.fixed-top,
   html.nav-hide .header-navbar.floating-nav {
     left: 260px;

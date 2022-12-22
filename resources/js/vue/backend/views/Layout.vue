@@ -32,6 +32,11 @@ export default {
             setTimeout(() => {
                 $('.navigation li a.active').parents('li.has-sub').addClass('open');
             }, 500);
+
+            if(!newv){
+                localStorage.removeItem('token');
+                location.href = '/login';
+            }
         }
     },
     methods: {

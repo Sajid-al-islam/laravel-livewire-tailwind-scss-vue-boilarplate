@@ -52,7 +52,14 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item">
+                <a class="d-flex align-items-center" href="#">
+                    <i class="fa-solid fa-power-off"></i>
+                    <span class="menu-title text-truncate" >Logout</span>
+                </a>
+            </li>
         </ul>
+
         <nav-time-left-watch></nav-time-left-watch>
     </div>
 </template>

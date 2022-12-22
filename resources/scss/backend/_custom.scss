@@ -60,7 +60,7 @@
 }
 
 .vertical-layout.vertical-menu-modern .main-menu {
-    @media (max-width: 1199.98px) {
+    @media screen and (max-width: 1199.9px) {
         width: 80px;
 
         html.nav-hide & {
@@ -192,7 +192,8 @@
         }
     }
 
-    @media (min-height: 1200px) {
+    @media (min-width: 1199.9px) {
+        width: 260px;
         html.nav-hide & {
             width: 80px;
 
@@ -279,10 +280,11 @@
             }
         }
     }
+
 }
 
 .vertical-layout.vertical-menu-modern .app-content {
-    @media (max-width: 1199.98px) {
+    @media (max-width: 1199.9px) {
         left: 80px;
         width: calc(100vw - 80px);
     }
@@ -290,7 +292,7 @@
     html.nav-hide & {
         margin-left: 80px;
 
-        @media (max-width: 1199.98px) {
+        @media (max-width: 1199.9px) {
             margin-left: 260px;
         }
     }
@@ -298,7 +300,7 @@
 
 .header-navbar.fixed-top,
 .header-navbar.floating-nav {
-    @media (max-width: 1199.98px) {
+    @media (max-width: 1199.9px) {
         left: 80px;
         width: calc(100vw - 110px);
     }
@@ -307,7 +309,7 @@
         width: 92%;
         left: 80px;
 
-        @media (max-width: 1199.98px) {
+        @media (max-width: 1199.9px) {
             left: 260px;
             width: calc(100vw - (100vw - 100%) - calc(2rem * 2) - 260px);
         }
