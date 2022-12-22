@@ -171,6 +171,12 @@
         </div>
     </div>
 
+    <create link="adsfja" text="asdf">
+        <a href=""vei></a>
+    </create>
+
+    auh.preca
+
     <script>
         window.addEventListener('DOMContentLoaded', (event) => {
             day.innerHTML = moment().format('DD-MMM-Y dddd');

@@ -210,7 +210,6 @@
     <script src="{{ asset('backend') }}/app-assets/js/scripts/customizer.min.js"></script>
     <!-- END: Theme JS-->
 
-
     <script>
         $(window).on('load', function () {
             if (feather) {

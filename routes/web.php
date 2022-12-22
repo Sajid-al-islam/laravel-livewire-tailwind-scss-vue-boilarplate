@@ -36,17 +36,13 @@ Route::get('/admin', function () {
 })->name('admin');
 
 Route::get('/test', function () {
-    return view('test');
+    // return view('test');
     // dd(request()->getClientIp());
-    // auth()->login($user);
-    // dd(
-    //     auth()->check(),
-    //     $user->roles()->toSql(),
-    //     $user->toArray(),
-    //     $user->roles()->get()->toArray(),
-    //     $user->toArray(),
-    //     $user->permissions()->get()->toArray(),
-    // );
+    $user = \App\Models\User::find(1);
+    dd(
+        $user->roles()->get()->toArray(),
+        $user->permissions()->get()->toArray(),
+    );
 });
 
 Route::get('/data-reload', function () {
@@ -55,3 +51,5 @@ Route::get('/data-reload', function () {
     \Illuminate\Support\Facades\Artisan::call('passport:install');
     return redirect()->back();
 });
+
+
