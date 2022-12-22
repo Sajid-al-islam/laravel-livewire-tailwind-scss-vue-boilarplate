@@ -16,7 +16,7 @@
                     <div class="list-item d-flex align-items-start">
                         <div class="me-1">
                             <div class="avatar">
-                                <img src="/backend/app-assets/images/portrait/avatar-s-15.1c.delaye" alt="avatar" width="32" height="32" />
+                                <img src="/avatar.jpg" alt="avatar" width="32" height="32" />
                             </div>
                         </div>
                         <div class="list-item-body flex-grow-1">

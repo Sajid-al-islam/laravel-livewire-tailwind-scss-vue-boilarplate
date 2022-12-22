@@ -9,7 +9,7 @@
             </div>
             <span class="avatar">
                 <img class="round"
-                    src="/backend/app-assets/images/portrait/avatar-s-11.1e.delaye"
+                    src="/avatar.jpg"
                     alt="avatar" height="40" width="40">
                 <span class="avatar-status-online"></span>
             </span>

@@ -10,13 +10,13 @@
                 <ul class="menu-content">
                     <li>
                         <router-link :to="{name:'Dashboard'}" class="d-flex align-items-center" href="#">
-                            <i data-feather="circle"></i>
+                            <i class="far fa-circle"></i>
                             <span class="menu-item text-truncate" data-i18n="Analytics">Analytics</span>
                         </router-link>
                     </li>
                     <li>
                         <a class="d-flex align-items-center" href="#">
-                            <i data-feather="circle"></i>
+                            <i class="far fa-circle"></i>
                             <span class="menu-item text-truncate" data-i18n="eCommerce">eCommerce</span>
                         </a>
                     </li>
@@ -28,25 +28,25 @@
             </li>
             <li class="nav-item">
                 <a class="d-flex align-items-center" href="#">
-                    <i data-feather="mail"></i>
+                    <i class="fa fa-envelope"></i>
                     <span class="menu-title text-truncate" data-i18n="Email">Email</span>
                 </a>
             </li>
             <li class="nav-item has-sub" >
                 <a @click.prevent="toggleLi($event)" class="d-flex align-items-center" href="#">
-                    <i data-feather="user"></i>
+                    <i class="fa fa-users"></i>
                     <span class="menu-title text-truncate" data-i18n="User">User</span>
                 </a>
                 <ul class="menu-content">
                     <li>
                         <router-link :to="{name:'settingProfile'}" class="d-flex align-items-center" href="#">
-                            <i data-feather="circle"></i>
+                            <i class="far fa-circle"></i>
                             <span class="menu-item text-truncate" data-i18n="Profile">Profile</span>
                         </router-link>
                     </li>
                     <li>
                         <router-link :to="{name:'settingPassword'}" class="d-flex align-items-center" href="#">
-                            <i data-feather="circle"></i>
+                            <i class="far fa-circle"></i>
                             <span class="menu-item text-truncate" data-i18n="Password">Password</span>
                         </router-link>
                     </li>
