@@ -40,6 +40,22 @@ const actions = {
                 window.s_alert('error','something went wrong, reload window to fix it. '+(err.response?.data?.err_message || err.response?.data?.message));
             })
     },
+    fetch_logout: function (state) {
+        window.s_confirm('Logout')
+            .then(res=>{
+                res &&
+                    axios.post('/user/api-logout')
+                        .then((res) => {
+                            window.localStorage.removeItem('token');
+                            this.commit('set_auth_information', null);
+                            this.commit('set_check_auth', false);
+                            window.location.href = '/login'
+                        })
+                        .catch((err)=>{
+                            window.s_alert('error','something went wrong, reload window to fix it. '+(err.response?.data?.err_message || err.response?.data?.message));
+                        })
+            })
+    },
 }
 
 // mutators

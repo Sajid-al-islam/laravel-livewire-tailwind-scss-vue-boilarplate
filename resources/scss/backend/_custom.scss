@@ -37,8 +37,16 @@
     background-color: rgba(67, 89, 113, .3);
 }
 
-.navigation li {
+.vertical-layout.vertical-menu-modern .main-menu .navigation li {
     position: relative;
+
+    &>a {
+        &>i {
+            font-size: 15px;
+            padding-top: 1px;
+            margin-right: 10px;
+        }
+    }
 
     &.has-sub {
         &::after {
@@ -194,6 +202,7 @@
 
     @media (min-width: 1199.9px) {
         width: 260px;
+
         html.nav-hide & {
             width: 80px;
 
@@ -289,6 +298,7 @@
         width: calc(100vw - 80px);
     }
 
+
     html.nav-hide & {
         margin-left: 80px;
 
@@ -314,4 +324,18 @@
             width: calc(100vw - (100vw - 100%) - calc(2rem * 2) - 260px);
         }
     }
+}
+
+.main-menu.menu-dark .navigation>li ul .has-sub ul:has(.active),
+.main-menu.menu-dark .navigation>li ul:has(.active) {
+    display: block;
+}
+
+.dark-layout .main-menu-content .navigation-main .nav-item:has(.active)>a {
+    background-color: #161D31 !important;
+}
+.main-menu.menu-dark .navigation>li:not(.open)>ul .active{
+    background: -webkit-linear-gradient(332deg, #7367F0, rgba(115, 103, 240, .7));
+    background: linear-gradient(118deg, #7367F0, rgba(115, 103, 240, .7));
+    box-shadow: 0 0 10px 1px rgba(115, 103, 240, .7);
 }

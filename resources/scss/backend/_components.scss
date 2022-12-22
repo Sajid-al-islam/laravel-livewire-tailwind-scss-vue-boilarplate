@@ -1,0 +1,21 @@
+@import "./variables";
+
+.swal2-container.swal2-top-end>.swal2-popup, .swal2-container.swal2-top-right>.swal2-popup{
+    background-color: $purple;
+}
+
+.swal2-timer-progress-bar{
+    background-color: $deep_dark;
+}
+
+.swal2-icon.swal2-success .swal2-success-ring {
+    border: .25em solid rgb(22 29 49);
+}
+
+.swal2-title{
+    color: white;
+}
+
+.swal2-popup{
+    background-color: #3b3779;
+}

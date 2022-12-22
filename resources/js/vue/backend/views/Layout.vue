@@ -7,7 +7,7 @@
             <div class="content-overlay"></div>
             <div class="header-navbar-shadow"></div>
             <div class="content-wrapper container-xxl p-0">
-                <bread-cumb></bread-cumb>
+                <!-- <bread-cumb></bread-cumb> -->
                 <div class="content-body">
                     <router-view></router-view>
                 </div>
@@ -30,7 +30,7 @@ export default {
     watch: {
         get_check_auth: function(newv){
             setTimeout(() => {
-                $('.navigation li a.active').parents('li.has-sub').addClass('open');
+                // $('.navigation li a.active').parents('li.has-sub').addClass('open');
             }, 500);
 
             if(!newv){

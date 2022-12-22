@@ -41,27 +41,38 @@
             toast: true,
             position: 'top-end',
             showConfirmButton: false,
-            timer: 3000,
+            timer: 2000,
             timerProgressBar: true,
             didOpen: (toast) => {
                 toast.addEventListener('mouseenter', Swal.stopTimer)
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
-        window.s_alert = () => {
+        window.s_alert = (icon='success',title="success") => {
             Toast.fire({
-                icon: 'success',
-                title: 'Signed in successfully'
+                icon,
+                title
             })
         };
+        window.s_confirm = async (confirmButtonText='Yes, do it!',title="Are you sure?",icon='warning') => {
+            let result = await Swal.fire({
+                title,
+                text: "",
+                icon,
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText
+            })
+            return result.isConfirmed ? true : false;
+        }
     </script>
 </head>
 <!-- END: Head-->
 
 <!-- BEGIN: Body-->
 
-<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static" data-open="click"
-    data-menu="vertical-menu-modern" data-col="">
+<body class="vertical-layout vertical-menu-modern  navbar-floating footer-static">
 
     <div id="app">
         <ex-app></ex-app>

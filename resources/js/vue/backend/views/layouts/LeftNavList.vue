@@ -53,7 +53,7 @@
                 </ul>
             </li>
             <li class="nav-item">
-                <a class="d-flex align-items-center" href="#">
+                <a @click.prevent="fetch_logout()" class="d-flex align-items-center" href="#">
                     <i class="fa-solid fa-power-off"></i>
                     <span class="menu-title text-truncate" >Logout</span>
                 </a>
@@ -65,14 +65,16 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import NavTimeLeftWatch from "./NavTimeLeftWatch.vue";
 
 export default{
     components: { NavTimeLeftWatch },
     methods: {
+        ...mapActions(['fetch_logout']),
         toggleLi: function(e){
             e.currentTarget.parentNode.classList.toggle('open');
-        }
+        },
     }
 }
 </script>

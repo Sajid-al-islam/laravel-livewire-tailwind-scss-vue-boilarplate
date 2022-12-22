@@ -68,10 +68,15 @@ html.dark-layout .watch.to_nav_watch {
   background-color: rgba(67, 89, 113, 0.3);
 }
 
-.navigation li {
+.vertical-layout.vertical-menu-modern .main-menu .navigation li {
   position: relative;
 }
-.navigation li.has-sub::after {
+.vertical-layout.vertical-menu-modern .main-menu .navigation li > a > i {
+  font-size: 15px;
+  padding-top: 1px;
+  margin-right: 10px;
+}
+.vertical-layout.vertical-menu-modern .main-menu .navigation li.has-sub::after {
   content: "\f105";
   font-family: "FontAwesome";
   position: absolute;
@@ -82,7 +87,7 @@ html.dark-layout .watch.to_nav_watch {
           transform: translateY(-50%);
   color: #b4b7be;
 }
-.navigation li.has-sub.open::after {
+.vertical-layout.vertical-menu-modern .main-menu .navigation li.has-sub.open::after {
   content: "\f107";
 }
 
@@ -256,4 +261,40 @@ html.nav-hide .header-navbar.floating-nav {
     left: 260px;
     width: calc(100vw - (100vw - 100%) - 4rem - 260px);
   }
+}
+
+.main-menu.menu-dark .navigation > li ul .has-sub ul:has(.active),
+.main-menu.menu-dark .navigation > li ul:has(.active) {
+  display: block;
+}
+
+.dark-layout .main-menu-content .navigation-main .nav-item:has(.active) > a {
+  background-color: #161D31 !important;
+}
+
+.main-menu.menu-dark .navigation > li:not(.open) > ul .active {
+  background: -o-linear-gradient(332deg, #7367F0, rgba(115, 103, 240, 0.7));
+  background: linear-gradient(118deg, #7367F0, rgba(115, 103, 240, 0.7));
+  -webkit-box-shadow: 0 0 10px 1px rgba(115, 103, 240, 0.7);
+          box-shadow: 0 0 10px 1px rgba(115, 103, 240, 0.7);
+}
+
+.swal2-container.swal2-top-end > .swal2-popup, .swal2-container.swal2-top-right > .swal2-popup {
+  background-color: #7367f0;
+}
+
+.swal2-timer-progress-bar {
+  background-color: #161d31;
+}
+
+.swal2-icon.swal2-success .swal2-success-ring {
+  border: 0.25em solid rgb(22, 29, 49);
+}
+
+.swal2-title {
+  color: white;
+}
+
+.swal2-popup {
+  background-color: #3b3779;
 }
