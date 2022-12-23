@@ -1,36 +1,10 @@
 @import "./variables";
 
-.custom_scroll {
-
-    /* width */
-    &::-webkit-scrollbar {
-        width: 10px;
-    }
-
-    /* Track */
-    &::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    /* Handle */
-    &::-webkit-scrollbar-thumb {
-        background: $light_dark;
-        border-radius: 25px;
-    }
-
-    /* Handle on hover */
-    &::-webkit-scrollbar-thumb:hover {
-        background: $purple;
-    }
-}
-
 .content-body {
     // border: 1px solid;
-    min-height: calc(100vh - 205px);
-    max-height: calc(100vh - 205px);
-    overflow-y: scroll;
-
-    @extend .custom_scroll;
+    min-height: calc(100vh - 120px);
+    max-height: calc(100vh - 120px);
+    overflow-y: hidden;
 }
 
 .vertical-layout.vertical-menu-modern .main-menu .navigation li a:hover {
@@ -64,7 +38,7 @@
                 content: '\f107';
             }
         }
-        
+
         &:has(.active) {
             &::after {
                 content: '\f107';
@@ -151,7 +125,6 @@
 
                 ul {
                     display: none;
-
                     li {
                         box-sizing: border-box;
                     }
@@ -190,6 +163,10 @@
 
                     ul {
                         display: none;
+
+                        &:has(.active){
+                            display: block;
+                        }
 
                         li {
                             box-sizing: border-box;

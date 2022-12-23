@@ -79,7 +79,7 @@
     </div>
 
     <!-- BEGIN: Footer-->
-    <footer class="footer footer-static footer-light">
+    <footer class="footer footer-static d-none footer-light">
         <p class="clearfix mb-0">
             <span class="float-md-start d-block d-md-inline-block mt-25  opacity-0">COPYRIGHT &copy; 2020
                 <a class="ms-25" href="#" target="_blank">Hungry Coder</a>

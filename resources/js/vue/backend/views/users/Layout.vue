@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h2>User management</h2>
+        <h3 class="mb-2">User management</h3>
         <router-view></router-view>
     </div>
 </template>

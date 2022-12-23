@@ -1,3 +1,23 @@
+.custom_scroll, .list_card .card-body {
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+.custom_scroll::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar {
+  width: 10px;
+}
+.custom_scroll::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track {
+  background: #283046;
+}
+.custom_scroll::-webkit-scrollbar-thumb, .list_card .card-body::-webkit-scrollbar-thumb {
+  background: #b4b7be;
+  border-radius: 25px;
+}
+.custom_scroll::-webkit-scrollbar-thumb:hover, .list_card .card-body::-webkit-scrollbar-thumb:hover {
+  background: #7367f0;
+}
+
 .watch {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -38,30 +58,30 @@ html.dark-layout .watch.to_nav_watch {
   text-transform: capitalize;
 }
 
-.custom_scroll, .content-body {
+.custom_scroll, .list_card .card-body {
   /* width */
   /* Track */
   /* Handle */
   /* Handle on hover */
 }
-.custom_scroll::-webkit-scrollbar, .content-body::-webkit-scrollbar {
+.custom_scroll::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar {
   width: 10px;
 }
-.custom_scroll::-webkit-scrollbar-track, .content-body::-webkit-scrollbar-track {
-  background: transparent;
-}
-.custom_scroll::-webkit-scrollbar-thumb, .content-body::-webkit-scrollbar-thumb {
+.custom_scroll::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track {
   background: #283046;
+}
+.custom_scroll::-webkit-scrollbar-thumb, .list_card .card-body::-webkit-scrollbar-thumb {
+  background: #b4b7be;
   border-radius: 25px;
 }
-.custom_scroll::-webkit-scrollbar-thumb:hover, .content-body::-webkit-scrollbar-thumb:hover {
+.custom_scroll::-webkit-scrollbar-thumb:hover, .list_card .card-body::-webkit-scrollbar-thumb:hover {
   background: #7367f0;
 }
 
 .content-body {
-  min-height: calc(100vh - 205px);
-  max-height: calc(100vh - 205px);
-  overflow-y: scroll;
+  min-height: calc(100vh - 120px);
+  max-height: calc(100vh - 120px);
+  overflow-y: hidden;
 }
 
 .vertical-layout.vertical-menu-modern .main-menu .navigation li a:hover {
@@ -165,6 +185,9 @@ html.dark-layout .watch.to_nav_watch {
   }
   .vertical-layout.vertical-menu-modern .main-menu:hover .navigation-main > li ul {
     display: none;
+  }
+  .vertical-layout.vertical-menu-modern .main-menu:hover .navigation-main > li ul:has(.active) {
+    display: block;
   }
   .vertical-layout.vertical-menu-modern .main-menu:hover .navigation-main > li ul li {
     -webkit-box-sizing: border-box;
@@ -282,6 +305,26 @@ html.nav-hide .header-navbar.floating-nav {
           box-shadow: 0 0 10px 1px rgba(115, 103, 240, 0.7);
 }
 
+.custom_scroll, .list_card .card-body {
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+.custom_scroll::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar {
+  width: 10px;
+}
+.custom_scroll::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track {
+  background: #283046;
+}
+.custom_scroll::-webkit-scrollbar-thumb, .list_card .card-body::-webkit-scrollbar-thumb {
+  background: #b4b7be;
+  border-radius: 25px;
+}
+.custom_scroll::-webkit-scrollbar-thumb:hover, .list_card .card-body::-webkit-scrollbar-thumb:hover {
+  background: #7367f0;
+}
+
 .swal2-container.swal2-top-end > .swal2-popup, .swal2-container.swal2-top-right > .swal2-popup {
   background-color: #7367f0;
 }
@@ -300,4 +343,15 @@ html.nav-hide .header-navbar.floating-nav {
 
 .swal2-popup {
   background-color: #3b3779;
+}
+
+.list_card .card-body {
+  min-height: calc(100vh - 322px);
+  max-height: calc(100vh - 322px);
+}
+.list_card thead {
+  position: sticky;
+  top: -1px;
+  left: 0;
+  border-bottom: 0;
 }
