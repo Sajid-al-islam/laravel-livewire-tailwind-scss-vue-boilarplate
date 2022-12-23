@@ -64,6 +64,12 @@
                 content: '\f107';
             }
         }
+        
+        &:has(.active) {
+            &::after {
+                content: '\f107';
+            }
+        }
     }
 }
 

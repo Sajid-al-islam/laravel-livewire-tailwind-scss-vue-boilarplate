@@ -90,6 +90,9 @@ html.dark-layout .watch.to_nav_watch {
 .vertical-layout.vertical-menu-modern .main-menu .navigation li.has-sub.open::after {
   content: "\f107";
 }
+.vertical-layout.vertical-menu-modern .main-menu .navigation li.has-sub:has(.active)::after {
+  content: "\f107";
+}
 
 @media screen and (max-width: 1199.9px) {
   .vertical-layout.vertical-menu-modern .main-menu {

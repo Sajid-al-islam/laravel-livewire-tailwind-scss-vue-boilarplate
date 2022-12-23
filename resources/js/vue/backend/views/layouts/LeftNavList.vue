@@ -17,26 +17,11 @@
 
             <left-nav-list-single :icon="'fa fa-envelope'" :text="'Email'" :alert_count="15" />
 
-            <li class="nav-item has-sub" >
-                <a @click.prevent="toggleLi($event)" class="d-flex align-items-center" href="#">
-                    <i class="fa fa-gears"></i>
-                    <span class="menu-title text-truncate" data-i18n="User">User</span>
-                </a>
-                <ul class="menu-content">
-                    <li>
-                        <router-link :to="{name:'settingProfile'}" class="d-flex align-items-center" href="#">
-                            <i class="far fa-circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Profile">Profile</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <router-link :to="{name:'settingPassword'}" class="d-flex align-items-center" href="#">
-                            <i class="far fa-circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Password">Password</span>
-                        </router-link>
-                    </li>
-                </ul>
-            </li>
+            <left-nav-list-group :icon="`fa fa-gears`" :text="`Settings`" :alert_count="0">
+                <left-nav-list-item :to="'settingProfile'" :text="'Profile'" />
+                <left-nav-list-item :to="'settingPassword'" :text="'Change Password'" />
+            </left-nav-list-group>
+
             <li class="nav-item">
                 <a @click.prevent="fetch_logout()" class="d-flex align-items-center" href="#">
                     <i class="fa-solid fa-power-off"></i>
