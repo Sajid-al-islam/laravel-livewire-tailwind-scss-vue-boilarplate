@@ -5,9 +5,8 @@ import Layout from '../views/Layout'
 import Dashboard from '../views/Dashboard'
 import Login from '../views/auth/Login'
 
-import settingLayout from '../views/settings/Layout'
-import settingProfile from '../views/settings/Profile'
-import settingPassword from '../views/settings/Password'
+import user_route from './dashboard_routes/user_route'
+import setting_route from './dashboard_routes/setting_route'
 
 Vue.use(VueRouter);
 window.Fire = new Vue();
@@ -20,27 +19,8 @@ const routes = [{
                 name: 'Dashboard',
                 component: Dashboard,
             },
-            {
-                path: 'setting',
-                component: settingLayout,
-                children: [{
-                        path: '',
-                        name: 'settingProfile',
-                        component: settingProfile,
-                    },
-                    {
-                        path: 'password',
-                        name: 'settingPassword',
-                        component: settingPassword,
-                    },
-                    // {
-                    //     path: 'details/:id',
-                    //     name: 'chapterDetails',
-                    //     component: chapterDetails,
-                    // },
-                ],
-            },
-
+            setting_route,
+            user_route
         ]
     },
     {
