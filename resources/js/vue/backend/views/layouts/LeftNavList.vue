@@ -22,6 +22,17 @@
                     </li>
                 </ul>
             </li>
+            <li class="nav-item has-sub">
+                <a @click.prevent="toggleLi($event)" class="d-flex align-items-center" href="#">
+                    <i class="fa fa-users"></i>
+                    <span class="menu-title text-truncate">Users</span>
+                </a>
+                <ul class="menu-content">
+                    <left-nav-list-item :to="'AllUser'" :text="'All user'" />
+                    <left-nav-list-item :to="'CreateUser'" :text="'Create user'" />
+                </ul>
+            </li>
+
             <li class="navigation-header">
                 <span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span>
                 <i data-feather="more-horizontal"></i>
@@ -34,7 +45,7 @@
             </li>
             <li class="nav-item has-sub" >
                 <a @click.prevent="toggleLi($event)" class="d-flex align-items-center" href="#">
-                    <i class="fa fa-users"></i>
+                    <i class="fa fa-gears"></i>
                     <span class="menu-title text-truncate" data-i18n="User">User</span>
                 </a>
                 <ul class="menu-content">
@@ -66,10 +77,11 @@
 
 <script>
 import { mapActions } from 'vuex';
+import LeftNavListItem from './LeftNavListItem.vue';
 import NavTimeLeftWatch from "./NavTimeLeftWatch.vue";
 
 export default{
-    components: { NavTimeLeftWatch },
+    components: { NavTimeLeftWatch, LeftNavListItem },
     methods: {
         ...mapActions(['fetch_logout']),
         toggleLi: function(e){
