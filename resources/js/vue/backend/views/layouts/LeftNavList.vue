@@ -1,48 +1,22 @@
 <template>
     <div>
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
-            <li class="nav-item has-sub">
-                <a @click.prevent="toggleLi($event)" class="d-flex align-items-center" href="#">
-                    <i class="fa fa-home"></i>
-                    <span class="menu-title text-truncate" data-i18n="Dashboards">Dashboards</span>
-                    <span class="badge badge-light-warning rounded-pill ms-auto me-1">2</span>
-                </a>
-                <ul class="menu-content">
-                    <li>
-                        <router-link :to="{name:'Dashboard'}" class="d-flex align-items-center" href="#">
-                            <i class="far fa-circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="Analytics">Analytics</span>
-                        </router-link>
-                    </li>
-                    <li>
-                        <a class="d-flex align-items-center" href="#">
-                            <i class="far fa-circle"></i>
-                            <span class="menu-item text-truncate" data-i18n="eCommerce">eCommerce</span>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item has-sub">
-                <a @click.prevent="toggleLi($event)" class="d-flex align-items-center" href="#">
-                    <i class="fa fa-users"></i>
-                    <span class="menu-title text-truncate">Users</span>
-                </a>
-                <ul class="menu-content">
-                    <left-nav-list-item :to="'AllUser'" :text="'All user'" />
-                    <left-nav-list-item :to="'CreateUser'" :text="'Create user'" />
-                </ul>
-            </li>
+
+            <left-nav-list-group :icon="`fa fa-home`" :text="`Dashboard`" :alert_count="2">
+                <left-nav-list-item :to="'Dashboard'" :text="'Analytics'" />
+            </left-nav-list-group>
+
+            <left-nav-list-group :icon="`fa fa-users`" :text="`Users`" :alert_count="0">
+                <left-nav-list-item :to="'AllUser'" :text="'All user'" />
+                <left-nav-list-item :to="'CreateUser'" :text="'Create user'" />
+            </left-nav-list-group>
 
             <li class="navigation-header">
-                <span data-i18n="Apps &amp; Pages">Apps &amp; Pages</span>
-                <i data-feather="more-horizontal"></i>
+                <span data-i18n="Apps &amp; Pages">managements</span>
             </li>
-            <li class="nav-item">
-                <a class="d-flex align-items-center" href="#">
-                    <i class="fa fa-envelope"></i>
-                    <span class="menu-title text-truncate" data-i18n="Email">Email</span>
-                </a>
-            </li>
+
+            <left-nav-list-single :icon="'fa fa-envelope'" :text="'Email'" :alert_count="15" />
+
             <li class="nav-item has-sub" >
                 <a @click.prevent="toggleLi($event)" class="d-flex align-items-center" href="#">
                     <i class="fa fa-gears"></i>
@@ -77,16 +51,16 @@
 
 <script>
 import { mapActions } from 'vuex';
+import LeftNavListGroup from './LeftNavListGroup.vue';
 import LeftNavListItem from './LeftNavListItem.vue';
+import LeftNavListSingle from './LeftNavListSingle.vue';
 import NavTimeLeftWatch from "./NavTimeLeftWatch.vue";
 
 export default{
-    components: { NavTimeLeftWatch, LeftNavListItem },
+    components: { NavTimeLeftWatch, LeftNavListItem, LeftNavListGroup, LeftNavListSingle },
     methods: {
         ...mapActions(['fetch_logout']),
-        toggleLi: function(e){
-            e.currentTarget.parentNode.classList.toggle('open');
-        },
+
     }
 }
 </script>
