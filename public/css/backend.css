@@ -79,8 +79,8 @@ html.dark-layout .watch.to_nav_watch {
 }
 
 .content-body {
-  min-height: calc(100vh - 120px);
-  max-height: calc(100vh - 120px);
+  min-height: calc(100vh - 90px);
+  max-height: calc(100vh - 90px);
   overflow-y: hidden;
 }
 
@@ -256,7 +256,7 @@ html.dark-layout .watch.to_nav_watch {
 }
 
 .vertical-layout.vertical-menu-modern .app-content {
-  padding-top: 100px;
+  padding-top: 85px;
 }
 @media (max-width: 1199.9px) {
   .vertical-layout.vertical-menu-modern .app-content {
@@ -306,6 +306,19 @@ html.nav-hide .header-navbar.floating-nav {
           box-shadow: 0 0 10px 1px rgba(115, 103, 240, 0.7);
 }
 
+.dark-layout .header-navbar {
+  margin-top: 10px;
+}
+
+.d-inline-block {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.me-5px {
+  margin-right: 5px;
+}
+
 .custom_scroll, .list_card .card-body {
   /* width */
   /* Track */
@@ -350,6 +363,18 @@ html.nav-hide .header-navbar.floating-nav {
 .list_card {
   margin-bottom: 0;
 }
+.list_card .card-header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 20px;
+  padding: 15px 25px;
+}
 .list_card .card-body {
   min-height: calc(100vh - 280px);
   max-height: calc(100vh - 280px);
@@ -365,6 +390,18 @@ html.nav-hide .header-navbar.floating-nav {
   left: 0;
   border-bottom: 0;
 }
+.list_card thead th,
+.list_card thead td {
+  text-align: center;
+}
+.list_card thead th[aria-label=actions],
+.list_card thead td[aria-label=actions] {
+  width: 100px;
+}
+.list_card thead th[aria-label=id],
+.list_card thead td[aria-label=id] {
+  width: 90px;
+}
 .list_card tbody tr:first-child td .table_actions:hover ul {
   -webkit-transform: translate(0, 0) scale(1);
       -ms-transform: translate(0, 0) scale(1);
@@ -378,6 +415,9 @@ html.nav-hide .header-navbar.floating-nav {
           transform: translate(0, 0) scale(1);
   top: unset;
   bottom: -15px;
+}
+.list_card tbody tr td {
+  text-align: center;
 }
 .list_card tbody tr td .table_actions {
   position: relative;
@@ -423,10 +463,11 @@ html.nav-hide .header-navbar.floating-nav {
        -o-transition-duration: 0.3s;
           transition-duration: 0.3s;
   position: absolute;
-  background: #161d31;
   z-index: 99;
-  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.297);
-          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.297);
+  background-color: #283046;
+  -webkit-box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.24);
+          box-shadow: 0 4px 24px 0 rgba(0, 0, 0, 0.24);
+  border-radius: 3px;
   text-align: left;
   top: 50%;
   -webkit-transform: translate(50%, -50%) scale(0);
@@ -434,7 +475,7 @@ html.nav-hide .header-navbar.floating-nav {
           transform: translate(50%, -50%) scale(0);
 }
 .list_card tbody tr td .table_actions ul li {
-  margin: 10px 0px;
+  margin: 0px 0px;
   -webkit-transition-duration: 0.2s;
        -o-transition-duration: 0.2s;
           transition-duration: 0.2s;
@@ -483,12 +524,28 @@ html.nav-hide .header-navbar.floating-nav {
           transition-duration: 0.3s;
   text-transform: capitalize;
   display: block;
-  padding: 2px 10px;
+  padding: 0.65rem 1.28rem;
 }
 .list_card tbody tr td .table_actions ul li a:hover {
-  padding-left: 5px;
-  background-color: rgba(67, 89, 113, 0.3);
+  padding-left: 10px;
+  background: rgba(115, 103, 240, 0.12);
+  color: #7367F0;
+}
+.list_card tbody tr td .table_actions ul li a:active {
+  background-color: #7367F0;
+  color: #FFF;
 }
 .list_card tbody tr td .table_actions ul li a i {
   width: 20px;
+}
+.list_card .show-limit {
+  padding-top: 6px;
+}
+.list_card .show-limit span {
+  font-weight: bold;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.list_card .show-limit select {
+  border-radius: 5px;
 }

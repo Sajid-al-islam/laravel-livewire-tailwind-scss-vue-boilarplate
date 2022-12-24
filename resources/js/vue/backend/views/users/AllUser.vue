@@ -2,28 +2,43 @@
     <div class="conatiner">
         <div class="card list_card">
             <div class="card-header">
-                Light Table head
+                <h4>
+                    Light Table head
+                </h4>
+                <div class="search">
+                    <form action="#">
+                        <input class="form-control" placeholder="search..." type="search">
+                    </form>
+                </div>
+                <div class="btns">
+                    <a href="#" class="btn rounded-pill btn-outline-info">
+                        <i class="fa fa-pencil me-5px"></i>
+                        Create
+                    </a>
+                </div>
             </div>
             <div class="table-responsive card-body text-nowrap">
                 <table class="table table-hover table-bordered">
                     <thead class="table-light">
                         <tr>
+                            <th aria-label="id">Id</th>
                             <th>Project</th>
                             <th>Client</th>
                             <th>Users</th>
                             <th>Status</th>
-                            <th>Actions</th>
+                            <th aria-label="actions">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
                         <tr v-for="i in 10" :key="i">
+                            <td>{{ i }}</td>
                             <td>
                                 <i class="fab fa-facebook-f text-info me-3"></i>
                                 <strong>React Project</strong>
                             </td>
                             <td>Barry Hunter</td>
                             <td>
-                                <img src="/avatar.jpg" style="height:30px;" alt="Avatar" class="rounded-circle" />
+                                <!-- <img src="/avatar.jpg" style="height:30px;" alt="Avatar" class="rounded-circle" /> -->
                             </td>
                             <td><span class="badge bg-label-success me-1">Completed</span></td>
                             <td>
@@ -59,7 +74,7 @@
                 </table>
             </div>
             <div class="card-footer py-1">
-                <nav aria-label="Page navigation">
+                <nav aria-label="Page navigation" class="d-inline-block">
                     <ul class="pagination mb-0">
                         <li class="page-item prev">
                             <a class="page-link waves-effect" href="javascript:void(0);"><i class="tf-icon fs-6 ti ti-chevrons-left"></i></a>
@@ -84,6 +99,18 @@
                         </li>
                     </ul>
                 </nav>
+                <div class="show-limit d-inline-block">
+                    <span>Limit:</span>
+                    <select name="" id="">
+                        <option v-for="i in [10,25,50,100]" :key="i" :value="i">
+                            {{ i }}
+                        </option>
+                    </select>
+                </div>
+                <div class="show-limit d-inline-block">
+                    <span>Total:</span>
+                    <span>100</span>
+                </div>
             </div>
         </div>
     </div>

@@ -2,8 +2,8 @@
 
 .content-body {
     // border: 1px solid;
-    min-height: calc(100vh - 120px);
-    max-height: calc(100vh - 120px);
+    min-height: calc(100vh - 90px);
+    max-height: calc(100vh - 90px);
     overflow-y: hidden;
 }
 
@@ -83,7 +83,7 @@
                     ul {
                         display: none;
 
-                        &:has(.active){
+                        &:has(.active) {
                             display: block;
                         }
 
@@ -129,6 +129,7 @@
 
                 ul {
                     display: none;
+
                     li {
                         box-sizing: border-box;
                     }
@@ -168,7 +169,7 @@
                     ul {
                         display: none;
 
-                        &:has(.active){
+                        &:has(.active) {
                             display: block;
                         }
 
@@ -190,7 +191,7 @@
     @media (min-width: 1199.9px) {
         width: 260px;
 
-        .navigation>li ul:has(.active){
+        .navigation>li ul:has(.active) {
             display: block;
         }
 
@@ -262,9 +263,10 @@
                         ul {
                             display: none;
 
-                            &:has(.active){
+                            &:has(.active) {
                                 display: block;
                             }
+
                             // li{}
                         }
 
@@ -282,7 +284,7 @@
 }
 
 .vertical-layout.vertical-menu-modern .app-content {
-    padding-top: 100px;
+    padding-top: 85px;
 
     @media (max-width: 1199.9px) {
         left: 80px;
@@ -326,8 +328,22 @@
 .dark-layout .main-menu-content .navigation-main .nav-item:has(.active)>a {
     background-color: #161D31 !important;
 }
-.main-menu.menu-dark .navigation>li:not(.open)>ul .active{
+
+.main-menu.menu-dark .navigation>li:not(.open)>ul .active {
     background: -webkit-linear-gradient(332deg, #7367F0, rgba(115, 103, 240, .7));
     background: linear-gradient(118deg, #7367F0, rgba(115, 103, 240, .7));
     box-shadow: 0 0 10px 1px rgba(115, 103, 240, .7);
+}
+
+.dark-layout .header-navbar{
+    margin-top: 10px;
+}
+
+.d-inline-block {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.me-5px {
+    margin-right: 5px;
 }
