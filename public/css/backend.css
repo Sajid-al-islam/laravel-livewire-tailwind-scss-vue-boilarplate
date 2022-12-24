@@ -138,6 +138,9 @@ html.dark-layout .watch.to_nav_watch {
   html.nav-hide .vertical-layout.vertical-menu-modern .main-menu .navigation-main > li ul {
     display: none;
   }
+  html.nav-hide .vertical-layout.vertical-menu-modern .main-menu .navigation-main > li ul:has(.active) {
+    display: block;
+  }
   html.nav-hide .vertical-layout.vertical-menu-modern .main-menu .navigation-main > li ul li {
     -webkit-box-sizing: border-box;
             box-sizing: border-box;
@@ -201,6 +204,9 @@ html.dark-layout .watch.to_nav_watch {
   .vertical-layout.vertical-menu-modern .main-menu {
     width: 260px;
   }
+  .vertical-layout.vertical-menu-modern .main-menu .navigation > li ul:has(.active) {
+    display: block;
+  }
   html.nav-hide .vertical-layout.vertical-menu-modern .main-menu {
     width: 80px;
   }
@@ -220,10 +226,6 @@ html.dark-layout .watch.to_nav_watch {
   }
   html.nav-hide .vertical-layout.vertical-menu-modern .main-menu .navigation-main > li ul {
     display: none;
-  }
-  html.nav-hide .vertical-layout.vertical-menu-modern .main-menu .navigation-main > li ul li {
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
   }
   html.nav-hide .vertical-layout.vertical-menu-modern .main-menu:hover {
     width: 260px;
@@ -245,15 +247,17 @@ html.dark-layout .watch.to_nav_watch {
   html.nav-hide .vertical-layout.vertical-menu-modern .main-menu:hover .navigation-main > li ul {
     display: none;
   }
-  html.nav-hide .vertical-layout.vertical-menu-modern .main-menu:hover .navigation-main > li ul li {
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
+  html.nav-hide .vertical-layout.vertical-menu-modern .main-menu:hover .navigation-main > li ul:has(.active) {
+    display: block;
   }
   html.nav-hide .vertical-layout.vertical-menu-modern .main-menu:hover .navigation-main > li.has-sub.open ul {
     display: block;
   }
 }
 
+.vertical-layout.vertical-menu-modern .app-content {
+  padding-top: 100px;
+}
 @media (max-width: 1199.9px) {
   .vertical-layout.vertical-menu-modern .app-content {
     left: 80px;
@@ -261,10 +265,12 @@ html.dark-layout .watch.to_nav_watch {
   }
 }
 html.nav-hide .vertical-layout.vertical-menu-modern .app-content {
-  margin-left: 80px;
+  margin-left: 0px;
+  left: 80px;
 }
 @media (max-width: 1199.9px) {
   html.nav-hide .vertical-layout.vertical-menu-modern .app-content {
+    left: 0px;
     margin-left: 260px;
   }
 }
@@ -287,11 +293,6 @@ html.nav-hide .header-navbar.floating-nav {
     left: 260px;
     width: calc(100vw - (100vw - 100%) - 4rem - 260px);
   }
-}
-
-.main-menu.menu-dark .navigation > li ul .has-sub ul:has(.active),
-.main-menu.menu-dark .navigation > li ul:has(.active) {
-  display: block;
 }
 
 .dark-layout .main-menu-content .navigation-main .nav-item:has(.active) > a {

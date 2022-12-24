@@ -83,6 +83,10 @@
                     ul {
                         display: none;
 
+                        &:has(.active){
+                            display: block;
+                        }
+
                         li {
                             box-sizing: border-box;
                         }
@@ -186,6 +190,10 @@
     @media (min-width: 1199.9px) {
         width: 260px;
 
+        .navigation>li ul:has(.active){
+            display: block;
+        }
+
         html.nav-hide & {
             width: 80px;
 
@@ -217,10 +225,7 @@
 
                     ul {
                         display: none;
-
-                        li {
-                            box-sizing: border-box;
-                        }
+                        // li {}
                     }
                 }
             }
@@ -257,9 +262,10 @@
                         ul {
                             display: none;
 
-                            li {
-                                box-sizing: border-box;
+                            &:has(.active){
+                                display: block;
                             }
+                            // li{}
                         }
 
                         &.has-sub.open {
@@ -276,16 +282,19 @@
 }
 
 .vertical-layout.vertical-menu-modern .app-content {
+    padding-top: 100px;
+
     @media (max-width: 1199.9px) {
         left: 80px;
         width: calc(100vw - 80px);
     }
 
-
     html.nav-hide & {
-        margin-left: 80px;
+        margin-left: 0px;
+        left: 80px;
 
         @media (max-width: 1199.9px) {
+            left: 0px;
             margin-left: 260px;
         }
     }
@@ -309,10 +318,10 @@
     }
 }
 
-.main-menu.menu-dark .navigation>li ul .has-sub ul:has(.active),
-.main-menu.menu-dark .navigation>li ul:has(.active) {
-    display: block;
-}
+// .main-menu.menu-dark .navigation>li ul .has-sub ul:has(.active),
+// .main-menu.menu-dark .navigation>li ul:has(.active) {
+//     display: block;
+// }
 
 .dark-layout .main-menu-content .navigation-main .nav-item:has(.active)>a {
     background-color: #161D31 !important;
