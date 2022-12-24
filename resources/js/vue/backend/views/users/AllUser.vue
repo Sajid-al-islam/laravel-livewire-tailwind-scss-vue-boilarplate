@@ -16,7 +16,7 @@
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        <tr v-for="i in 10" :key="i">
+                        <tr v-for="i in 11" :key="i">
                             <td>
                                 <i class="fab fa-facebook-f text-info me-3"></i>
                                 <strong>React Project</strong>
