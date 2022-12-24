@@ -326,7 +326,8 @@ html.nav-hide .header-navbar.floating-nav {
   background: #7367f0;
 }
 
-.swal2-container.swal2-top-end > .swal2-popup, .swal2-container.swal2-top-right > .swal2-popup {
+.swal2-container.swal2-top-end > .swal2-popup,
+.swal2-container.swal2-top-right > .swal2-popup {
   background-color: #7367f0;
 }
 
@@ -346,13 +347,131 @@ html.nav-hide .header-navbar.floating-nav {
   background-color: #3b3779;
 }
 
+.list_card {
+  margin-bottom: 0;
+}
 .list_card .card-body {
-  min-height: calc(100vh - 322px);
-  max-height: calc(100vh - 322px);
+  min-height: calc(100vh - 280px);
+  max-height: calc(100vh - 280px);
+  padding-top: 0;
+  padding-bottom: 0;
+}
+.list_card .card-body .table > :not(caption) > * > * {
+  padding: 9px 2rem;
 }
 .list_card thead {
   position: sticky;
   top: -1px;
   left: 0;
   border-bottom: 0;
+}
+.list_card tbody td .table_actions {
+  position: relative;
+  display: inline-block;
+}
+.list_card tbody td .table_actions:hover ul {
+  right: 100%;
+  -webkit-transform: translate(0%, -50%) scale(1);
+      -ms-transform: translate(0%, -50%) scale(1);
+          transform: translate(0%, -50%) scale(1);
+}
+.list_card tbody td .table_actions:hover ul li {
+  opacity: 1;
+}
+.list_card tbody td .table_actions:hover ul li:nth-child(1) {
+  margin-left: 0px;
+}
+.list_card tbody td .table_actions:hover ul li:nth-child(2) {
+  margin-left: 0px;
+}
+.list_card tbody td .table_actions:hover ul li:nth-child(3) {
+  margin-left: 0px;
+}
+.list_card tbody td .table_actions:hover ul li:nth-child(4) {
+  margin-left: 0px;
+}
+.list_card tbody td .table_actions:hover ul li:nth-child(5) {
+  margin-left: 0px;
+}
+.list_card tbody td .table_actions:hover ul li:nth-child(6) {
+  margin-left: 0px;
+}
+.list_card tbody td .table_actions ul {
+  min-width: 110px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 10px;
+  top: 50%;
+  right: 50%;
+  -webkit-transform: translate(50%, -50%) scale(0);
+      -ms-transform: translate(50%, -50%) scale(0);
+          transform: translate(50%, -50%) scale(0);
+  overflow: hidden;
+  -webkit-transition-duration: 0.3s;
+       -o-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  position: absolute;
+  background: white;
+  z-index: 99;
+  -webkit-box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.297);
+          box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.297);
+  text-align: left;
+}
+.list_card tbody td .table_actions ul li {
+  margin: 4px 0px;
+  -webkit-transition-duration: 0.2s;
+       -o-transition-duration: 0.2s;
+          transition-duration: 0.2s;
+  opacity: 0;
+}
+.list_card tbody td .table_actions ul li:nth-child(1) {
+  margin-left: 10px;
+  -webkit-transition-delay: 0.15s;
+       -o-transition-delay: 0.15s;
+          transition-delay: 0.15s;
+}
+.list_card tbody td .table_actions ul li:nth-child(2) {
+  margin-left: 20px;
+  -webkit-transition-delay: 0.3s;
+       -o-transition-delay: 0.3s;
+          transition-delay: 0.3s;
+}
+.list_card tbody td .table_actions ul li:nth-child(3) {
+  margin-left: 30px;
+  -webkit-transition-delay: 0.45s;
+       -o-transition-delay: 0.45s;
+          transition-delay: 0.45s;
+}
+.list_card tbody td .table_actions ul li:nth-child(4) {
+  margin-left: 40px;
+  -webkit-transition-delay: 0.6s;
+       -o-transition-delay: 0.6s;
+          transition-delay: 0.6s;
+}
+.list_card tbody td .table_actions ul li:nth-child(5) {
+  margin-left: 50px;
+  -webkit-transition-delay: 0.75s;
+       -o-transition-delay: 0.75s;
+          transition-delay: 0.75s;
+}
+.list_card tbody td .table_actions ul li:nth-child(6) {
+  margin-left: 60px;
+  -webkit-transition-delay: 0.9s;
+       -o-transition-delay: 0.9s;
+          transition-delay: 0.9s;
+}
+.list_card tbody td .table_actions ul li a {
+  color: black;
+  -webkit-transition-duration: 0.3s;
+       -o-transition-duration: 0.3s;
+          transition-duration: 0.3s;
+  text-transform: capitalize;
+  display: block;
+}
+.list_card tbody td .table_actions ul li a:hover {
+  color: #3a9f05;
+}
+.list_card tbody td .table_actions ul li a i {
+  width: 20px;
 }
