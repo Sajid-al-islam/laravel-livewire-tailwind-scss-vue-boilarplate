@@ -32,10 +32,22 @@
                                         <i class="fa fa-gears"></i>
                                     </a>
                                     <ul>
-                                        <li v-for="i in 5" :key="i">
-                                            <a href="#/module/details/1" class="">
-                                                <i class="fa text-primary fa-list"></i>
-                                                module details
+                                        <li>
+                                            <a href="#/" class="">
+                                                <i class="fa text-secondary fa-eye"></i>
+                                                Details
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#/" class="">
+                                                <i class="fa text-warning fa-pencil"></i>
+                                                Edit
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#/" class="">
+                                                <i class="fa text-danger fa-trash"></i>
+                                                Delete
                                             </a>
                                         </li>
                                     </ul>
