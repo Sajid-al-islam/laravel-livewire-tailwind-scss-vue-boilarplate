@@ -294,6 +294,7 @@
     html.nav-hide & {
         margin-left: 0px;
         left: 80px;
+        width: calc(100vw - 80px);
 
         @media (max-width: 1199.9px) {
             left: 0px;

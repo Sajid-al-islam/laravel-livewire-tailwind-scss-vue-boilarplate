@@ -73,7 +73,7 @@
                     </tbody>
                 </table>
             </div>
-            <div class="card-footer py-1">
+            <div class="card-footer py-1 border-top-0">
                 <nav aria-label="Page navigation" class="d-inline-block">
                     <ul class="pagination mb-0">
                         <li class="page-item prev">

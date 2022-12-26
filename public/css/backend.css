@@ -267,6 +267,7 @@ html.dark-layout .watch.to_nav_watch {
 html.nav-hide .vertical-layout.vertical-menu-modern .app-content {
   margin-left: 0px;
   left: 80px;
+  width: calc(100vw - 80px);
 }
 @media (max-width: 1199.9px) {
   html.nav-hide .vertical-layout.vertical-menu-modern .app-content {
@@ -376,7 +377,7 @@ html.nav-hide .header-navbar.floating-nav {
   padding: 15px 25px;
 }
 .list_card .card-body {
-  min-height: calc(100vh - 280px);
+  min-height: 100%;
   max-height: calc(100vh - 280px);
   padding-top: 0;
   padding-bottom: 0;

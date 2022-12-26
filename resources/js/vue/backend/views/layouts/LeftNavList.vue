@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div @mouseover="mouseover" @mouseleave="mouseleave">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
             <left-nav-list-group :icon="`fa fa-home`" :text="`Dashboard`" :alert_count="2">
@@ -43,9 +43,30 @@ import NavTimeLeftWatch from "./NavTimeLeftWatch.vue";
 
 export default{
     components: { NavTimeLeftWatch, LeftNavListItem, LeftNavListGroup, LeftNavListSingle },
+    data: function(){
+        return {
+            html: null,
+        }
+    },
+    created: function(){
+        this.html = document.querySelector('html');
+    },
     methods: {
         ...mapActions(['fetch_logout']),
-
+        mouseover: function(){
+            let nav_hide = this.html.classList.contains('nav-hide');
+            if(nav_hide){
+                this.html.classList.add('nav-hide-hover');
+                this.html.classList.remove('nav-hide');
+            }
+        },
+        mouseleave: function(){
+            let nav_hide_hover = this.html.classList.contains('nav-hide-hover');
+            if(nav_hide_hover){
+                this.html.classList.add('nav-hide');
+                this.html.classList.remove('nav-hide-hover');
+            }
+        },
     }
 }
 </script>
