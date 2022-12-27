@@ -11,10 +11,10 @@
                     </form>
                 </div>
                 <div class="btns">
-                    <a href="#" class="btn rounded-pill btn-outline-info">
+                    <router-link :to="{name:'CreateUser'}" class="btn rounded-pill btn-outline-info">
                         <i class="fa fa-pencil me-5px"></i>
                         Create
-                    </a>
+                    </router-link>
                 </div>
             </div>
             <div class="table-responsive card-body text-nowrap">

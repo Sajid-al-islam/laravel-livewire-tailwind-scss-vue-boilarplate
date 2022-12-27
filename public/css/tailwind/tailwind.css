@@ -39,6 +39,9 @@
 .right-0{
     right: 0px
 }
+.m-auto{
+    margin: auto
+}
 .mx-auto{
     margin-left: auto;
     margin-right: auto
@@ -58,6 +61,9 @@
 .my-3{
     margin-top: 0.75rem;
     margin-bottom: 0.75rem
+}
+.mb-0{
+    margin-bottom: 0px
 }
 .ml-1{
     margin-left: 0.25rem
@@ -88,9 +94,6 @@
 }
 .mb-4{
     margin-bottom: 1rem
-}
-.mb-0{
-    margin-bottom: 0px
 }
 .mb-5{
     margin-bottom: 1.25rem
@@ -172,6 +175,9 @@
 }
 .gap-2{
     gap: 0.5rem
+}
+.gap-1{
+    gap: 0.25rem
 }
 .overflow-hidden{
     overflow: hidden

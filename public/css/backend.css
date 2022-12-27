@@ -5,7 +5,8 @@
   /* Handle on hover */
 }
 .custom_scroll::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
+  height: 8px;
 }
 .custom_scroll::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track {
   background: #283046;
@@ -65,7 +66,8 @@ html.dark-layout .watch.to_nav_watch {
   /* Handle on hover */
 }
 .custom_scroll::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
+  height: 8px;
 }
 .custom_scroll::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track {
   background: #283046;
@@ -264,6 +266,11 @@ html.dark-layout .watch.to_nav_watch {
     width: calc(100vw - 80px);
   }
 }
+html.nav-hide-hover .vertical-layout.vertical-menu-modern .app-content {
+  margin-left: 0px;
+  left: 260px;
+  width: calc(100vw - 260px);
+}
 html.nav-hide .vertical-layout.vertical-menu-modern .app-content {
   margin-left: 0px;
   left: 80px;
@@ -273,6 +280,7 @@ html.nav-hide .vertical-layout.vertical-menu-modern .app-content {
   html.nav-hide .vertical-layout.vertical-menu-modern .app-content {
     left: 0px;
     margin-left: 260px;
+    width: calc(100vw - 260px);
   }
 }
 
@@ -294,6 +302,11 @@ html.nav-hide .header-navbar.floating-nav {
     left: 260px;
     width: calc(100vw - (100vw - 100%) - 4rem - 260px);
   }
+}
+html.nav-hide-hover .header-navbar.fixed-top,
+html.nav-hide-hover .header-navbar.floating-nav {
+  left: 260px;
+  width: calc(100vw - (100vw - 100%) - 4rem - 260px);
 }
 
 .dark-layout .main-menu-content .navigation-main .nav-item:has(.active) > a {
@@ -327,7 +340,8 @@ html.nav-hide .header-navbar.floating-nav {
   /* Handle on hover */
 }
 .custom_scroll::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar {
-  width: 10px;
+  width: 8px;
+  height: 8px;
 }
 .custom_scroll::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track {
   background: #283046;
@@ -390,6 +404,7 @@ html.nav-hide .header-navbar.floating-nav {
   top: -1px;
   left: 0;
   border-bottom: 0;
+  z-index: 1;
 }
 .list_card thead th,
 .list_card thead td {

@@ -29,7 +29,10 @@ class ApiLoginController extends Controller
     public function auth_check()
     {
         if (Auth::check()) {
-            return response()->json(true, 200);
+            return response()->json([
+                "auth_status" => true,
+                "auth_information" => Auth::user(),
+            ], 200);
         } else {
             return response()->json(0, 200);
         }
@@ -317,7 +320,23 @@ class ApiLoginController extends Controller
 
     public function check_auth()
     {
-        return response()->json(Auth::check());
+        $auth_status = false;
+        $auth_information = [];
+        if(Auth::check()){
+            $auth_status = true;
+            $auth_information = User::where('id',Auth::user()->id)
+                ->with(['roles'=>function($q){
+                    return $q->select([
+                        'name',
+                        'role_serial'
+                    ]);
+                }])
+                ->first();
+        }
+        return response()->json([
+            "auth_status" => $auth_status,
+            "auth_information" => $auth_information,
+        ]);
     }
 
     public function find_user_info(Request $request)

@@ -2,11 +2,11 @@
     <div @mouseover="mouseover" @mouseleave="mouseleave">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-            <left-nav-list-group :icon="`fa fa-home`" :text="`Dashboard`" :alert_count="2">
+            <left-nav-list-group :role_permission="['super_admin','admin','user']" :icon="`fa fa-home`" :text="`Dashboard`" :alert_count="2">
                 <left-nav-list-item :to="'Dashboard'" :text="'Analytics'" />
             </left-nav-list-group>
 
-            <left-nav-list-group :icon="`fa fa-users`" :text="`Users`" :alert_count="0">
+            <left-nav-list-group :role_permission="['super_admin']" :icon="`fa fa-users`" :text="`Users`" :alert_count="0">
                 <left-nav-list-item :to="'AllUser'" :text="'All user'" />
                 <left-nav-list-item :to="'CreateUser'" :text="'Create user'" />
             </left-nav-list-group>

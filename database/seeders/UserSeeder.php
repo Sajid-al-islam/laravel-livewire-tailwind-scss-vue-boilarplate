@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\UserPermission;
 use App\Models\UserRole;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
@@ -18,6 +19,8 @@ class UserSeeder extends Seeder
     public function run()
     {
         UserRole::truncate();
+        DB::table('user_user_role')->truncate();
+        DB::table('user_user_permission')->truncate();
 
         $user_role = new UserRole();
         $user_role->id = 10;
@@ -82,6 +85,8 @@ class UserSeeder extends Seeder
         $user->email = 'admin@gmail.com';
         $user->password = Hash::make('12345678');
         $user->save();
+        $user->roles()->attach([2]);
+        $user->permissions()->attach([1,2]);
 
         $user = new User();
         $user->first_name = 'mr';
@@ -93,6 +98,8 @@ class UserSeeder extends Seeder
         $user->email = 'user@gmail.com';
         $user->password = Hash::make('12345678');
         $user->save();
+        $user->roles()->attach([3]);
+        $user->permissions()->attach([1]);
 
     }
 }

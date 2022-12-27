@@ -292,6 +292,12 @@
         width: calc(100vw - 80px);
     }
 
+    html.nav-hide-hover & {
+        margin-left: 0px;
+        left: 260px;
+        width: calc(100vw - 260px);
+    }
+
     html.nav-hide & {
         margin-left: 0px;
         left: 80px;
@@ -300,6 +306,7 @@
         @media (max-width: 1199.9px) {
             left: 0px;
             margin-left: 260px;
+            width: calc(100vw - 260px);
         }
     }
 }
@@ -319,6 +326,11 @@
             left: 260px;
             width: calc(100vw - (100vw - 100%) - calc(2rem * 2) - 260px);
         }
+    }
+
+    html.nav-hide-hover & {
+        left: 260px;
+        width: calc(100vw - (100vw - 100%) - calc(2rem * 2) - 260px);
     }
 }
 

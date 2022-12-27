@@ -5,6 +5,7 @@ const state = {
     auth_information: {},
     auth_tokens: null,
     check_auth: false,
+    auth_roles: [],
 }
 
 // get state
@@ -12,6 +13,7 @@ const getters = {
     get_auth_information: state => state.auth_information,
     get_auth_tokens: state => state.auth_tokens,
     get_check_auth: state => state.check_auth,
+    get_auth_roles: state => state.auth_roles,
 }
 
 // actions
@@ -19,15 +21,16 @@ const actions = {
     fetch_check_auth: function (state) {
         axios.post('/user/check-auth')
             .then((res) => {
-                // console.log(res.data);
                 $('#app_pre_loader').toggleClass('d-none');
-                this.commit('set_check_auth', true);
+                this.commit('set_check_auth', res.data.auth_status);
+                this.commit('set_auth_information', res.data.auth_information);
+                this.commit('set_auth_roles');
             })
             .catch((err)=>{
                 // this.commit('set_check_auth', false);
                 // window.localStorage.removeItem('token');
                 console.log('user not authenticated');
-                window.location.href = '/login';
+                // window.location.href = '/login';
             })
     },
     fetch_auth_information: function (state) {
@@ -69,6 +72,11 @@ const mutations = {
     set_check_auth: function (state, check_auth) {
         state.check_auth = check_auth;
     },
+    set_auth_roles: function(state){
+        state.auth_roles = state.auth_information.roles.map(item=>{
+            return item.name;
+        })
+    }
 }
 
 export default {

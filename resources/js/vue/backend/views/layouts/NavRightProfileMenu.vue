@@ -4,8 +4,13 @@
             id="dropdown-user" href="#" data-bs-toggle="dropdown" aria-haspopup="true"
             aria-expanded="false">
             <div class="user-nav d-sm-flex d-none">
-                <span class="user-name fw-bolder">John Doe</span>
-                <span class="user-status">Admin</span>
+                <span class="user-name fw-bolder">
+                    {{ get_auth_information.first_name }}
+                    {{ get_auth_information.last_name }}
+                </span>
+                <span class="user-status">
+                    {{ get_auth_information.user_name }}
+                </span>
             </div>
             <span class="avatar">
                 <img class="round"
@@ -35,11 +40,15 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
 export default {
     data: function(){
         return {
             show_menu: false,
         }
+    },
+    computed: {
+        ...mapGetters(['get_auth_information'])
     }
 }
 </script>

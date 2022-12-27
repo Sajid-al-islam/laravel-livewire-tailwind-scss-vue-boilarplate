@@ -26,15 +26,18 @@ export default {
         this.fetch_check_auth();
     },
     watch: {
-        get_check_auth: function(newv){
-            setTimeout(() => {
-                // $('.navigation li a.active').parents('li.has-sub').addClass('open');
-            }, 500);
-
-            if(!newv){
-                localStorage.removeItem('token');
-                location.href = '/login';
-            }
+        get_check_auth: {
+            handler: function(newv,oldv){
+                // console.log(newv);
+                // setTimeout(() => {
+                    // $('.navigation li a.active').parents('li.has-sub').addClass('open');
+                // }, 500);
+                if(!newv){
+                    localStorage.removeItem('token');
+                    location.href = '/login';
+                }
+            },
+            deep: true,
         }
     },
     methods: {

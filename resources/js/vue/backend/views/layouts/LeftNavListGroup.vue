@@ -1,5 +1,5 @@
 <template>
-    <li class="nav-item has-sub">
+    <li class="nav-item has-sub" v-if="is_role_permitted">
         <a @click.prevent="toggleLi($event)" class="d-flex align-items-center" href="#">
             <i :class="icon"></i>
             <span class="menu-title text-truncate">{{ text }}</span>
@@ -14,12 +14,28 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex';
 export default{
-    props: ['icon','text','alert_count'],
+    props: ['icon','text','alert_count','role_permission'],
+    created: function(){
+
+    },
     methods: {
         toggleLi: function(e){
             e.currentTarget.parentNode.classList.toggle('open');
         },
+    },
+    computed: {
+        ...mapGetters(['get_auth_information','get_auth_roles']),
+        is_role_permitted: function(){
+            for (let i=0; i<this.role_permission?.length; i++) {
+                let item = this.role_permission[i];
+                if(this.get_auth_roles.includes(item)){
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
 </script>
