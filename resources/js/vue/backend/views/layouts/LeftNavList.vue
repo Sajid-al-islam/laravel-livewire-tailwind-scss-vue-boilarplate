@@ -2,7 +2,7 @@
     <div @mouseover="mouseover" @mouseleave="mouseleave">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-            <left-nav-list-group :role_permissions="['super_admin','admin','user']" :icon="`fa fa-home`" :text="`Dashboard`" :alert_count="2">
+            <left-nav-list-group :role_permissions="['super_admin','admin']" :icon="`fa fa-home`" :text="`Dashboard`" :alert_count="2">
                 <left-nav-list-item :to="'Dashboard'" :text="'Analytics'" />
             </left-nav-list-group>
 
@@ -17,7 +17,7 @@
 
             <left-nav-list-single :role_permissions="['super_admin','admin']" :icon="'fa fa-envelope'" :text="'Email'" :alert_count="15" />
 
-            <left-nav-list-group :icon="`fa fa-gears`" :text="`Settings`" :alert_count="0">
+            <left-nav-list-group :role_permissions="['super_admin','admin','user']" :icon="`fa fa-gears`" :text="`Settings`" :alert_count="0">
                 <left-nav-list-item :to="'settingProfile'" :text="'Profile'" />
                 <left-nav-list-item :to="'settingPassword'" :text="'Change Password'" />
             </left-nav-list-group>
