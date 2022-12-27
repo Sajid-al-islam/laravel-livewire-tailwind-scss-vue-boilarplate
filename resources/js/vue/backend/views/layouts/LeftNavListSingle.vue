@@ -13,7 +13,7 @@
 <script>
 import { mapGetters } from 'vuex';
 export default{
-    props: ['icon','text','alert_count','role_permission'],
+    props: ['icon','text','alert_count','role_permissions'],
     methods: {
         toggleLi: function(e){
             e.currentTarget.parentNode.classList.toggle('open');
@@ -22,8 +22,8 @@ export default{
     computed: {
         ...mapGetters(['get_auth_roles']),
         is_role_permitted: function(){
-            for (let i=0; i<this.role_permission?.length; i++) {
-                let item = this.role_permission[i];
+            for (let i=0; i<this.role_permissions?.length; i++) {
+                let item = this.role_permissions[i];
                 if(this.get_auth_roles.includes(item)){
                     return true;
                 }

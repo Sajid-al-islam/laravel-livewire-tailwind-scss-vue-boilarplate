@@ -7,6 +7,7 @@ import DetailsUser from '../../views/users/DetailsUser'
 export default {
     path: 'user',
     component: userLayout,
+    props: {role_permissions: ['super_admin']},
     children: [{
             path: '',
             name: 'AllUser',
@@ -28,4 +29,5 @@ export default {
             component: DetailsUser,
         },
     ],
+
 };
