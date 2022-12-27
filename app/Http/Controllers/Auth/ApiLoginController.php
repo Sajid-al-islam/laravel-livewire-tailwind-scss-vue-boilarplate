@@ -325,12 +325,20 @@ class ApiLoginController extends Controller
         if(Auth::check()){
             $auth_status = true;
             $auth_information = User::where('id',Auth::user()->id)
-                ->with(['roles'=>function($q){
-                    return $q->select([
-                        'name',
-                        'role_serial'
-                    ]);
-                }])
+                ->with([
+                    'roles'=>function($q){
+                        return $q->select([
+                            'name',
+                            'role_serial'
+                        ]);
+                    },
+                    'permissions'=>function($q){
+                        return $q->select([
+                            'title',
+                            'permission_serial'
+                        ]);
+                    },
+                ])
                 ->first();
         }
         return response()->json([

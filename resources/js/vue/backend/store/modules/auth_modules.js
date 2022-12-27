@@ -6,6 +6,7 @@ const state = {
     auth_tokens: null,
     check_auth: false,
     auth_roles: [],
+    auth_permissions: [],
 }
 
 // get state
@@ -14,6 +15,7 @@ const getters = {
     get_auth_tokens: state => state.auth_tokens,
     get_check_auth: state => state.check_auth,
     get_auth_roles: state => state.auth_roles,
+    get_auth_permissions: state => state.auth_permissions,
 }
 
 // actions
@@ -25,6 +27,7 @@ const actions = {
                 this.commit('set_check_auth', res.data.auth_status);
                 this.commit('set_auth_information', res.data.auth_information);
                 this.commit('set_auth_roles');
+                this.commit('set_auth_permissions');
             })
             .catch((err)=>{
                 // this.commit('set_check_auth', false);
@@ -76,7 +79,12 @@ const mutations = {
         state.auth_roles = state.auth_information.roles.map(item=>{
             return item.name;
         })
-    }
+    },
+    set_auth_permissions: function(state){
+        state.auth_permissions = state.auth_information.permissions.map(item=>{
+            return item.title;
+        })
+    },
 }
 
 export default {

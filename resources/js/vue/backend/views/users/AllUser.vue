@@ -11,10 +11,13 @@
                     </form>
                 </div>
                 <div class="btns">
-                    <router-link :to="{name:'CreateUser'}" class="btn rounded-pill btn-outline-info">
+                    <permission-button
+                        :permission="'can_create'"
+                        :to="'CreateUser'"
+                        :classList="'btn rounded-pill btn-outline-info'">
                         <i class="fa fa-pencil me-5px"></i>
                         Create
-                    </router-link>
+                    </permission-button>
                 </div>
             </div>
             <div class="table-responsive card-body text-nowrap">
@@ -48,26 +51,34 @@
                                     </a>
                                     <ul>
                                         <li>
-                                            <a href="#/" class="">
+                                            <permission-button
+                                                :permission="'can_edit'"
+                                                :to="'#/'"
+                                                :classList="''">
                                                 <i class="fa text-secondary fa-eye"></i>
                                                 Details
-                                            </a>
+                                            </permission-button>
                                         </li>
                                         <li>
-                                            <a href="#/" class="">
+                                            <permission-button
+                                                :permission="'can_edit'"
+                                                :to="'#/'"
+                                                :classList="''">
                                                 <i class="fa text-warning fa-pencil"></i>
                                                 Edit
-                                            </a>
+                                            </permission-button>
                                         </li>
                                         <li>
-                                            <a href="#/" class="">
+                                            <permission-button
+                                                :permission="'can_edit'"
+                                                :to="'#/'"
+                                                :classList="''">
                                                 <i class="fa text-danger fa-trash"></i>
                                                 Delete
-                                            </a>
+                                            </permission-button>
                                         </li>
                                     </ul>
                                 </div>
-
                             </td>
                         </tr>
                     </tbody>
@@ -117,7 +128,9 @@
 </template>
 
 <script>
+import PermissionButton from '../components/PermissionButton.vue'
 export default {
+    components: { PermissionButton },
 
 }
 </script>
@@ -125,3 +138,5 @@ export default {
 <style>
 
 </style>
+
+PermissionButton
