@@ -25,7 +25,7 @@
             <li class="nav-item">
                 <a @click.prevent="fetch_logout()" class="d-flex align-items-center" href="#">
                     <i class="fa-solid fa-power-off"></i>
-                    <span class="menu-title text-truncate" >Logout</span>
+                    <span class="menu-title text-truncate" >Logouts</span>
                 </a>
             </li>
         </ul>
