@@ -46,10 +46,10 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="" @click.prevent="()=>''">
+                                <router-link :to="{name:'ImportUser'}">
                                     <i class="fa-regular fa-hand-point-right"></i>
                                     Import
-                                </a>
+                                </router-link>
                             </li>
                         </ul>
                     </div>

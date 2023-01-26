@@ -2,27 +2,11 @@ require('./plugins/axios_setup');
 require('./plugins/moment_setup');
 require('./plugins/preview_image');
 require('./plugins/auto_logout');
+require('./plugins/preloader');
+require('./plugins/csv_to_array');
 
 window.debounce = require('debounce');
 window.CsvBuilder = require('filefy').CsvBuilder;
-
-window.start_loader = function(){
-    $('.loader').addClass('active');
-    $('.load_amount h4').html(5);
-    $('.progress').width(5+"%");
-}
-
-window.update_loader = function(progress){
-    $('.loader').addClass('active');
-    $('.load_amount h4').html(progress);
-    $('.progress').width(progress+"%");
-}
-
-window.remove_loader = function(){
-    $('.loader').removeClass('active');
-    $('.load_amount h4').html(5);
-    $('.progress').width(5+"%");
-}
 
 /*********************
    dashboard vue setup
