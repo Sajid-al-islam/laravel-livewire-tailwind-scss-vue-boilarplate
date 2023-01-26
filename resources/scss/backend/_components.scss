@@ -21,6 +21,82 @@
     background-color: #3b3779;
 }
 
+.table_actions {
+    position: relative;
+    display: inline-block;
+
+    &:hover {
+        ul {
+            right: 100%;
+            transform: translate(0%, -50%) scale(1);
+
+            li {
+                opacity: 1;
+
+                @for $i from 1 through 6 {
+                    &:nth-child(#{$i}) {
+                        margin-left: 0px;
+                    }
+                }
+            }
+        }
+    }
+
+    ul {
+        min-width: 185px;
+        width: min-content;
+        padding: 10px 20px;
+        list-style-type: none;
+        right: 50%;
+        overflow: hidden;
+        transition-duration: .3s;
+        position: absolute;
+        z-index: 99;
+        background-color: #283046;
+        box-shadow: 0 4px 24px 0 rgb(0 0 0 / 24%);
+        border-radius: 3px;
+        text-align: left;
+        top: 50%;
+        transform: translate(50%, -50%) scale(0);
+
+        li {
+            margin: 0px 0px;
+            transition-duration: .2s;
+            opacity: 0;
+
+            @for $i from 1 through 6 {
+                &:nth-child(#{$i}) {
+                    margin-left: ($i * 10px);
+                    transition-delay: ($i * .15s);
+                }
+            }
+
+            a {
+                color: $white;
+                transition-duration: .3s;
+                text-transform: capitalize;
+                display: block;
+                padding: .65rem 1.28rem;
+
+                &:hover {
+                    // color: $purple;
+                    padding-left: 10px;
+                    background: rgba(115, 103, 240, .12);
+                    color: #7367F0;
+                }
+
+                &:active{
+                    background-color: #7367F0;
+                    color: #FFF;
+                }
+
+                i {
+                    width: 20px;
+                }
+            }
+        }
+    }
+}
 
 .list_card {
     margin-bottom: 0;
@@ -98,86 +174,6 @@
 
             td {
                 text-align: center;
-
-                .table_actions {
-                    position: relative;
-                    display: inline-block;
-
-                    &:hover {
-                        ul {
-                            right: 100%;
-                            transform: translate(0%, -50%) scale(1);
-
-                            li {
-                                opacity: 1;
-
-                                @for $i from 1 through 6 {
-                                    &:nth-child(#{$i}) {
-                                        margin-left: 0px;
-                                    }
-                                }
-                            }
-                        }
-                    }
-
-                    ul {
-                        min-width: 110px;
-                        width: min-content;
-                        padding: 10px 20px;
-                        list-style-type: none;
-                        right: 50%;
-                        overflow: hidden;
-                        transition-duration: .3s;
-                        position: absolute;
-                        z-index: 99;
-                        background-color: #283046;
-                        box-shadow: 0 4px 24px 0 rgb(0 0 0 / 24%);
-                        border-radius: 3px;
-                        text-align: left;
-                        top: 50%;
-                        transform: translate(50%, -50%) scale(0);
-
-                        li {
-                            margin: 0px 0px;
-                            transition-duration: .2s;
-                            opacity: 0;
-
-                            @for $i from 1 through 6 {
-                                &:nth-child(#{$i}) {
-                                    margin-left: ($i * 10px);
-                                    transition-delay: ($i * .15s);
-                                }
-                            }
-
-                            a {
-                                color: $white;
-                                transition-duration: .3s;
-                                text-transform: capitalize;
-                                display: block;
-                                padding: .65rem 1.28rem;
-
-                                &:hover {
-                                    // color: $purple;
-                                    padding-left: 10px;
-                                    background: rgba(115, 103, 240, .12);
-                                    color: #7367F0;
-                                }
-
-                                &:active{
-                                    background-color: #7367F0;
-                                    color: #FFF;
-                                }
-
-                                i {
-                                    width: 20px;
-                                }
-                            }
-                        }
-                    }
-
-
-                }
-
             }
         }
     }

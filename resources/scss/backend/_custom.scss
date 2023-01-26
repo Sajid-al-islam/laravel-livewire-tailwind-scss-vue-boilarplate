@@ -361,3 +361,27 @@
 .me-5px {
     margin-right: 5px;
 }
+
+.cursor_pointer{
+    cursor: pointer;
+}
+.cursor_n_resize{
+    cursor: n-resize;
+}
+
+.card-header{
+    .table_actions{
+        ul{
+            min-width: 215px;
+        }
+        &:hover{
+            ul{
+                transform: translate(0%, -12%) scale(1);
+            }
+        }
+    }
+}
+
+.table-hover tbody tr{
+    cursor: default;
+}

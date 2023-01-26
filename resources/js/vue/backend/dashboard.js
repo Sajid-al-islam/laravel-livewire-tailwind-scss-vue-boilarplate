@@ -3,7 +3,7 @@ require('./plugins/moment_setup');
 require('./plugins/preview_image');
 require('./plugins/auto_logout')
 
-
+window.debounce = require('debounce');
 /*********************
    dashboard vue setup
 **********************/

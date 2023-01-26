@@ -59,6 +59,14 @@
     margin-top: 0.75rem;
     margin-bottom: 0.75rem
 }
+.my-auto{
+    margin-top: auto;
+    margin-bottom: auto
+}
+.mx-0{
+    margin-left: 0px;
+    margin-right: 0px
+}
 .mb-0{
     margin-bottom: 0px
 }
@@ -150,6 +158,11 @@
 }
 .max-w-6xl{
     max-width: 72rem
+}
+.flex-grow-0{
+    -webkit-box-flex: 0;
+        -ms-flex-positive: 0;
+            flex-grow: 0
 }
 .cursor-pointer{
     cursor: pointer
@@ -243,6 +256,10 @@
 .py-1{
     padding-top: 0.25rem;
     padding-bottom: 0.25rem
+}
+.px-1{
+    padding-left: 0.25rem;
+    padding-right: 0.25rem
 }
 .pt-8{
     padding-top: 2rem
