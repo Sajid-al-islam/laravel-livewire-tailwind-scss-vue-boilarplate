@@ -34,13 +34,13 @@
                         </a>
                         <ul>
                             <li>
-                                <a href="" @click.prevent="()=>''">
+                                <a href="" @click.prevent="export_all()">
                                     <i class="fa-regular fa-hand-point-right"></i>
                                     Export All
                                 </a>
                             </li>
-                            <li>
-                                <a href="" @click.prevent="()=>''">
+                            <li v-if="get_selected_users.length">
+                                <a href="" @click.prevent="export_selected_csv()">
                                     <i class="fa-regular fa-hand-point-right"></i>
                                     Export Selected
                                 </a>
@@ -107,7 +107,7 @@
                                         <li>
                                             <permission-button
                                                 :permission="'can_edit'"
-                                                :to="'#/'"
+                                                :to="''"
                                                 :classList="''">
                                                 <i class="fa text-secondary fa-eye"></i>
                                                 Details
@@ -116,7 +116,7 @@
                                         <li>
                                             <permission-button
                                                 :permission="'can_edit'"
-                                                :to="'#/'"
+                                                :to="''"
                                                 :classList="''">
                                                 <i class="fa text-warning fa-pencil"></i>
                                                 Edit
@@ -125,7 +125,7 @@
                                         <li>
                                             <permission-button
                                                 :permission="'can_edit'"
-                                                :to="'#/'"
+                                                :to="''"
                                                 :classList="''">
                                                 <i class="fa text-danger fa-trash"></i>
                                                 Delete
@@ -190,6 +190,8 @@ export default {
             'set_clear_selected_users',
             'check_if_user_is_selected',
             'set_show_selected',
+            'export_all',
+            'export_selected_csv',
         ]),
 
         check_if_user_is_selected: function(user){

@@ -24,7 +24,7 @@ const getters = {
 
 // actions
 const actions = {
-    fetch_users: function ({ state }) {
+    fetch_users: async function ({ state }) {
         let url = `/user/all?page=${state.page}&paginate=${state.paginate}`;
         url += `&orderBy=${state.orderByCol}`;
         if (state.orderByAsc) {
@@ -35,7 +35,7 @@ const actions = {
         if (state.search_key) {
             url += `&search_key=${state.search_key}`;
         }
-        axios.get(url).then((res) => {
+        await axios.get(url).then((res) => {
             this.commit("set_users", res.data);
         });
     },
@@ -54,7 +54,10 @@ const mutations = {
         // if (cconfirm) {
         // }
         let temp_selected = state.selected;
-        $(`table td input[data-id="${temp_selected[index].id}"]`).prop("checked", false);
+        $(`table td input[data-id="${temp_selected[index].id}"]`).prop(
+            "checked",
+            false
+        );
         temp_selected.splice(index, 1);
         state.get_selected_users = temp_selected;
     },
@@ -116,6 +119,33 @@ const mutations = {
     }, 500),
     set_show_selected: function (state, trigger) {
         state.show_selected = trigger; // true or false
+    },
+    export_selected_csv: function (state) {
+        let col = Object.keys(state.selected[0]);
+        let values = state.selected.map((i) => Object.values(i));
+        new window.CsvBuilder("user_list.csv")
+            .setColumns(col)
+            // .addRow(["Eve", "Holt"])
+            .addRows(values)
+            .exportFile();
+    },
+    export_all: async function (state) {
+        let col = Object.keys(state.users.data[0]);
+        var export_csv = new window.CsvBuilder("user_list.csv").setColumns(col);
+        window.start_loader();
+        let last_page = state.users.last_page;
+        for (let index = 1; index <= last_page; index++) {
+            state.page = index;
+            state.paginate = 10;
+            await this.dispatch("fetch_users");
+            let values = state.users.data.map((i) => Object.values(i));
+            export_csv.addRows(values);
+
+            let progress = Math.round(100*index/last_page);
+            window.update_loader(progress);
+        }
+        await export_csv.exportFile();
+        window.remove_loader();
     },
 };
 
