@@ -4,6 +4,16 @@
             <div class="card-header">
                 <h4>
                     All Users
+                    <small v-if="get_selected_users.length">
+                        &nbsp; selected:
+                        <b class="text-warning">
+                            {{ get_selected_users.length }}
+                        </b>
+                        &nbsp;
+                        <b @click="set_clear_selected_users()" class="text-danger cursor-pointer">clear</b>
+                        &nbsp;
+                        <b @click="set_show_selected(true)" class="text-success cursor-pointer">show</b>
+                    </small>
                 </h4>
                 <div class="search">
                     <form action="#">
@@ -43,7 +53,7 @@
                 <table class="table table-hover table-bordered">
                     <thead class="table-light">
                         <tr>
-                            <th><input type="checkbox" class="form-check-input"></th>
+                            <th><input @click="set_select_all_users()" type="checkbox" class="form-check-input"></th>
                             <user-table-th :sort="true" :ariaLable="'id'" :tkey="'id'" :title="'ID'" />
                             <user-table-th :sort="true" :tkey="'photo'" :title="'Photo'" />
                             <user-table-th :sort="true" :tkey="'first_name'" :title="'Name'" />
@@ -55,7 +65,10 @@
                     </thead>
                     <tbody class="table-border-bottom-0">
                         <tr v-for="item in get_users.data" :key="item.id">
-                            <td><input type="checkbox" class="form-check-input"></td>
+                            <td>
+                                <input v-if="check_if_user_is_selected(item)" :data-id="item.id" checked @change="set_selected_users(item)" type="checkbox" class="form-check-input">
+                                <input v-else @change="set_selected_users(item)" type="checkbox" class="form-check-input">
+                            </td>
                             <td>{{ item.id }}</td>
                             <td>
                                 <img :src="`${item.photo_url}`" style="height:30px;" alt="Avatar" class="rounded-circle" />
@@ -127,31 +140,6 @@
                         <span slot="next-nav">Next <i class="fa fa-angle-right"></i></span>
                     </pagination>
                 </div>
-                <!-- <nav aria-label="Page navigation" class="d-inline-block">
-                    <ul class="pagination mb-0">
-                        <li class="page-item prev">
-                            <a class="page-link waves-effect" href="javascript:void(0);"><i class="tf-icon fs-6 ti ti-chevrons-left"></i></a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link waves-effect" href="javascript:void(0);">1</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link waves-effect" href="javascript:void(0);">2</a>
-                        </li>
-                        <li class="page-item active">
-                            <a class="page-link waves-effect" href="javascript:void(0);">3</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link waves-effect" href="javascript:void(0);">4</a>
-                        </li>
-                        <li class="page-item">
-                            <a class="page-link waves-effect" href="javascript:void(0);">5</a>
-                        </li>
-                        <li class="page-item next">
-                            <a class="page-link waves-effect" href="javascript:void(0);"><i class="tf-icon fs-6 ti ti-chevrons-right"></i></a>
-                        </li>
-                    </ul>
-                </nav> -->
                 <div class="show-limit d-inline-block">
                     <span>Limit:</span>
                     <select @change.prevent="set_users_paginate($event.target.value)">
@@ -168,6 +156,7 @@
         </div>
 
         <details-user-canvas/>
+        <selected-user-canvas/>
     </div>
 </template>
 
@@ -176,8 +165,9 @@ import { mapActions, mapGetters, mapMutations } from 'vuex'
 import PermissionButton from '../components/PermissionButton.vue'
 import UserTableTh from './components/UserTableTh.vue';
 import DetailsUserCanvas from './DetailsUserCanvas.vue';
+import SelectedUserCanvas from './SelectedUserCanvas.vue';
 export default {
-    components: { PermissionButton, UserTableTh, DetailsUserCanvas },
+    components: { PermissionButton, UserTableTh, DetailsUserCanvas, SelectedUserCanvas },
     created: function(){
         this.fetch_users();
     },
@@ -188,11 +178,28 @@ export default {
             'set_users_page',
             'set_users_search_key',
             'set_users_orderByCol',
-            'set_user'
+            'set_user',
+            'set_selected_users',
+            'set_select_all_users',
+            'set_clear_selected_users',
+            'check_if_user_is_selected',
+            'set_show_selected',
         ]),
+
+        check_if_user_is_selected: function(user){
+            let check_index = this.get_selected_users.findIndex((i) => i.id == user.id);
+            if(check_index >= 0){
+                return true;
+            }else{
+                return false;
+            }
+        },
     },
     computed: {
-        ...mapGetters(['get_users']),
+        ...mapGetters([
+            'get_users',
+            'get_selected_users'
+        ]),
     }
 }
 </script>

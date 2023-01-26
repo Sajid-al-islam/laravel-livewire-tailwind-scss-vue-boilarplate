@@ -1,21 +1,21 @@
-.custom_scroll, .list_card .card-body {
+.custom_scroll, .canvas_backdrop .content .cotent_body, .list_card .card-body {
   /* width */
   /* Track */
   /* Handle */
   /* Handle on hover */
 }
-.custom_scroll::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar {
+.custom_scroll::-webkit-scrollbar, .canvas_backdrop .content .cotent_body::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-.custom_scroll::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track {
+.custom_scroll::-webkit-scrollbar-track, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track {
   background: #283046;
 }
-.custom_scroll::-webkit-scrollbar-thumb, .list_card .card-body::-webkit-scrollbar-thumb {
+.custom_scroll::-webkit-scrollbar-thumb, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-thumb, .list_card .card-body::-webkit-scrollbar-thumb {
   background: #b4b7be;
   border-radius: 25px;
 }
-.custom_scroll::-webkit-scrollbar-thumb:hover, .list_card .card-body::-webkit-scrollbar-thumb:hover {
+.custom_scroll::-webkit-scrollbar-thumb:hover, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-thumb:hover, .list_card .card-body::-webkit-scrollbar-thumb:hover {
   background: #7367f0;
 }
 
@@ -59,24 +59,24 @@ html.dark-layout .watch.to_nav_watch {
   text-transform: capitalize;
 }
 
-.custom_scroll, .list_card .card-body {
+.custom_scroll, .canvas_backdrop .content .cotent_body, .list_card .card-body {
   /* width */
   /* Track */
   /* Handle */
   /* Handle on hover */
 }
-.custom_scroll::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar {
+.custom_scroll::-webkit-scrollbar, .canvas_backdrop .content .cotent_body::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-.custom_scroll::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track {
+.custom_scroll::-webkit-scrollbar-track, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track {
   background: #283046;
 }
-.custom_scroll::-webkit-scrollbar-thumb, .list_card .card-body::-webkit-scrollbar-thumb {
+.custom_scroll::-webkit-scrollbar-thumb, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-thumb, .list_card .card-body::-webkit-scrollbar-thumb {
   background: #b4b7be;
   border-radius: 25px;
 }
-.custom_scroll::-webkit-scrollbar-thumb:hover, .list_card .card-body::-webkit-scrollbar-thumb:hover {
+.custom_scroll::-webkit-scrollbar-thumb:hover, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-thumb:hover, .list_card .card-body::-webkit-scrollbar-thumb:hover {
   background: #7367f0;
 }
 
@@ -354,24 +354,28 @@ html.nav-hide-hover .header-navbar.floating-nav {
   cursor: default;
 }
 
-.custom_scroll, .list_card .card-body {
+.swal2-container {
+  z-index: 99999;
+}
+
+.custom_scroll, .canvas_backdrop .content .cotent_body, .list_card .card-body {
   /* width */
   /* Track */
   /* Handle */
   /* Handle on hover */
 }
-.custom_scroll::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar {
+.custom_scroll::-webkit-scrollbar, .canvas_backdrop .content .cotent_body::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-.custom_scroll::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track {
+.custom_scroll::-webkit-scrollbar-track, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track {
   background: #283046;
 }
-.custom_scroll::-webkit-scrollbar-thumb, .list_card .card-body::-webkit-scrollbar-thumb {
+.custom_scroll::-webkit-scrollbar-thumb, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-thumb, .list_card .card-body::-webkit-scrollbar-thumb {
   background: #b4b7be;
   border-radius: 25px;
 }
-.custom_scroll::-webkit-scrollbar-thumb:hover, .list_card .card-body::-webkit-scrollbar-thumb:hover {
+.custom_scroll::-webkit-scrollbar-thumb:hover, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-thumb:hover, .list_card .card-body::-webkit-scrollbar-thumb:hover {
   background: #7367f0;
 }
 
@@ -588,24 +592,24 @@ html.nav-hide-hover .header-navbar.floating-nav {
   border-radius: 5px;
 }
 
-.custom_scroll, .list_card .card-body {
+.custom_scroll, .canvas_backdrop .content .cotent_body, .list_card .card-body {
   /* width */
   /* Track */
   /* Handle */
   /* Handle on hover */
 }
-.custom_scroll::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar {
+.custom_scroll::-webkit-scrollbar, .canvas_backdrop .content .cotent_body::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar {
   width: 8px;
   height: 8px;
 }
-.custom_scroll::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track {
+.custom_scroll::-webkit-scrollbar-track, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track {
   background: #283046;
 }
-.custom_scroll::-webkit-scrollbar-thumb, .list_card .card-body::-webkit-scrollbar-thumb {
+.custom_scroll::-webkit-scrollbar-thumb, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-thumb, .list_card .card-body::-webkit-scrollbar-thumb {
   background: #b4b7be;
   border-radius: 25px;
 }
-.custom_scroll::-webkit-scrollbar-thumb:hover, .list_card .card-body::-webkit-scrollbar-thumb:hover {
+.custom_scroll::-webkit-scrollbar-thumb:hover, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-thumb:hover, .list_card .card-body::-webkit-scrollbar-thumb:hover {
   background: #7367f0;
 }
 
@@ -656,12 +660,21 @@ html.nav-hide-hover .header-navbar.floating-nav {
           align-items: center;
   border-bottom: 1px solid #585656;
   padding-bottom: 20px;
+  margin-bottom: 20px;
 }
 .canvas_backdrop .content .content_header i {
   cursor: pointer;
 }
 .canvas_backdrop .content .cotent_body {
   padding: 20px 0px;
+  padding-top: 0;
+  max-height: calc(100vh - 95px);
+  overflow-y: scroll;
+}
+.canvas_backdrop .content .cotent_body table thead {
+  position: sticky;
+  top: 0;
+  left: 0;
 }
 .canvas_backdrop .content .cotent_body table tr td:nth-child(1) {
   width: 150px;

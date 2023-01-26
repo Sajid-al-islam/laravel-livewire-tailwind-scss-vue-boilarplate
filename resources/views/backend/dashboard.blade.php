@@ -54,7 +54,7 @@
                 title
             })
         };
-        window.s_confirm = async (confirmButtonText='Yes, do it!',title="Are you sure?",icon='warning') => {
+        window.s_confirm = async (title="Are you sure?",confirmButtonText='Yes, do it!',icon='warning') => {
             let result = await Swal.fire({
                 title,
                 text: "",

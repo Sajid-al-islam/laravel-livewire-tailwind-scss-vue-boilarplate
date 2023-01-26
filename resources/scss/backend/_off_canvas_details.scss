@@ -38,6 +38,7 @@
             align-items: center;
             border-bottom: 1px solid #585656;
             padding-bottom: 20px;
+            margin-bottom: 20px;
 
             i{
                 cursor: pointer;
@@ -46,8 +47,17 @@
 
         .cotent_body{
             padding: 20px 0px;
+            padding-top: 0;
+            max-height: calc( 100vh - 95px);
+            overflow-y: scroll;
+            @extend .custom_scroll;
 
             table{
+                thead{
+                    position: sticky;
+                    top: 0;
+                    left: 0;
+                }
                 tr{
                     td{
                         &:nth-child(1){
