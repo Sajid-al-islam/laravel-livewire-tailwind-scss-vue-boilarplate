@@ -45,6 +45,12 @@
                                     Export Selected
                                 </a>
                             </li>
+                            <li>
+                                <a href="" @click.prevent="()=>''">
+                                    <i class="fa-regular fa-hand-point-right"></i>
+                                    Import
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
