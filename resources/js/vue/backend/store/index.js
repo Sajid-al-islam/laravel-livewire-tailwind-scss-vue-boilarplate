@@ -4,10 +4,12 @@ import Vuex from 'vuex';
 Vue.use(Vuex);
 
 import auth_modules from './modules/auth_modules';
+import user_modules from './modules/user_modules';
 
 const store = new Vuex.Store({
     modules: {
         auth_modules,
+        user_modules,
     },
     state: {},
     getters: {},

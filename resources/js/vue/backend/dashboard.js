@@ -12,6 +12,7 @@ import Vue from 'vue'
 import router from './router/router';
 import store from './store/index';
 
+Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('ex-app', require('./App.vue').default);
 if (document.getElementById('app')) {
     new Vue({

@@ -25,25 +25,29 @@
                     <thead class="table-light">
                         <tr>
                             <th aria-label="id">Id</th>
-                            <th>Project</th>
-                            <th>Client</th>
-                            <th>Users</th>
+                            <th>Image</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone Number</th>
                             <th>Status</th>
                             <th aria-label="actions">Actions</th>
                         </tr>
                     </thead>
                     <tbody class="table-border-bottom-0">
-                        <tr v-for="i in 10" :key="i">
-                            <td>{{ i }}</td>
+                        <tr v-for="item in get_users.data" :key="item.id">
+                            <td>{{ item.id }}</td>
                             <td>
-                                <i class="fab fa-facebook-f text-info me-3"></i>
-                                <strong>React Project</strong>
+                                <img :src="`/${item.photo}`" style="height:30px;" alt="Avatar" class="rounded-circle" />
                             </td>
-                            <td>Barry Hunter</td>
+                            <td>{{ item.first_name }} {{ item.last_name }}</td>
+                            <td>{{ item.email }}</td>
                             <td>
-                                <!-- <img src="/avatar.jpg" style="height:30px;" alt="Avatar" class="rounded-circle" /> -->
+                                {{ item.mobile_number }}
                             </td>
-                            <td><span class="badge bg-label-success me-1">Completed</span></td>
+                            <td>
+                                <span v-if="item.status == 1" class="badge bg-label-success me-1">active</span>
+                                <span v-if="item.status == 0" class="badge bg-label-success me-1">deactive</span>
+                            </td>
                             <td>
                                 <div class="table_actions">
                                     <a href="#" class="btn btn-sm btn-outline-secondary">
@@ -85,7 +89,14 @@
                 </table>
             </div>
             <div class="card-footer py-1 border-top-0">
-                <nav aria-label="Page navigation" class="d-inline-block">
+                <div class="d-inline-block">
+                    <pagination :data="get_users" :limit="5" :size="'small'" :show-disabled="true" :align="'left'"
+                        @pagination-change-page="fetch_users">
+                        <span slot="prev-nav"><i class="fa fa-angle-left"></i> Previous</span>
+                        <span slot="next-nav">Next <i class="fa fa-angle-right"></i></span>
+                    </pagination>
+                </div>
+                <!-- <nav aria-label="Page navigation" class="d-inline-block">
                     <ul class="pagination mb-0">
                         <li class="page-item prev">
                             <a class="page-link waves-effect" href="javascript:void(0);"><i class="tf-icon fs-6 ti ti-chevrons-left"></i></a>
@@ -109,7 +120,7 @@
                             <a class="page-link waves-effect" href="javascript:void(0);"><i class="tf-icon fs-6 ti ti-chevrons-right"></i></a>
                         </li>
                     </ul>
-                </nav>
+                </nav> -->
                 <div class="show-limit d-inline-block">
                     <span>Limit:</span>
                     <select name="" id="">
@@ -128,10 +139,19 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 import PermissionButton from '../components/PermissionButton.vue'
 export default {
     components: { PermissionButton },
-
+    created: function(){
+        this.fetch_users();
+    },
+    methods: {
+        ...mapActions(['fetch_users']),
+    },
+    computed: {
+        ...mapGetters(['get_users']),
+    }
 }
 </script>
 

@@ -41,6 +41,7 @@ Route::group(
 
             Route::group(['prefix' => 'user'], function () {
                 Route::post('/update-profile', 'Auth\ProfileController@update_profile');
+                Route::get('/all','Auth\UserController@all');
             });
 
             Route::group(['prefix' => 'question-bank'], function () {
