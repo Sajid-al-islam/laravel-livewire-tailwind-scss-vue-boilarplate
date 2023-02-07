@@ -112,6 +112,7 @@
     .card-body {
         min-height: 100%;
         max-height: calc(100vh - 280px);
+        overflow-y: scroll;
         padding-top: 0;
         padding-bottom: 0;
         @extend .custom_scroll;
@@ -191,6 +192,20 @@
             border-radius: 5px;
         }
     }
+}
+
+.upload_demo_form{
+    position: fixed;
+    top: 90vh;
+    right: 10px;
+    height: 40px;
+    width: 40px;
+    border: 1px solid $light_dark;
+    text-align: center;
+    line-height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    background-color: transparent;
 }
 
 .loader {

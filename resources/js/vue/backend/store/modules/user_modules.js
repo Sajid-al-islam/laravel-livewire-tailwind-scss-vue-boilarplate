@@ -12,6 +12,7 @@ const state = {
     orderByAsc: true,
     selected: [], // selected data using checkbox
     show_selected: false, // will show selected data into offcanvas
+    show_create_canvas: false, // will show create data offcanvas
 };
 
 // get state
@@ -20,6 +21,7 @@ const getters = {
     get_user: (state) => state.user,
     get_selected_users: (state) => state.selected,
     get_show_selected: (state) => state.show_selected,
+    get_show_create_canvas: (state) => state.show_create_canvas,
 };
 
 // actions
@@ -72,6 +74,11 @@ const mutations = {
         let temp_selected = state.selected;
         let check_index = temp_selected.findIndex((i) => i.id == user.id);
         if (check_index >= 0) {
+            let el = document.querySelector(`input[data-id="${user.id}"]`)
+            if(el)el.checked = false;
+            el = document.querySelector(`input.check_all`)
+            if(el)el.checked = false;
+
             temp_selected.splice(check_index, 1);
         } else {
             temp_selected.push(user);
@@ -119,6 +126,9 @@ const mutations = {
     }, 500),
     set_show_selected: function (state, trigger) {
         state.show_selected = trigger; // true or false
+    },
+    set_show_create_canvas: function (state, trigger = true) {
+        state.show_create_canvas = trigger; // true or false
     },
     export_selected_csv: function (state) {
         let col = Object.keys(state.selected[0]);

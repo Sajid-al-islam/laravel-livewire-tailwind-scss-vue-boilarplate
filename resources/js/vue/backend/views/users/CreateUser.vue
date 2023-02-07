@@ -1,56 +1,113 @@
 <template>
-    <div class="conatiner">
-        <div class="card">
+    <div class="container">
+        <div class="card list_card">
             <div class="card-header">
-                <h4>
-                    Create
-                </h4>
+                <h4>Create</h4>
                 <div class="btns">
-                    <router-link :to="{name:'AllUser'}" class="btn rounded-pill btn-outline-warning">
+                    <router-link :to="{ name: 'AllUser' }" class="btn rounded-pill btn-outline-warning" >
                         <i class="fa fa-arrow-left me-5px"></i>
                         Back
                     </router-link>
                 </div>
             </div>
-            <div class="card-body text-nowrap">
-                <div class="row justify-content-center">
-                    <div class="col-lg-6">
-                        <form ref="form">
-                            <div class="form-group d-grid gap-1 mb-2">
-                                <label for="" class="text-capitalize">Name</label>
-                                <input type="text" class="form-control">
+            <form @submit.prevent="form_submit" autocomplete="false">
+                <div class="card-body">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-10">
+                            <div class="admin_form form_1">
+                                <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
+                                    <user-management-modal></user-management-modal>
+                                </div>
+                                <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
+                                    <input-field
+                                        :label="`First Name`"
+                                        :name="`first_name`"
+                                    />
+                                </div>
+                                <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
+                                    <input-field
+                                        :label="`Last Name`"
+                                        :name="`last_name`"
+                                    />
+                                </div>
+                                <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
+                                    <input-field
+                                        :label="`User Name`"
+                                        :name="`user_name`"
+                                    />
+                                </div>
+                                <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
+                                    <input-field
+                                        :label="`Email`"
+                                        :type="`email`"
+                                        :name="`email`"
+                                    />
+                                </div>
+                                <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
+                                    <input-field
+                                        :label="`Mobile Number`"
+                                        :name="`mobile_number`"
+                                    />
+                                </div>
+                                <div></div>
+                                <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
+                                    <input-field
+                                        :label="`Password`"
+                                        :type="`password`"
+                                        :name="`password`"
+                                    />
+                                </div>
+                                <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
+                                    <input-field
+                                        :label="`confirm password`"
+                                        :type="`password`"
+                                        :name="`password_confirmation`"
+                                    />
+                                </div>
+                                <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
+                                    <input-field
+                                        :label="'photo'"
+                                        :name="`photo`"
+                                        :type="`file`"
+                                        :accept="'image/*'"
+                                        :multiple="true"
+                                        :mutator="get_file_input_return"
+                                        :preview="true"
+                                    />
+                                </div>
                             </div>
-                            <div class="form-group d-grid gap-1 mb-2">
-                                <label for="" class="text-capitalize">Email</label>
-                                <input type="text" class="form-control">
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-footer text-center">
-                <button @click.prevent="form_submit" class="btn btn-outline-info">
-                    <i class="fa fa-upload"></i>
-                    Submit
-                </button>
-            </div>
+                <div class="card-footer text-center">
+                    <button class="btn btn-outline-info" >
+                        <i class="fa fa-upload"></i>
+                        Submit
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    created: function(){
-
-    },
+    created: function () {},
     methods: {
-        form_submit: function(){
-            console.log(this.$refs.form);
-        }
-    }
-}
+        form_submit: function () {
+            axios
+                .post("/user/store", new FormData(event.target))
+                .then((res) => {
+                    console.log(res.data);
+                    window.s_alert('user created successfully.');
+                });
+        },
+        get_file_input_return: function () {
+            console.log(arguments);
+        },
+    },
+};
 </script>
 
 <style>
-
 </style>

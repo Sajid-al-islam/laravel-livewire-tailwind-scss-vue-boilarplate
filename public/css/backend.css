@@ -538,6 +538,7 @@ html.nav-hide-hover .header-navbar.floating-nav {
 .list_card .card-body {
   min-height: 100%;
   max-height: calc(100vh - 280px);
+  overflow-y: scroll;
   padding-top: 0;
   padding-bottom: 0;
 }
@@ -590,6 +591,20 @@ html.nav-hide-hover .header-navbar.floating-nav {
 }
 .list_card .show-limit select {
   border-radius: 5px;
+}
+
+.upload_demo_form {
+  position: fixed;
+  top: 90vh;
+  right: 10px;
+  height: 40px;
+  width: 40px;
+  border: 1px solid #283046;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: transparent;
 }
 
 .loader {
@@ -693,7 +708,7 @@ html.nav-hide-hover .header-navbar.floating-nav {
   background-color: rgba(0, 0, 0, 0.5);
   -webkit-backdrop-filter: blur(5px);
           backdrop-filter: blur(5px);
-  z-index: 9999;
+  z-index: 99999;
   right: -200vh;
   visibility: hidden;
   -webkit-transition-duration: 0.2s;
@@ -754,4 +769,177 @@ html.nav-hide-hover .header-navbar.floating-nav {
 }
 .canvas_backdrop .content .cotent_body table tr td:nth-child(2) {
   width: 5px;
+}
+
+.custom_scroll, .list_card .card-body, .canvas_backdrop .content .cotent_body {
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+.custom_scroll::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar, .canvas_backdrop .content .cotent_body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.custom_scroll::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-track {
+  background: #283046;
+}
+.custom_scroll::-webkit-scrollbar-thumb, .list_card .card-body::-webkit-scrollbar-thumb, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-thumb {
+  background: #b4b7be;
+  border-radius: 25px;
+}
+.custom_scroll::-webkit-scrollbar-thumb:hover, .list_card .card-body::-webkit-scrollbar-thumb:hover, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-thumb:hover {
+  background: #7367f0;
+}
+
+.admin_form {
+  display: grid;
+  -webkit-column-gap: 30px;
+     -moz-column-gap: 30px;
+          column-gap: 30px;
+}
+@media (min-width: 992px) {
+  .admin_form.form_1 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.file_preview {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0px;
+}
+.file_preview img {
+  height: 100px;
+  border: 1px solid rgba(195, 195, 195, 0.47);
+  padding: 3px;
+}
+
+.custom_scroll, .list_card .card-body, .canvas_backdrop .content .cotent_body {
+  /* width */
+  /* Track */
+  /* Handle */
+  /* Handle on hover */
+}
+.custom_scroll::-webkit-scrollbar, .list_card .card-body::-webkit-scrollbar, .canvas_backdrop .content .cotent_body::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+.custom_scroll::-webkit-scrollbar-track, .list_card .card-body::-webkit-scrollbar-track, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-track {
+  background: #283046;
+}
+.custom_scroll::-webkit-scrollbar-thumb, .list_card .card-body::-webkit-scrollbar-thumb, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-thumb {
+  background: #b4b7be;
+  border-radius: 25px;
+}
+.custom_scroll::-webkit-scrollbar-thumb:hover, .list_card .card-body::-webkit-scrollbar-thumb:hover, .canvas_backdrop .content .cotent_body::-webkit-scrollbar-thumb:hover {
+  background: #7367f0;
+}
+
+.multiple_select_body {
+  position: relative;
+}
+.multiple_select_body .multiple_select_data {
+  position: relative;
+  width: 100%;
+  min-height: 40px;
+  display: block;
+  padding: 0.571rem 1rem;
+  font-size: 1rem;
+  background-clip: padding-box;
+  border: 1px solid #D8D6DE;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 0.357rem;
+  -webkit-transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  -o-transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out, -webkit-box-shadow 0.15s ease-in-out;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 10px;
+}
+.multiple_select_body .multiple_select_data .item {
+  background-color: #7367f0;
+  color: #b4b7be;
+  border-radius: 3px;
+  padding: 2px 6px;
+}
+.multiple_select_body .multiple_select_modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  -webkit-backdrop-filter: blur(5px);
+          backdrop-filter: blur(5px);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 99999;
+}
+.multiple_select_body .multiple_select_modal .multiple_select_modal_body {
+  position: absolute;
+  height: 90vh;
+  width: 95%;
+  max-width: 992px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  background-color: #161d31;
+  padding: 20px;
+  overflow-y: scroll;
+}
+.multiple_select_body .multiple_select_modal .multiple_select_modal_body .header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 30px;
+}
+.multiple_select_body .multiple_select_modal .multiple_select_modal_body .header .search {
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+.multiple_select_body .multiple_select_modal .multiple_select_modal_body .selected {
+  margin: 20px 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  gap: 20px;
+}
+.multiple_select_body .multiple_select_modal .multiple_select_modal_body .selected .item button {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 6px;
+}
+.multiple_select_body .multiple_select_modal .multiple_select_modal_body .selected .item button:hover i {
+  color: tomato;
+}
+.multiple_select_body .multiple_select_modal .multiple_select_modal_body .data_list {
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+.multiple_select_body .multiple_select_modal .multiple_select_modal_body .footer_modal {
+  border-top: 1px solid rgba(128, 128, 128, 0.605);
+  padding-top: 15px;
+}
+.multiple_select_body .multiple_select_modal .multiple_select_modal_backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
 }

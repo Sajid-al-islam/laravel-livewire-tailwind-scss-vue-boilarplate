@@ -3,8 +3,8 @@
     show posts
 
     <ul>
-        @foreach ($users as $item)
-            <li>{{$item->username}}</li>
-        @endforeach
+        {{-- @foreach ($users as $item)
+            <li>{{$item->user_name}}</li>
+        @endforeach --}}
     </ul>
 </div>

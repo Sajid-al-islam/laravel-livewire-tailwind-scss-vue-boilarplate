@@ -78,6 +78,11 @@
         <ex-app></ex-app>
     </div>
 
+    @if(env('APP_DEBUG')==true)
+        <button class="upload_demo_form" onclick="demo_data()" title="upload demo data into form element">
+            <i class="fa-solid fa-upload text-info"></i>
+        </button>
+    @endif
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static d-none footer-light">
         <p class="clearfix mb-0">
