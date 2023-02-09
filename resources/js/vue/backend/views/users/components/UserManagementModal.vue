@@ -1,13 +1,17 @@
 <template>
     <div class="multiple_select_body">
-        <div class="multiple_select_data">
-            <div class="item">lorem</div>
-            <div class="item">Lorem, ipsum.</div>
-            <div class="item">lor</div>
+        <div class="multiple_select_data" @click="set_show_user_management_modal(true)">
+            <div v-for="user in get_selected_users" :key="user.id" class="item">
+                {{ user.first_name }}
+                {{ user.last_name }}
+            </div>
+            <div class="btn btn-sm btn-outline-danger" v-if="!get_selected_users.length">
+                no user selected
+            </div>
         </div>
 
-        <div class="multiple_select_modal">
-            <div class="multiple_select_modal_backdrop"></div>
+        <div class="multiple_select_modal" v-if="get_show_user_management_modal">
+            <div class="multiple_select_modal_backdrop" @click="set_show_user_management_modal(false)"></div>
             <div class="multiple_select_modal_body custom_scroll">
                 <div class="header">
                     <div class="search">
@@ -85,12 +89,16 @@
                         </tbody>
                     </table>
                 </div>
-                <div class="footer_modal">
+                <div class="footer_modal d-flex justify-content-between align-items-start">
                     <pagination :data="get_users" :limit="5" :size="'small'" :show-disabled="true" :align="'left'"
                         @pagination-change-page="set_users_page">
                         <span slot="prev-nav"><i class="fa fa-angle-left"></i> Previous</span>
                         <span slot="next-nav">Next <i class="fa fa-angle-right"></i></span>
                     </pagination>
+                    <button @click="set_show_user_management_modal(false)" href="#" class="btn rounded-pill btn-outline-secondary">
+                        <i class="fa fa-floppy-disk"></i>
+                        Save & Close
+                    </button>
                 </div>
             </div>
         </div>
@@ -123,6 +131,7 @@ export default {
             'check_if_user_is_selected',
             'set_show_selected',
             'set_show_create_canvas',
+            'set_show_user_management_modal',
         ]),
 
         check_if_user_is_selected: function(user){
@@ -137,7 +146,8 @@ export default {
     computed: {
         ...mapGetters([
             'get_users',
-            'get_selected_users'
+            'get_selected_users',
+            'get_show_user_management_modal'
         ]),
     }
 };

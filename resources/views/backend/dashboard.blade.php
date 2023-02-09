@@ -48,7 +48,7 @@
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
-        window.s_alert = (icon='success',title="success") => {
+        window.s_alert = (title="success",icon='success') => {
             Toast.fire({
                 icon,
                 title

@@ -29,20 +29,20 @@ axios.interceptors.request.use(function (config) {
     return Promise.reject(error);
 });
 
-function remove_form_action_classes() {
+window.remove_form_action_classes = function() {
     $('.loader_body').removeClass('active');
     $('input,select,textarea').removeClass('border-warning');
     $('form button').prop('disabled',false);
     $(`.error.text-warning`).remove();
 }
 
-function render_form_errors(object) {
+window.render_form_errors = function(object, selector="name") {
     for (const key in object) {
         if (Object.hasOwnProperty.call(object, key)) {
             const element = object[key];
-            let el = document.getElementById(`${key}`);
+            let el = document.querySelector(`input[${selector}="${key}`);
             if (!el) {
-                el = document.querySelector(`input[name="${key}`);
+                el = document.getElementById(`${key}`);
             }
             $(`<div class="error text-warning">${element[0]}</div>`).insertAfter(el);
             el.classList.add('border-warning')
@@ -70,7 +70,7 @@ window.axios.interceptors.response.use(
         //     window.clear_session();
         // }
         // console.log(error);
-        window.s_alert('error',error.response?.statusText)
+        window.s_alert(error.response?.statusText,'error')
         throw error;
     }
 );

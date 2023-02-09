@@ -15,18 +15,20 @@
                 :value="value"
                 :checked="checked"
                 @change="input_change_handler"
+                ref="input_el"
             />
             <span v-if="input_not_text" class="ps-1">
                 {{ label }}
             </span>
         </label>
-        <div class="file_preview" v-if="is_preview">
-            <img
+        <div class="file_preview" ref="preview_el" v-if="is_preview">
+            <!-- <img
                 v-for="(url, index) in image_urls"
                 :key="index"
                 :src="url"
                 :alt="index"
-            />
+                ref="preview_el"
+            /> -->
         </div>
     </div>
 </template>
@@ -44,12 +46,12 @@ export default {
         },
         name: {
             type: String,
-            default: "",
-            required: true,
+            default: null,
+            required: false,
         },
         mutator: {
             type: Function,
-            default: () => "",
+            default: null,
         },
         checked: {
             type: Boolean,
@@ -69,7 +71,7 @@ export default {
         },
         preview: {
             type: Boolean,
-            default: false,
+            default: true,
         },
         multiple: {
             type: Boolean,
@@ -79,6 +81,10 @@ export default {
             type: String,
             default: '',
         },
+        data_attr: {
+            type: Array,
+            default: null,
+        }
     },
     data: function () {
         return {
@@ -87,9 +93,11 @@ export default {
     },
     methods: {
         input_change_handler: function () {
-            if (this.is_preview) {
+            if (this.is_preview && this.type == 'file') {
                 this.preview_image();
             }
+
+            this.mutator &&
             this.mutator({
                 value: event.target.value,
                 name: event.target.name,
@@ -97,12 +105,43 @@ export default {
             });
         },
         preview_image: function () {
-            let files = [...event.target.files];
-            this.image_urls = files.map((i) => URL.createObjectURL(i));
+            let files = event.target.files;
+            let that = this;
+            that.$refs.preview_el.innerHTML = ``;
+            for (let i = 0; i < files.length; i++) {
+                var reader = new FileReader();
+                reader.onload = function(event){
+                    let img = new Image();
+                    img.src = event.target.result;
+                    let context_data_to_string = that.dataURItoBlob(img.src);
+                    that.$refs.preview_el.innerHTML += `<img src="${URL.createObjectURL(context_data_to_string)}" />`
+                };
+                reader.readAsDataURL(event.target.files[i]);
+            }
         },
         uninque_id_for_label: function(){
-            return this.input_not_text?this.label.replaceAll(' ','_'):this.name
+            let id = this.name || (this.data_attr?.name && 'data-'.data_attr?.name);
+            return this.input_not_text?this.label.replaceAll(' ','_'):id
+        },
+        dataURItoBlob: function(dataURI) {
+            // convert base64/URLEncoded data component to raw binary data held in a string
+            var byteString;
+            if (dataURI.split(",")[0].indexOf("base64") >= 0) byteString = atob(dataURI.split(",")[1]);
+            else byteString = unescape(dataURI.split(",")[1]);
+            // separate out the mime component
+            var mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
+            // write the bytes of the string to a typed array
+            var ia = new Uint8Array(byteString.length);
+            for (var i = 0; i < byteString.length; i++) {
+                ia[i] = byteString.charCodeAt(i);
+            }
+            return new Blob([ia], { type: mimeString });
         }
+    },
+    mounted: function(){
+        this.data_attr?.map(i=>{
+            this.$refs.input_el.dataset[Object.keys(i)[0]] = i[Object.keys(i)[0]];
+        })
     },
     computed: {
         is_preview: function () {

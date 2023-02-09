@@ -16,6 +16,7 @@
                         <div class="col-lg-10">
                             <div class="admin_form form_1">
                                 <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
+                                    <label>Select user</label>
                                     <user-management-modal></user-management-modal>
                                 </div>
                                 <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
@@ -71,7 +72,6 @@
                                         :type="`file`"
                                         :accept="'image/*'"
                                         :multiple="true"
-                                        :mutator="get_file_input_return"
                                         :preview="true"
                                     />
                                 </div>
@@ -80,7 +80,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button class="btn btn-outline-info" >
+                    <button type="button" class="btn btn-outline-info" >
                         <i class="fa fa-upload"></i>
                         Submit
                     </button>

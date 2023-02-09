@@ -11,7 +11,8 @@
     right: -200vh;
     visibility: hidden;
     transition-duration: .2s;
-    &.active{
+
+    &.active {
         right: 0;
         visibility: visible;
     }
@@ -31,7 +32,7 @@
             float: right;
         }
 
-        .content_header{
+        .content_header {
             display: flex;
             justify-content: space-between;
             gap: 20px;
@@ -40,31 +41,33 @@
             padding-bottom: 20px;
             margin-bottom: 20px;
 
-            i{
+            i {
                 cursor: pointer;
             }
         }
 
-        .cotent_body{
+        .cotent_body {
             padding: 20px 0px;
             padding-top: 0;
-            max-height: calc( 100vh - 95px);
+            max-height: calc(100vh - 95px);
             overflow-y: scroll;
             @extend .custom_scroll;
 
-            table{
-                thead{
+            table {
+                thead {
                     position: sticky;
                     top: 0;
                     left: 0;
                 }
-                tr{
-                    td{
-                        &:nth-child(1){
+
+                tr {
+                    td {
+                        &:nth-child(1) {
                             width: 150px;
                             text-transform: capitalize;
                         }
-                        &:nth-child(2){
+
+                        &:nth-child(2) {
                             width: 5px;
                         }
                     }

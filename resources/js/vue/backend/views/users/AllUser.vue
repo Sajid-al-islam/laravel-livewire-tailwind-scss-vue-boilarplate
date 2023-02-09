@@ -178,7 +178,11 @@ export default {
         this.fetch_users();
     },
     methods: {
-        ...mapActions(['fetch_users']),
+        ...mapActions([
+            'fetch_users',
+            'export_all',
+            'export_selected_csv',
+        ]),
         ...mapMutations([
             'set_users_paginate',
             'set_users_page',
@@ -190,8 +194,7 @@ export default {
             'set_clear_selected_users',
             'check_if_user_is_selected',
             'set_show_selected',
-            'export_all',
-            'export_selected_csv',
+
         ]),
 
         check_if_user_is_selected: function(user){

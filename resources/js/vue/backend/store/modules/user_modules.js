@@ -10,9 +10,14 @@ const state = {
     search_key: "",
     orderByCol: "id",
     orderByAsc: true,
+
     selected: [], // selected data using checkbox
     show_selected: false, // will show selected data into offcanvas
+
+    show_user_management_modal: false, // will show create data offcanvas
+
     show_create_canvas: false, // will show create data offcanvas
+    create_canvas_input_data: {}, // create canvas data input array
 };
 
 // get state
@@ -22,6 +27,7 @@ const getters = {
     get_selected_users: (state) => state.selected,
     get_show_selected: (state) => state.show_selected,
     get_show_create_canvas: (state) => state.show_create_canvas,
+    get_show_user_management_modal: (state) => state.show_user_management_modal,
 };
 
 // actions
@@ -40,6 +46,46 @@ const actions = {
         await axios.get(url).then((res) => {
             this.commit("set_users", res.data);
         });
+    },
+    upload_user_create_canvas_input: function({state}){
+        const {form_values, form_inputs, form_data} = window.get_form_data('.user_canvas_create_form');
+        axios.post('/user/canvas-store',form_data)
+            .then(res=>{
+                // window.s_alert('new user been created');
+                // this.commit('set_show_create_canvas',false);
+                // this.dispatch('fetch_users');
+            })
+            .catch(error=>{
+                let object = error.response?.data?.errors;
+                window.render_form_errors(object,'data-name');
+            })
+    },
+    export_selected_csv: function ({state}) {
+        let col = Object.keys(state.selected[0]);
+        let values = state.selected.map((i) => Object.values(i));
+        new window.CsvBuilder("user_list.csv")
+            .setColumns(col)
+            // .addRow(["Eve", "Holt"])
+            .addRows(values)
+            .exportFile();
+    },
+    export_all: async function ({state}) {
+        let col = Object.keys(state.users.data[0]);
+        var export_csv = new window.CsvBuilder("user_list.csv").setColumns(col);
+        window.start_loader();
+        let last_page = state.users.last_page;
+        for (let index = 1; index <= last_page; index++) {
+            state.page = index;
+            state.paginate = 10;
+            await this.dispatch("fetch_users");
+            let values = state.users.data.map((i) => Object.values(i));
+            export_csv.addRows(values);
+
+            let progress = Math.round(100*index/last_page);
+            window.update_loader(progress);
+        }
+        await export_csv.exportFile();
+        window.remove_loader();
     },
 };
 
@@ -61,7 +107,7 @@ const mutations = {
             false
         );
         temp_selected.splice(index, 1);
-        state.get_selected_users = temp_selected;
+        state.selected = temp_selected;
     },
     set_clear_selected_users: async function (state) {
         let cconfirm = await window.s_confirm("Remove all");
@@ -130,32 +176,14 @@ const mutations = {
     set_show_create_canvas: function (state, trigger = true) {
         state.show_create_canvas = trigger; // true or false
     },
-    export_selected_csv: function (state) {
-        let col = Object.keys(state.selected[0]);
-        let values = state.selected.map((i) => Object.values(i));
-        new window.CsvBuilder("user_list.csv")
-            .setColumns(col)
-            // .addRow(["Eve", "Holt"])
-            .addRows(values)
-            .exportFile();
+    set_user_create_canvas_input: function(state, payload){
+        console.log(payload);
+        let {event, name, value} = payload;
+        name = event.target.dataset.name;
+        state.create_canvas_input_data[name] = value;
     },
-    export_all: async function (state) {
-        let col = Object.keys(state.users.data[0]);
-        var export_csv = new window.CsvBuilder("user_list.csv").setColumns(col);
-        window.start_loader();
-        let last_page = state.users.last_page;
-        for (let index = 1; index <= last_page; index++) {
-            state.page = index;
-            state.paginate = 10;
-            await this.dispatch("fetch_users");
-            let values = state.users.data.map((i) => Object.values(i));
-            export_csv.addRows(values);
-
-            let progress = Math.round(100*index/last_page);
-            window.update_loader(progress);
-        }
-        await export_csv.exportFile();
-        window.remove_loader();
+    set_show_user_management_modal: function (state, trigger = true) {
+        state.show_user_management_modal = trigger; // true or false
     },
 };
 

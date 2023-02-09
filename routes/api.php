@@ -44,6 +44,7 @@ Route::group(
                 Route::get('/all','Auth\UserController@all');
                 Route::get('/{id}','Auth\UserController@show');
                 Route::post('/store','Auth\UserController@store');
+                Route::post('/canvas-store','Auth\UserController@canvas_store');
                 Route::post('/update','Auth\UserController@update');
                 Route::post('/soft-delete','Auth\UserController@soft_delete');
                 Route::post('/destroy','Auth\UserController@destroy');

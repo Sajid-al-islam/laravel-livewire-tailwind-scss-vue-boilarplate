@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
@@ -54,9 +55,9 @@ class UserController extends Controller
         $validator = Validator::make(request()->all(), [
             'first_name' => ['required'],
             'last_name' => ['required'],
-            'user_name' => ['required','unique:users'],
-            'email' => ['required','unique:users'],
-            'mobile_number' => ['required','unique:users'],
+            'user_name' => ['required', 'unique:users'],
+            'email' => ['required', 'unique:users'],
+            'mobile_number' => ['required', 'unique:users'],
             'password' => ['required', 'min:8', 'confirmed'],
             'password_confirmation' => ['required']
         ]);
@@ -75,6 +76,36 @@ class UserController extends Controller
         $user->email = request()->email;
         $user->mobile_number = request()->mobile_number;
         $user->password = Hash::make(request()->password);
+        $user->save();
+
+        return response()->json($user, 200);
+    }
+
+    public function canvas_store()
+    {
+        $validator = Validator::make(request()->all(), [
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'email' => ['required', 'unique:users'],
+            'password' => ['required', 'min:8', 'confirmed'],
+            'password_confirmation' => ['required'],
+            'photo' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'err_message' => 'validation error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $user = new User();
+        $user->first_name = request()->first_name;
+        $user->last_name = request()->last_name;
+        $user->email = request()->email;
+        $user->password = Hash::make(request()->password);
+        if (request()->hasFile('photo'))
+            $user->photo = Storage::put('test', request()->file('photo'));
         $user->save();
 
         return response()->json($user, 200);
