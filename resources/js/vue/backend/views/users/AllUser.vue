@@ -23,7 +23,7 @@
                 <div class="btns d-flex gap-2 align-items-center">
                     <permission-button
                         :permission="'can_create'"
-                        :to="'CreateUser'"
+                        :to="{name: 'CreateUser'}"
                         :classList="'btn rounded-pill btn-outline-info'">
                         <i class="fa fa-pencil me-5px"></i>
                         Create
@@ -107,7 +107,7 @@
                                         <li>
                                             <permission-button
                                                 :permission="'can_edit'"
-                                                :to="''"
+                                                :to="{}"
                                                 :classList="''">
                                                 <i class="fa text-secondary fa-eye"></i>
                                                 Details
@@ -116,7 +116,7 @@
                                         <li>
                                             <permission-button
                                                 :permission="'can_edit'"
-                                                :to="''"
+                                                :to="{name:`EditUser`,params:{id:item.id}}"
                                                 :classList="''">
                                                 <i class="fa text-warning fa-pencil"></i>
                                                 Edit
@@ -125,7 +125,7 @@
                                         <li>
                                             <permission-button
                                                 :permission="'can_edit'"
-                                                :to="''"
+                                                :to="{}"
                                                 :classList="''">
                                                 <i class="fa text-danger fa-trash"></i>
                                                 Delete
@@ -149,7 +149,7 @@
                 <div class="show-limit d-inline-block">
                     <span>Limit:</span>
                     <select @change.prevent="set_users_paginate($event.target.value)">
-                        <option v-for="i in [10,25,50,100]" :key="i" :value="i">
+                        <option v-for="i in [10,5,25,50,100]" :key="i" :value="i">
                             {{ i }}
                         </option>
                     </select>

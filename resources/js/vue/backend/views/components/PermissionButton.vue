@@ -1,5 +1,5 @@
 <template>
-    <router-link v-if="can_have_permission" :to="{ name: to }" :class="classList">
+    <router-link v-if="can_have_permission" :to="{ ...to }" :class="classList">
         <slot/>
     </router-link>
 </template>
@@ -7,7 +7,20 @@
 <script>
 import { mapGetters } from 'vuex';
 export default {
-    props: ["to","classList","permission"],
+    props: {
+        "to": {
+            type: Object,
+            default: {
+                name: ''
+            }
+        },
+        "classList":{
+            default: '',
+        },
+        "permission":{
+            default: ''
+        }
+    },
     computed: {
         ...mapGetters(['get_auth_permissions']),
         can_have_permission: function(){

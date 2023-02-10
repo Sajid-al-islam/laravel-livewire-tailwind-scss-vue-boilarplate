@@ -156,17 +156,17 @@ const mutations = {
     }, 500),
 
     /** set selected data array */
-    [`set_selected_${module_prefix}s`]: function (state, user) {
+    [`set_selected_${module_prefix}s`]: function (state, data) {
         let temp_selected = state[`${module_prefix}_selected`];
-        let check_index = temp_selected.findIndex((i) => i.id == user.id);
+        let check_index = temp_selected.findIndex((i) => i.id == data.id);
         if (check_index >= 0) {
-            let el = document.querySelector(`input[data-id="${user.id}"]`)
+            let el = document.querySelector(`input[data-id="${data.id}"]`)
             if(el)el.checked = false;
             el = document.querySelector(`input.check_all`)
             if(el)el.checked = false;
             temp_selected.splice(check_index, 1);
         } else {
-            temp_selected.push(user);
+            temp_selected.push(data);
         }
         state[`${module_prefix}_selected`] = temp_selected;
     },
@@ -191,8 +191,10 @@ const mutations = {
     },
 
     /** clear all selected data */
-    [`set_clear_selected_${module_prefix}s`]: async function (state) {
-        let cconfirm = await window.s_confirm("Remove all");
+    [`set_clear_selected_${module_prefix}s`]: async function (state, is_should_confirm = true) {
+        console.log('ok');
+        let cconfirm = is_should_confirm ? await window.s_confirm("Remove all") : true;
+
         if (cconfirm) {
             state[`${module_prefix}_selected`] = [];
             $('table input[type="checkbox"]').prop("checked", false);

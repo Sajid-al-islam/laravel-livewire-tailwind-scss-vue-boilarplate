@@ -1,5 +1,6 @@
 import axios from "axios";
 import { debounce } from "debounce";
+import management_router from "../../router/router";
 
 // state list
 const state = {
@@ -9,7 +10,7 @@ const state = {
     paginate: 10,
     search_key: "",
     orderByCol: "id",
-    orderByAsc: true,
+    orderByAsc: false,
 
     selected: [], // selected data using checkbox
     show_selected: false, // will show selected data into offcanvas
@@ -47,20 +48,28 @@ const actions = {
             this.commit("set_users", res.data);
         });
     },
-    store_user: function({state, getters}){
+    fetch_user: function({state, getters, commit},id){
+        axios.get('/user/'+id)
+            .then(({data})=>{
+                commit('set_user',data);
+                data.roles.forEach(i=>commit('set_selected_user_roles',i));
+                window.set_form_data('.user_edit_form', data);
+            })
+    },
+    store_user: function({state, getters, commit}){
         const {form_values, form_inputs, form_data} = window.get_form_data('.user_create_form');
         const {get_user_role_selected: role} = getters;
-        role.forEach(i=>form_data.append('user_role_id[]',i.id));
+        role.forEach(i=>form_data.append('user_role_id[]',i.role_serial));
 
         axios.post('/user/store',form_data)
             .then(res=>{
-                // window.s_alert('new user been created');
-                // this.commit('set_show_create_canvas',false);
-                // this.dispatch('fetch_users');
+                window.s_alert('new user has been created');
+                $('.user_create_form input').val('');
+                commit('set_clear_selected_user_roles',false);
+                management_router.push({name:'AllUser'})
             })
             .catch(error=>{
-                let object = error.response?.data?.errors;
-                // window.render_form_errors(object,'data-name');
+
             })
     },
     upload_user_create_canvas_input: function({state}){
@@ -76,6 +85,22 @@ const actions = {
                 window.render_form_errors(object,'data-name');
             })
     },
+    update_user: function({state, getters, commit}){
+        const {form_values, form_inputs, form_data} = window.get_form_data('.user_edit_form');
+        const {get_user_role_selected: role, get_user: user} = getters;
+        role.forEach(i=>form_data.append('user_role_id[]',i.role_serial));
+        form_data.append('id',user.id);
+
+        axios.post('/user/update',form_data)
+            .then(({data})=>{
+                commit('set_user',data.result);
+                window.s_alert('user has been updated');
+            })
+            .catch(error=>{
+
+            })
+    },
+
     export_selected_csv: function ({state}) {
         let col = Object.keys(state.selected[0]);
         let values = state.selected.map((i) => Object.values(i));
@@ -110,7 +135,7 @@ const mutations = {
     set_users: function (state, users) {
         state.users = users;
     },
-    set_user: function (state, user) {
+    set_user: function (state, user = null) {
         state.user = user;
     },
     set_clear_selected_single_user: async function (state, index) {

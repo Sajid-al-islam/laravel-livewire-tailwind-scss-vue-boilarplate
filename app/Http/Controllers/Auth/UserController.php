@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Facades\Image;
 
 class UserController extends Controller
 {
@@ -49,6 +50,43 @@ class UserController extends Controller
 
     public function show($id)
     {
+        $user = User::where('id', $id)
+            ->select([
+                'id',
+                'first_name',
+                'last_name',
+                'user_name',
+                'email',
+                'mobile_number',
+                'photo',
+            ])
+            ->with([
+                'roles' => function ($q) {
+                    return $q->select([
+                        'user_roles.id',
+                        'name',
+                        'role_serial'
+                    ]);
+                },
+                'permissions' => function ($q) {
+                    return $q->select([
+                        'user_permissions.id',
+                        'title',
+                        'permission_serial'
+                    ]);
+                },
+            ])
+            ->first();
+        if ($user) {
+            return response()->json($user, 200);
+        } else {
+            return response()->json([
+                'err_message' => 'data not found',
+                'errors' => [
+                    'user' => [],
+                ],
+            ], 404);
+        }
     }
 
     public function store()
@@ -57,7 +95,7 @@ class UserController extends Controller
             'first_name' => ['required'],
             'last_name' => ['required'],
             'user_name' => ['required', 'unique:users'],
-            'user_role_id' => ['required','array'],
+            'user_role_id' => ['required', 'array'],
             'email' => ['required', 'unique:users'],
             'mobile_number' => ['required', 'unique:users'],
             'password' => ['required', 'min:8', 'confirmed'],
@@ -71,7 +109,6 @@ class UserController extends Controller
             ], 422);
         }
 
-        dd( request()->all(), request()->file('photo') );
         $user = new User();
         $user->first_name = request()->first_name;
         $user->last_name = request()->last_name;
@@ -81,7 +118,38 @@ class UserController extends Controller
         $user->password = Hash::make(request()->password);
         $user->save();
 
-        return response()->json($user, 200);
+        if (count(request()->user_role_id))
+            $user->roles()->attach(request()->user_role_id);
+
+        try {
+            if (request()->hasFile('photo')) {
+                $file = request()->file('photo');
+                $path = 'uploads/users/pp-' . $user->id . rand(1000, 9999) . '.';
+                $height = 200;
+                $width = 200;
+                if (count($file)) {
+                    foreach ($file as $s_file) {
+                        $path .= $s_file->getClientOriginalExtension();
+                        Image::make($s_file)->fit($height, $width)->save(public_path($path));
+                        $user->photo = $path;
+                    }
+                } else {
+                    $path .= $file->getClientOriginalExtension();
+                    Image::make($file)->fit($height, $width)->save(public_path($path));
+                    $user->photo = $path;
+                }
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json("data created without image uploding-" . $th->getMessage(), 500);
+        }
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'success',
+            'result' => $user->id,
+        ], 200);
     }
 
     public function canvas_store()
@@ -108,6 +176,81 @@ class UserController extends Controller
 
     public function update()
     {
+        $rules = [
+            'id' => ['required'],
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'user_name' => ['required'],
+            'email' => ['required'],
+            'mobile_number' => ['required'],
+            'user_role_id' => ['required', 'array'],
+        ];
+
+        $user = User::find(request()->id);
+
+        if (request()->has('password') && request()->password) {
+            $rules['password'] = ['required', 'min:8', 'confirmed'];
+            $rules['password_confirmation'] = ['required'];
+        }
+        if (request()->email != $user->email) {
+            $rules['email'][] = 'unique:users';
+        }
+        if (request()->mobile_number != $user->mobile_number) {
+            $rules['mobile_number'][] = 'unique:users';
+        }
+        if (request()->user_name != $user->user_name) {
+            $rules['user_name'][] = 'unique:users';
+        }
+
+        $validator = Validator::make(request()->all(), $rules);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'err_message' => 'validation error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $user->first_name = request()->first_name;
+        $user->last_name = request()->last_name;
+        $user->user_name = request()->user_name;
+        $user->email = request()->email;
+        $user->mobile_number = request()->mobile_number;
+        $user->password = Hash::make(request()->password);
+        $user->save();
+
+        if (count(request()->user_role_id))
+            $user->roles()->sync(request()->user_role_id);
+
+        try {
+            if (request()->hasFile('photo')) {
+                $file = request()->file('photo');
+                $path = 'uploads/users/pp-' . $user->id . rand(1000, 9999) . '.';
+                $height = 200;
+                $width = 200;
+                if (count($file)) {
+                    foreach ($file as $s_file) {
+                        $path .= $s_file->getClientOriginalExtension();
+                        Image::make($s_file)->fit($height, $width)->save(public_path($path));
+                        $user->photo = $path;
+                    }
+                } else {
+                    $path .= $file->getClientOriginalExtension();
+                    Image::make($file)->fit($height, $width)->save(public_path($path));
+                    $user->photo = $path;
+                }
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json("data created without image uploding-" . $th->getMessage(), 500);
+        }
+
+        $user->save();
+
+        return response()->json([
+            'message' => 'success',
+            'result' => $user,
+        ], 200);
     }
 
     public function soft_delete()

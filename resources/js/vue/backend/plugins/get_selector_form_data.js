@@ -56,7 +56,7 @@ function get_el_value(el) {
                     }
                     break;
                 case "file":
-                    data.value = el.multiple ? el.files : el.files[0];
+                    data.value = el.multiple ? el.files : (el.files.length ? el.files[0] : '');
                     break;
             }
             break;

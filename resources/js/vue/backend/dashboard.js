@@ -6,6 +6,7 @@ require('./plugins/preloader');
 require('./plugins/csv_to_array');
 require('./plugins/demo_data_load');
 require('./plugins/get_selector_form_data');
+require('./plugins/set_selector_form_data');
 
 window.debounce = require('debounce');
 window.CsvBuilder = require('filefy').CsvBuilder;

@@ -54,7 +54,6 @@
                                         :name="`mobile_number`"
                                     />
                                 </div>
-                                <div></div>
                                 <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
                                     <input-field
                                         :label="`Password`"
@@ -84,7 +83,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button type="button" @click.prevent="store_user($event.target.parentNode.parentNode)" class="btn btn-outline-info" >
+                    <button type="button" @click.prevent="store_user" class="btn btn-outline-info" >
                         <i class="fa fa-upload"></i>
                         Submit
                     </button>
@@ -104,14 +103,6 @@ export default {
         ...mapActions([
             'store_user'
         ]),
-        form_submit: function () {
-            axios
-                .post("/user/store", new FormData(event.target))
-                .then((res) => {
-                    console.log(res.data);
-                    window.s_alert('user created successfully.');
-                });
-        },
         get_file_input_return: function () {
             console.log(arguments);
         },
