@@ -10,16 +10,18 @@
                     </router-link>
                 </div>
             </div>
-            <form @submit.prevent="form_submit" autocomplete="false">
+            <form @keyup.enter="store_user" class="user_create_form">
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-lg-10">
                             <div class="admin_form form_1">
                                 <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
-                                    <!-- <label>Select user</label>
-                                    <user-management-modal></user-management-modal> -->
-                                    <label>Select user role</label>
-                                    <role-management-modal></role-management-modal>
+                                    <div>
+                                        <label class="mb-2 text-capitalize">
+                                            Select user role
+                                        </label>
+                                        <role-management-modal></role-management-modal>
+                                    </div>
                                 </div>
                                 <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
                                     <input-field
@@ -82,7 +84,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button type="button" class="btn btn-outline-info" >
+                    <button type="button" @click.prevent="store_user($event.target.parentNode.parentNode)" class="btn btn-outline-info" >
                         <i class="fa fa-upload"></i>
                         Submit
                     </button>
@@ -93,11 +95,15 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 import RoleManagementModal from '../user_roles/components/ManagementModal.vue'
 export default {
     components: { RoleManagementModal },
     created: function () {},
     methods: {
+        ...mapActions([
+            'store_user'
+        ]),
         form_submit: function () {
             axios
                 .post("/user/store", new FormData(event.target))

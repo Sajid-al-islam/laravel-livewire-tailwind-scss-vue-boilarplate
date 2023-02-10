@@ -47,6 +47,20 @@ const actions = {
             this.commit("set_users", res.data);
         });
     },
+    store_user: function({state}){
+        const {form_values, form_inputs, form_data} = window.get_form_data('.user_create_form');
+        form_data.append('user_role_id',[3,34,3])
+        axios.post('/user/store',form_data)
+            .then(res=>{
+                // window.s_alert('new user been created');
+                // this.commit('set_show_create_canvas',false);
+                // this.dispatch('fetch_users');
+            })
+            .catch(error=>{
+                let object = error.response?.data?.errors;
+                // window.render_form_errors(object,'data-name');
+            })
+    },
     upload_user_create_canvas_input: function({state}){
         const {form_values, form_inputs, form_data} = window.get_form_data('.user_canvas_create_form');
         axios.post('/user/canvas-store',form_data)
