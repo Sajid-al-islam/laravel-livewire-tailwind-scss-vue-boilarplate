@@ -192,7 +192,6 @@ export default {
             'set_selected_users',
             'set_select_all_users',
             'set_clear_selected_users',
-            'check_if_user_is_selected',
             'set_show_selected',
 
         ]),

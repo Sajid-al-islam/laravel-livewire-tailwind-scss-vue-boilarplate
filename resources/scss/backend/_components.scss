@@ -21,6 +21,10 @@
     background-color: #3b3779;
 }
 
+.pace .pace-progress{
+    z-index: 999999;
+}
+
 .table_actions {
     position: relative;
     display: inline-block;
@@ -110,7 +114,7 @@
     }
 
     .card-body {
-        min-height: 100%;
+        min-height: 300px;
         max-height: calc(100vh - 280px);
         overflow-y: scroll;
         padding-top: 0;

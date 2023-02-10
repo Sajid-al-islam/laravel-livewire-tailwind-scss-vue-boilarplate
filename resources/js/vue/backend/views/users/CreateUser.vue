@@ -16,8 +16,10 @@
                         <div class="col-lg-10">
                             <div class="admin_form form_1">
                                 <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
-                                    <label>Select user</label>
-                                    <user-management-modal></user-management-modal>
+                                    <!-- <label>Select user</label>
+                                    <user-management-modal></user-management-modal> -->
+                                    <label>Select user role</label>
+                                    <role-management-modal></role-management-modal>
                                 </div>
                                 <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
                                     <input-field
@@ -91,7 +93,9 @@
 </template>
 
 <script>
+import RoleManagementModal from '../user_roles/components/ManagementModal.vue'
 export default {
+    components: { RoleManagementModal },
     created: function () {},
     methods: {
         form_submit: function () {

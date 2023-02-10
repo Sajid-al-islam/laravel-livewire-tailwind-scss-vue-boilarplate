@@ -50,15 +50,16 @@ Route::group(
                 Route::post('/destroy','Auth\UserController@destroy');
             });
 
-            Route::group(['prefix' => 'question-bank'], function () {
-
-                Route::get('/at-a-glance', 'QuestionBank\QuestionBankController@at_a_glance');
-
-                Route::group(['prefix' => 'module'], function () {
-                    Route::get('/', 'QuestionBank\ModuleController@all');
-                    Route::get('/get-all', 'QuestionBank\ModuleController@get_all');
-                });
+            Route::group(['prefix' => 'user-role'], function () {
+                Route::get('/all','Auth\UserRoleController@all');
+                Route::get('/{id}','Auth\UserRoleController@show');
+                Route::post('/store','Auth\UserRoleController@store');
+                Route::post('/canvas-store','Auth\UserRoleController@canvas_store');
+                Route::post('/update','Auth\UserRoleController@update');
+                Route::post('/soft-delete','Auth\UserRoleController@soft_delete');
+                Route::post('/destroy','Auth\UserRoleController@destroy');
             });
+
         });
     }
 );

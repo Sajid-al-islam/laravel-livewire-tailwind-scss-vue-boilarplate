@@ -44,8 +44,14 @@ window.render_form_errors = function(object, selector="name") {
             if (!el) {
                 el = document.getElementById(`${key}`);
             }
-            $(`<div class="error text-warning">${element[0]}</div>`).insertAfter(el);
-            el.classList.add('border-warning')
+
+            /**
+             *  if html element found then take action
+             */
+            if(el){
+                $(`<div class="error text-warning">${element[0]}</div>`).insertAfter(el);
+                el.classList.add('border-warning')
+            }
         }
     }
 }
@@ -61,7 +67,7 @@ window.axios.interceptors.response.use(
         render_form_errors(object);
 
         if (typeof error ?.response ?.data === "string") {
-            console.log("error", error ?.response ?.data ?error ?.response ?.data : error.response);
+            console.log("error", error?.response?.data ? error?.response?.data : error.response);
         } else {
             console.log(error.response);
         }
@@ -70,7 +76,8 @@ window.axios.interceptors.response.use(
         //     window.clear_session();
         // }
         // console.log(error);
-        window.s_alert(error.response?.statusText,'error')
+        let status = error.response.status;
+        window.s_alert('error '+status+': '+error.response?.statusText,'error')
         throw error;
     }
 );

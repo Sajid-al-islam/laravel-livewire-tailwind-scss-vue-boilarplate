@@ -1,83 +1,95 @@
 import axios from "axios";
 import { debounce } from "debounce";
 
+// module perfixes
+const module_prefix = `user_role`;
+const api_prefix = `user-role`;
+
 // state list
 const state = {
-    user_roles: {}, // all data
-    user_role: null, // selected data
-    user_role_page: 1,
-    user_role_paginate: 10,
-    user_role_search_key: "",
-    user_role_orderByCol: "id",
-    user_role_orderByAsc: true,
+    /* data store */
+    [`${module_prefix}s`]: {}, // all data
+    [`${module_prefix}`]: null, // selected data
 
-    user_role_selected: [], // selected data using checkbox
-    user_role_show_selected: false, // will show selected data into offcanvas
+    /* data filters */
+    [`${module_prefix}_page`]: 1,
+    [`${module_prefix}_paginate`]: 10,
+    [`${module_prefix}_search_key`]: ``,
+    [`orderByCol`]: "id",
+    [`orderByAsc`]: true,
 
-    user_role_show_management_modal: false, // will show create data offcanvas
+    /* selected data */
+    [`${module_prefix}_selected`]: [], // selected data using checkbox
+    [`${module_prefix}_show_selected`]: false, // will show selected data into offcanvas
 
-    user_role_show_create_canvas: false, // will show create data offcanvas
-    user_role_create_canvas_input_data: {}, // create canvas data input array
+    /* trigger showing data modal */
+    [`${module_prefix}_show_management_modal`]: false,
+
+    /* trigger showing data create canvas */
+    [`${module_prefix}_show_create_canvas`]: false,
 };
 
 // get state
 const getters = {
-    get_user_roles: (state) => state.users,
-    get_user_role: (state) => state.user,
-    get_user_role_selected: (state) => state.selected,
-    get_user_role_show_selected: (state) => state.show_selected,
-    get_user_role_show_create_canvas: (state) => state.show_create_canvas,
-    get_user_role_show_management_modal: (state) => state.show_user_management_modal,
+    [`get_${module_prefix}s`]: (state) => state[`${module_prefix}s`],
+    [`get_${module_prefix}`]: (state) => state[`${module_prefix}`],
+    [`get_${module_prefix}_selected`]: (state) => state[`${module_prefix}_selected`],
+    [`get_${module_prefix}_show_selected`]: (state) => state[`${module_prefix}_show_selected`],
+    [`get_${module_prefix}_show_create_canvas`]: (state) => state[`${module_prefix}_show_create_canvas`],
+    [`get_${module_prefix}_show_management_modal`]: (state) => state[`${module_prefix}_show_management_modal`],
 };
 
 // actions
 const actions = {
-    fetch_user_roles: async function ({ state }) {
-        let url = `/user-roll/all?page=${state.page}&paginate=${state.paginate}`;
+    /** fetch all data using data filters */
+    [`fetch_${module_prefix}s`]: async function ({ state }) {
+        let url = `/${api_prefix}/all?page=${state[`${module_prefix}_page`]}&paginate=${state[`${module_prefix}_paginate`]}`;
         url += `&orderBy=${state.orderByCol}`;
         if (state.orderByAsc) {
             url += `&orderByType=ASC`;
         } else {
             url += `&orderByType=DESC`;
         }
-        if (state.search_key) {
-            url += `&search_key=${state.search_key}`;
+        if (state[`${module_prefix}_search_key`]) {
+            url += `&search_key=${state[`${module_prefix}_search_key`]}`;
         }
         await axios.get(url).then((res) => {
-            this.commit("set_user_roles", res.data);
+            this.commit(`set_${module_prefix}s`, res.data);
         });
     },
-    upload_user_role_create_canvas_input: function({state}){
-        const {form_values, form_inputs, form_data} = window.get_form_data('.user_canvas_create_form');
-        axios.post('/user/canvas-store',form_data)
+
+    /** store data canvas form */
+    [`upload_${module_prefix}_create_canvas_input`]: function({state}){
+        const {form_values, form_inputs, form_data} = window.get_form_data(`.${module_prefix}_canvas_create_form`);
+        axios.post(`/${api_prefix}/canvas-store`,form_data)
             .then(res=>{
-                // window.s_alert('new user been created');
-                // this.commit('set_show_create_canvas',false);
-                // this.dispatch('fetch_users');
+                window.s_alert('new role been created');
+                this.commit(`set_${module_prefix}_show_create_canvas`,false);
+                this.dispatch(`fetch_${module_prefix}s`);
             })
             .catch(error=>{
                 let object = error.response?.data?.errors;
+                /**
+                 * 1. object to render as error
+                 * 2. selector key for error redering
+                 *      . by default name will find by script
+                 *      . else you have to pass selector name
+                 *      . here we are using data-name as input fields selector
+                 */
                 window.render_form_errors(object,'data-name');
             })
     },
-    export_selected_user_role_csv: function ({state}) {
-        let col = Object.keys(state.selected[0]);
-        let values = state.selected.map((i) => Object.values(i));
-        new window.CsvBuilder("user_role_list.csv")
-            .setColumns(col)
-            // .addRow(["Eve", "Holt"])
-            .addRows(values)
-            .exportFile();
-    },
-    export_user_role_all: async function ({state}) {
-        let col = Object.keys(state.users.data[0]);
-        var export_csv = new window.CsvBuilder("user_role_list.csv").setColumns(col);
+
+    /** export all data into csv */
+    [`export_${module_prefix}_all`]: async function ({state}) {
+        let col = Object.keys(state[`${module_prefix}`].data[0]);
+        var export_csv = new window.CsvBuilder(`${module_prefix}_list.csv`).setColumns(col);
         window.start_loader();
         let last_page = state.users.last_page;
         for (let index = 1; index <= last_page; index++) {
             state.page = index;
             state.paginate = 10;
-            await this.dispatch("fetch_users");
+            await this.dispatch(`fetch_${module_prefix}s`);
             let values = state.users.data.map((i) => Object.values(i));
             export_csv.addRows(values);
 
@@ -87,37 +99,65 @@ const actions = {
         await export_csv.exportFile();
         window.remove_loader();
     },
+
+    /** export selected data into csv */
+    [`export_selected_${module_prefix}_csv`]: function ({state}) {
+        let col = Object.keys(state.selected[0]);
+        let values = state.selected.map((i) => Object.values(i));
+        new window.CsvBuilder(`${module_prefix}_list.csv`)
+            .setColumns(col)
+            // .addRow(["Eve", "Holt"])
+            .addRows(values)
+            .exportFile();
+    },
 };
 
 // mutators
 const mutations = {
-    set_user_roles: function (state, users) {
-        state.users = users;
+    /**
+    * set data array state
+    * set single data
+    * */
+    [`set_${module_prefix}s`]: function (state, data) {
+        state[`${module_prefix}s`] = data;
     },
-    set_user_role: function (state, user) {
-        state.user = user;
+    [`set_${module_prefix}`]: function (state, data) {
+        state[`${module_prefix}`] = data;
     },
-    set_clear_selected_single_user_role: async function (state, index) {
-        // let cconfirm = await window.s_confirm();
-        // if (cconfirm) {
-        // }
-        let temp_selected = state.user_role_selected;
-        $(`table td input[data-id="${temp_selected[index].id}"]`).prop(
-            "checked",
-            false
-        );
-        temp_selected.splice(index, 1);
-        state.user_role_selected = temp_selected;
+
+    /**
+    * filter data object
+    * 1. set per page paginate amount
+    * 2. switch to targeted page
+    * 3. set order by collumn name
+    * 4. set searh key for data set
+    * */
+    [`set_${module_prefix}_paginate`]: function (state, paginate) {
+        state[`${module_prefix}_paginate`] = paginate;
+        this.dispatch(`fetch_${module_prefix}s`);
     },
-    set_clear_selected_user_roles: async function (state) {
-        let cconfirm = await window.s_confirm("Remove all");
-        if (cconfirm) {
-            state.user_role_selected = [];
-            $('table input[type="checkbox"]').prop("checked", false);
+    [`set_${module_prefix}_page`]: function (state, page) {
+        state[`${module_prefix}_page`] = page;
+        this.dispatch(`fetch_${module_prefix}s`);
+        $('table th input[type="checkbox"]').prop("checked", false);
+    },
+    [`set_${module_prefix}_orderByCol`]: function (state, orderByCol) {
+        if (state.orderByCol != orderByCol) {
+            state.orderByAsc = true;
+        } else {
+            state.orderByAsc = !state.orderByAsc;
         }
+        state.orderByCol = orderByCol;
+        this.dispatch(`fetch_${module_prefix}s`);
     },
-    set_selected_user_roles: function (state, user) {
-        let temp_selected = state.user_role_selected;
+    [`set_${module_prefix}_search_key`]: debounce(function (state, search_key) {
+        state[`${module_prefix}_search_key`] = search_key;
+        this.dispatch(`fetch_${module_prefix}s`);
+    }, 500),
+
+    /** set selected data array */
+    [`set_selected_${module_prefix}s`]: function (state, user) {
+        let temp_selected = state[`${module_prefix}_selected`];
         let check_index = temp_selected.findIndex((i) => i.id == user.id);
         if (check_index >= 0) {
             let el = document.querySelector(`input[data-id="${user.id}"]`)
@@ -128,15 +168,17 @@ const mutations = {
         } else {
             temp_selected.push(user);
         }
-        state.user_role_selected = temp_selected;
+        state[`${module_prefix}_selected`] = temp_selected;
     },
-    set_select_all_user_roles: function (state) {
+
+    /** select all data */
+    [`set_select_all_${module_prefix}s`]: function (state) {
         if (!event.target.checked) {
-            return this.commit("set_clear_selected_user_roles");
+            return this.commit(`set_clear_selected_${module_prefix}s`);
         }
 
-        let temp_selected = state.user_role_selected;
-        let temp_data = state.user_roles;
+        let temp_selected = state[`${module_prefix}_selected`];
+        let temp_data = state[`${module_prefix}s`];
         temp_data.data.forEach((user) => {
             let check_index = temp_selected.findIndex((i) => i.id == user.id);
             if (check_index >= 0) {
@@ -144,45 +186,46 @@ const mutations = {
             }
             temp_selected.push(user);
         });
-        state.user_role_selected = temp_selected;
+        state[`${module_prefix}_selected`] = temp_selected;
         $('table td input[type="checkbox"]').prop("checked", true);
     },
-    set_user_role_paginate: function (state, paginate) {
-        state.user_role_paginate = paginate;
-        this.dispatch("fetch_user_roles");
-    },
-    set_user_role_page: function (state, page) {
-        state.page = page;
-        this.dispatch("fetch_user_roles");
-        $('table th input[type="checkbox"]').prop("checked", false);
-    },
-    set_user_role_orderByCol: function (state, orderByCol) {
-        if (state.user_role_orderByCol != orderByCol) {
-            state.user_role_orderByAsc = true;
-        } else {
-            state.user_role_orderByAsc = !state.user_role_orderByAsc;
+
+    /** clear all selected data */
+    [`set_clear_selected_${module_prefix}s`]: async function (state) {
+        let cconfirm = await window.s_confirm("Remove all");
+        if (cconfirm) {
+            state[`${module_prefix}_selected`] = [];
+            $('table input[type="checkbox"]').prop("checked", false);
         }
-        state.user_role_orderByCol = orderByCol;
-        this.dispatch("fetch_user_roles");
     },
-    set_user_role_search_key: debounce(function (state, search_key) {
-        state.user_role_search_key = search_key;
-        this.dispatch("fetch_user_roles");
-    }, 500),
-    set_user_role_show_selected: function (state, trigger) {
-        state.user_role_show_selected = trigger; // true or false
+
+    /** remove single from selected data */
+    [`set_clear_selected_single_${module_prefix}`]: async function (state, index) {
+        // let cconfirm = await window.s_confirm();
+        // if (cconfirm) {
+        // }
+        let temp_selected = state[`${module_prefix}_selected`];
+        $(`table td input[data-id="${temp_selected[index].id}"]`).prop(
+            "checked",
+            false
+        );
+        temp_selected.splice(index, 1);
+        state[`${module_prefix}_selected`] = temp_selected;
     },
-    set_user_role_show_management_modal: function (state, trigger = true) {
-        state.user_role_show_management_modal = trigger; // true or false
+
+    /** watch selected data into side canvas */
+    [`set_${module_prefix}_show_selected`]: function (state, trigger) {
+        state[`${module_prefix}_show_selected`] = trigger; // true or false
     },
-    set_user_role_show_create_canvas: function (state, trigger = true) {
-        state.user_role_show_create_canvas = trigger; // true or false
+
+    /** trigger data management modal */
+    [`set_${module_prefix}_show_management_modal`]: function (state, trigger = true) {
+        state[`${module_prefix}_show_management_modal`] = trigger; // true or false
     },
-    set_user_role_create_canvas_input: function(state, payload){
-        console.log(payload);
-        let {event, name, value} = payload;
-        name = event.target.dataset.name;
-        state.user_role_create_canvas_input_data[name] = value;
+
+    /** trigger data create canvas ( sidebar) */
+    [`set_${module_prefix}_show_create_canvas`]: function (state, trigger = true) {
+        state[`${module_prefix}_show_create_canvas`] = trigger; // true or false
     },
 
 };

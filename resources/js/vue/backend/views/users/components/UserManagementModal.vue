@@ -95,7 +95,7 @@
                         <span slot="prev-nav"><i class="fa fa-angle-left"></i> Previous</span>
                         <span slot="next-nav">Next <i class="fa fa-angle-right"></i></span>
                     </pagination>
-                    <button @click="set_show_user_management_modal(false)" href="#" class="btn rounded-pill btn-outline-secondary">
+                    <button @click.prevent="set_show_management_modal(false)" href="#" class="btn rounded-pill btn-outline-secondary">
                         <i class="fa fa-floppy-disk"></i>
                         Save & Close
                     </button>

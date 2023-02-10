@@ -7,6 +7,7 @@ import Login from '../views/auth/Login'
 
 import user_route from './dashboard_routes/user_route'
 import setting_route from './dashboard_routes/setting_route'
+import user_role_route from './dashboard_routes/user_role_route'
 
 Vue.use(VueRouter);
 window.Fire = new Vue();
@@ -20,7 +21,8 @@ const routes = [{
                 component: Dashboard,
             },
             setting_route,
-            user_route
+            user_route,
+            user_role_route,
         ]
     },
     {

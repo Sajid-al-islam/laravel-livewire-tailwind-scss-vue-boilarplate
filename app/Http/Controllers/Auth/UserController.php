@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\UserRole;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
@@ -84,12 +85,8 @@ class UserController extends Controller
     public function canvas_store()
     {
         $validator = Validator::make(request()->all(), [
-            'first_name' => ['required'],
-            'last_name' => ['required'],
-            'email' => ['required', 'unique:users'],
-            'password' => ['required', 'min:8', 'confirmed'],
-            'password_confirmation' => ['required'],
-            'photo' => ['required']
+            'name' => ['required'],
+            'role_serial' => ['required'],
         ]);
 
         if ($validator->fails()) {
@@ -99,16 +96,12 @@ class UserController extends Controller
             ], 422);
         }
 
-        $user = new User();
-        $user->first_name = request()->first_name;
-        $user->last_name = request()->last_name;
-        $user->email = request()->email;
-        $user->password = Hash::make(request()->password);
-        if (request()->hasFile('photo'))
-            $user->photo = Storage::put('test', request()->file('photo'));
-        $user->save();
+        $data = new UserRole();
+        $data->name = request()->name;
+        $data->role_serial = request()->role_serial;
+        $data->save();
 
-        return response()->json($user, 200);
+        return response()->json($data, 200);
     }
 
     public function update()
