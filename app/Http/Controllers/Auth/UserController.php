@@ -71,6 +71,7 @@ class UserController extends Controller
             ], 422);
         }
 
+        dd( request()->all(), request()->file('photo') );
         $user = new User();
         $user->first_name = request()->first_name;
         $user->last_name = request()->last_name;

@@ -47,9 +47,11 @@ const actions = {
             this.commit("set_users", res.data);
         });
     },
-    store_user: function({state}){
+    store_user: function({state, getters}){
         const {form_values, form_inputs, form_data} = window.get_form_data('.user_create_form');
-        form_data.append('user_role_id',[3,34,3])
+        const {get_user_role_selected: role} = getters;
+        role.forEach(i=>form_data.append('user_role_id[]',i.id));
+
         axios.post('/user/store',form_data)
             .then(res=>{
                 // window.s_alert('new user been created');
