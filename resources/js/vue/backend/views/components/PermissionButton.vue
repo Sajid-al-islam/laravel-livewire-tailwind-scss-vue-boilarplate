@@ -1,7 +1,12 @@
 <template>
-    <router-link v-if="can_have_permission" :to="{ ...to }" :class="classList">
-        <slot/>
-    </router-link>
+    <span>
+        <router-link v-if="can_have_permission && !click" :to="{ ...to }" :class="classList">
+            <slot/>
+        </router-link>
+        <a v-if="can_have_permission && click" @click.prevent="click(click_param)" href="#" :class="classList">
+            <slot/>
+        </a>
+    </span>
 </template>
 
 <script>
@@ -13,6 +18,13 @@ export default {
             default: {
                 name: ''
             }
+        },
+        "click": {
+            type: Function,
+            default: null,
+        },
+        "click_param": {
+            default: null,
         },
         "classList":{
             default: '',

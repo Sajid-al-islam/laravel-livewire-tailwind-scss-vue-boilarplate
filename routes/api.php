@@ -48,6 +48,7 @@ Route::group(
                 Route::post('/update','Auth\UserController@update');
                 Route::post('/soft-delete','Auth\UserController@soft_delete');
                 Route::post('/destroy','Auth\UserController@destroy');
+                Route::post('/restore','Auth\UserController@restore');
             });
 
             Route::group(['prefix' => 'user-role'], function () {

@@ -50,16 +50,20 @@ class UserController extends Controller
 
     public function show($id)
     {
+        $select = [
+            'id',
+            'first_name',
+            'last_name',
+            'user_name',
+            'email',
+            'mobile_number',
+            'photo',
+        ];
+        if(request()->has('select_all') && request()->select_all){
+            $select = "*";
+        }
         $user = User::where('id', $id)
-            ->select([
-                'id',
-                'first_name',
-                'last_name',
-                'user_name',
-                'email',
-                'mobile_number',
-                'photo',
-            ])
+            ->select($select)
             ->with([
                 'roles' => function ($q) {
                     return $q->select([
@@ -255,9 +259,51 @@ class UserController extends Controller
 
     public function soft_delete()
     {
+        $validator = Validator::make(request()->all(), [
+            'id' => ['required','exists:users,id'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'err_message' => 'validation error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $user = User::find(request()->id);
+        $user->status = 0;
+        $user->save();
+
+        return response()->json([
+                'result' => 'deactivated',
+        ], 200);
     }
 
     public function destroy()
     {
     }
+
+    public function restore()
+    {
+        $validator = Validator::make(request()->all(), [
+            'id' => ['required','exists:users,id'],
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'err_message' => 'validation error',
+                'errors' => $validator->errors(),
+            ], 422);
+        }
+
+        $user = User::find(request()->id);
+        $user->status = 1;
+        $user->save();
+
+        return response()->json([
+                'result' => 'activated',
+        ], 200);
+    }
+
+
 }

@@ -11,6 +11,7 @@ const state = {
     search_key: "",
     orderByCol: "id",
     orderByAsc: false,
+    active_status: 1, // show all active users
 
     selected: [], // selected data using checkbox
     show_selected: false, // will show selected data into offcanvas
@@ -29,12 +30,13 @@ const getters = {
     get_show_selected: (state) => state.show_selected,
     get_show_create_canvas: (state) => state.show_create_canvas,
     get_show_user_management_modal: (state) => state.show_user_management_modal,
+    get_active_status: (state) => state.active_status,
 };
 
 // actions
 const actions = {
     fetch_users: async function ({ state }) {
-        let url = `/user/all?page=${state.page}&paginate=${state.paginate}`;
+        let url = `/user/all?page=${state.page}&status=${state.active_status}&paginate=${state.paginate}`;
         url += `&orderBy=${state.orderByCol}`;
         if (state.orderByAsc) {
             url += `&orderByType=ASC`;
@@ -48,12 +50,15 @@ const actions = {
             this.commit("set_users", res.data);
         });
     },
-    fetch_user: function({state, getters, commit},id){
-        axios.get('/user/'+id)
+    fetch_user: function({state, getters, commit},{id, select_all, render_to_form}){
+        axios.get('/user/'+id+`?select_all=${select_all||''}`)
             .then(({data})=>{
                 commit('set_user',data);
-                data.roles.forEach(i=>commit('set_selected_user_roles',i));
-                window.set_form_data('.user_edit_form', data);
+
+                if(render_to_form){
+                    data.roles.forEach(i=>commit('set_selected_user_roles',i));
+                    window.set_form_data('.user_edit_form', data);
+                }
             })
     },
     store_user: function({state, getters, commit}){
@@ -96,9 +101,26 @@ const actions = {
                 commit('set_user',data.result);
                 window.s_alert('user has been updated');
             })
-            .catch(error=>{
-
-            })
+    },
+    soft_delete_user: async function({state, getters, dispatch}, id){
+        let cconfirm = await window.s_confirm("Deactive user");
+        if (cconfirm) {
+            axios.post('/user/soft-delete',{id})
+                .then(({data})=>{
+                    dispatch('fetch_users');
+                    window.s_alert('user has been deactivated');
+                })
+        }
+    },
+    restore_user: async function({state, getters, dispatch}, id){
+        let cconfirm = await window.s_confirm("restore user");
+        if (cconfirm) {
+            axios.post('/user/restore',{id})
+                .then(({data})=>{
+                    dispatch('fetch_users');
+                    window.s_alert('user has been restored');
+                })
+        }
     },
 
     export_selected_csv: function ({state}) {
@@ -137,6 +159,10 @@ const mutations = {
     },
     set_user: function (state, user = null) {
         state.user = user;
+    },
+    set_active_status: function(state, status=1){
+        state.active_status = status;
+        this.dispatch('fetch_users')
     },
     set_clear_selected_single_user: async function (state, index) {
         // let cconfirm = await window.s_confirm();

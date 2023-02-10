@@ -51,6 +51,16 @@
                                     Import
                                 </router-link>
                             </li>
+                            <li>
+                                <a href="#" v-if="get_active_status" title="display data that has been deactivated" @click.prevent="set_active_status(0)" class="d-flex">
+                                    <i class="fa-regular fa-hand-point-right"></i>
+                                    Deactivated data
+                                </a>
+                                <a href="#" v-else title="display data that are active" @click.prevent="set_active_status(1)" class="d-flex">
+                                    <i class="fa-regular fa-hand-point-right"></i>
+                                    Active data
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -107,7 +117,7 @@
                                         <li>
                                             <permission-button
                                                 :permission="'can_edit'"
-                                                :to="{}"
+                                                :to="{name:'DetailsUser',params:{id: item.id}}"
                                                 :classList="''">
                                                 <i class="fa text-secondary fa-eye"></i>
                                                 Details
@@ -122,13 +132,26 @@
                                                 Edit
                                             </permission-button>
                                         </li>
-                                        <li>
+                                        <li v-if="item.status == 1">
                                             <permission-button
-                                                :permission="'can_edit'"
+                                                :permission="'can_delete'"
                                                 :to="{}"
+                                                :click="soft_delete_user"
+                                                :click_param="item.id"
                                                 :classList="''">
                                                 <i class="fa text-danger fa-trash"></i>
-                                                Delete
+                                                Deactive
+                                            </permission-button>
+                                        </li>
+                                        <li v-else>
+                                            <permission-button
+                                                :permission="'can_delete'"
+                                                :to="{}"
+                                                :click="restore_user"
+                                                :click_param="item.id"
+                                                :classList="''">
+                                                <i class="fa text-danger fa-recycle"></i>
+                                                Activate
                                             </permission-button>
                                         </li>
                                     </ul>
@@ -182,6 +205,8 @@ export default {
             'fetch_users',
             'export_all',
             'export_selected_csv',
+            'soft_delete_user',
+            'restore_user'
         ]),
         ...mapMutations([
             'set_users_paginate',
@@ -193,7 +218,7 @@ export default {
             'set_select_all_users',
             'set_clear_selected_users',
             'set_show_selected',
-
+            'set_active_status'
         ]),
 
         check_if_user_is_selected: function(user){
@@ -208,7 +233,8 @@ export default {
     computed: {
         ...mapGetters([
             'get_users',
-            'get_selected_users'
+            'get_selected_users',
+            'get_active_status'
         ]),
     }
 }

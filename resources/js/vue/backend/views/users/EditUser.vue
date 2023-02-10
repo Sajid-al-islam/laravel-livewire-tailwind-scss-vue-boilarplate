@@ -2,7 +2,7 @@
     <div class="container">
         <div class="card list_card">
             <div class="card-header">
-                <h4>Create</h4>
+                <h4>Edit</h4>
                 <div class="btns">
                     <a href="" @click.prevent="set_user(null), $router.push({ name: 'AllUser' })"  class="btn rounded-pill btn-outline-warning" >
                         <i class="fa fa-arrow-left me-5px"></i>
@@ -101,7 +101,7 @@ import RoleManagementModal from '../user_roles/components/ManagementModal.vue'
 export default {
     components: { RoleManagementModal },
     created: function () {
-        this.fetch_user(this.$route.params.id)
+        this.fetch_user({id: this.$route.params.id, render_to_form: true})
     },
     methods: {
         ...mapActions([
