@@ -1,9 +1,9 @@
 <template>
-    <div class="canvas_backdrop" :class="{active:get_user_role}" @click="$event.target.classList.contains('canvas_backdrop') && set_user_role(null)">
-        <div class="content right" v-if="get_user_role">
+    <div class="canvas_backdrop" :class="{active:this[`get_${store_prefix}`]}" @click="$event.target.classList.contains('canvas_backdrop') && call_store(`set_${store_prefix}`,null)">
+        <div class="content right" v-if="this[`get_${store_prefix}`]">
             <div class="content_header">
                 <h3 class="offcanvas-title">User Details</h3>
-                <i @click="set_user_role(null)" class="fa fa-times"></i>
+                <i @click="call_store(`set_user_role`,null)" class="fa fa-times"></i>
             </div>
             <div class="cotent_body">
                 <table class="table">
@@ -11,35 +11,35 @@
                         <tr>
                             <td>Id</td>
                             <td>:</td>
-                            <td>{{ get_user_role.id }}</td>
+                            <td>{{ this[`get_${store_prefix}`].id }}</td>
                         </tr>
                         <tr>
                             <td>Role Name</td>
                             <td>:</td>
-                            <td>{{ get_user_role.name }}</td>
+                            <td>{{ this[`get_${store_prefix}`].name }}</td>
                         </tr>
                         <tr>
                             <td>Serial</td>
                             <td>:</td>
-                            <td>{{ get_user_role.role_serial }}</td>
+                            <td>{{ this[`get_${store_prefix}`].role_serial }}</td>
                         </tr>
                         <tr>
                             <td>Status</td>
                             <td>:</td>
                             <td>
-                                <span v-if="get_user_role.status == 1" class="badge bg-label-success me-1">active</span>
-                                <span v-if="get_user_role.status == 0" class="badge bg-label-success me-1">deactive</span>
+                                <span v-if="this[`get_${store_prefix}`].status == 1" class="badge bg-label-success me-1">active</span>
+                                <span v-if="this[`get_${store_prefix}`].status == 0" class="badge bg-label-success me-1">deactive</span>
                             </td>
                         </tr>
                         <tr>
                             <td>created at</td>
                             <td>:</td>
-                            <td>{{ new Date(get_user_role.created_at).toLocaleString() }}</td>
+                            <td>{{ new Date(this[`get_${store_prefix}`].created_at).toLocaleString() }}</td>
                         </tr>
                         <tr>
                             <td>udpated at</td>
                             <td>:</td>
-                            <td>{{ new Date(get_user_role.updated_at).toLocaleString() }}</td>
+                            <td>{{ new Date(this[`get_${store_prefix}`].updated_at).toLocaleString() }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -50,12 +50,23 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+/** store prefix for export object use */
+const store_prefix = 'user_role'
 export default {
+    data: function(){
+        return {
+            /** store prefix for JSX */
+            store_prefix: "user_role"
+        }
+    },
     methods: {
-        ...mapMutations(['set_user_role']),
+        ...mapMutations([`set_${store_prefix}`]),
+        call_store: function(name, params=null){
+            this[name](params)
+        },
     },
     computed: {
-        ...mapGetters(['get_user_role'])
+        ...mapGetters([`get_${store_prefix}`])
     }
 }
 </script>

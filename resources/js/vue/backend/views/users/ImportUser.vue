@@ -25,7 +25,7 @@
                 </div>
             </div>
             <div class="card-footer text-center py-1">
-                <button @click.prevent="()=>''" class="btn btn-sm btn-outline-info">
+                <button @click.prevent="bulk_import_user(object_data)" class="btn btn-sm btn-outline-info">
                     <i class="fa fa-upload"></i>
                     Upload
                 </button>
@@ -50,6 +50,7 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
 export default {
     created: function(){
 
@@ -57,9 +58,11 @@ export default {
     data: function(){
         return {
             data: [],
+            object_data: [],
         }
     },
     methods: {
+        ...mapActions(['bulk_import_user']),
         load_csv: function(){
             const input = event.target.files[0];
             const reader = new FileReader();
@@ -68,10 +71,25 @@ export default {
                 const text = e.target.result;
                 that.data = text.csvToArray();
                 console.log(that.data);
+                that.make_object_data();
             };
 
             reader.readAsText(input);
-        }
+        },
+        make_object_data: function(){
+            this.object_data = [];
+            let keys = this.data[0];
+            for (let index = 1; index < this.data.length; index++) {
+                let temp = {};
+                const arr = this.data[index];
+                for (let j = 0; j < arr.length; j++) {
+                    const item = arr[j];
+                    temp[keys[j]] = item;
+                }
+                this.object_data.push(temp);
+            }
+            console.log(this.object_data);
+        },
     }
 }
 </script>

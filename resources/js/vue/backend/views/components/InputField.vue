@@ -62,7 +62,7 @@ export default {
             default: "image/*",
         },
         value: {
-            type: String,
+            type: [String, Number],
             default: null,
         },
         required: {

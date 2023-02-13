@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3 class="mb-2">User management</h3>
+        <h3 class="mb-2">Role management</h3>
         <router-view v-if="is_role_permitted"></router-view>
         <div v-else class="text-center">
             <h4 class="text-warning">sorry you have no permission</h4>

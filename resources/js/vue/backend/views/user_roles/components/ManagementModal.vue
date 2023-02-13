@@ -69,9 +69,12 @@
                                         </a>
                                         <ul>
                                             <li>
-                                                <a href="" @click.prevent="set_user_role(item)">
-                                                    <i class="fa text-info fa-eye"></i>
-                                                    Quick View
+                                                <a href="" @click.prevent="
+                                                        call_store(`set_${store_prefix}`,item),
+                                                        call_store(`set_${store_prefix}_show_edit_canvas`,true)
+                                                    ">
+                                                    <i class="fa text-info fa-edit"></i>
+                                                    Edit
                                                 </a>
                                             </li>
                                         </ul>
@@ -96,19 +99,21 @@
         </div>
 
         <create-canvas></create-canvas>
+        <edit-canvas></edit-canvas>
     </div>
 </template>
 
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 import CreateCanvas from '../CreateCanvas.vue';
+import EditCanvas from '../EditCanvas.vue';
 import TableTh from './TableTh.vue';
 
 /** store prefix for export object use */
 const store_prefix = 'user_role'
 
 export default {
-    components: { TableTh, CreateCanvas },
+    components: { TableTh, CreateCanvas, EditCanvas },
     data: function(){
         return {
             /** store prefix for JSX */
@@ -134,6 +139,7 @@ export default {
 
             `set_${store_prefix}_show_selected`,
             `set_${store_prefix}_show_create_canvas`,
+            `set_${store_prefix}_show_edit_canvas`,
             `set_${store_prefix}_show_management_modal`,
         ]),
 

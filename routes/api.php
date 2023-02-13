@@ -31,7 +31,7 @@ Route::group(
             Route::post('/logout-from-all-devices', 'Auth\ApiLoginController@logout_from_all_devices');
         });
 
-        Route::group(['middleware' => ['auth:api']], function () {
+        Route::group([], function () {
             Route::group(['prefix' => 'user'], function () {
                 Route::post('/api-logout', 'Auth\ApiLoginController@logout');
                 Route::post('/user_info', 'Auth\ApiLoginController@user_info');
@@ -49,6 +49,7 @@ Route::group(
                 Route::post('/soft-delete','Auth\UserController@soft_delete');
                 Route::post('/destroy','Auth\UserController@destroy');
                 Route::post('/restore','Auth\UserController@restore');
+                Route::post('/bulk-import','Auth\UserController@bulk_import');
             });
 
             Route::group(['prefix' => 'user-role'], function () {
@@ -57,8 +58,11 @@ Route::group(
                 Route::post('/store','Auth\UserRoleController@store');
                 Route::post('/canvas-store','Auth\UserRoleController@canvas_store');
                 Route::post('/update','Auth\UserRoleController@update');
+                Route::post('/canvas-update','Auth\UserRoleController@canvas_update');
                 Route::post('/soft-delete','Auth\UserRoleController@soft_delete');
                 Route::post('/destroy','Auth\UserRoleController@destroy');
+                Route::post('/restore','Auth\UserRoleController@restore');
+                Route::post('/bulk-import','Auth\UserRoleController@bulk_import');
             });
 
         });

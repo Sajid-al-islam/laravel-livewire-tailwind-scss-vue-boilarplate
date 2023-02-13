@@ -123,6 +123,17 @@ const actions = {
         }
     },
 
+     /** import bulk data */
+     [`bulk_import_user`]: async function ({state}, data) {
+        let cconfirm = await window.s_confirm("upload");
+        if (cconfirm) {
+            axios.post(`/user/bulk-import`,{data})
+                .then(({data})=>{
+                    window.s_alert(`data imported`);
+                })
+        }
+    },
+
     export_selected_csv: function ({state}) {
         let col = Object.keys(state.selected[0]);
         let values = state.selected.map((i) => Object.values(i));

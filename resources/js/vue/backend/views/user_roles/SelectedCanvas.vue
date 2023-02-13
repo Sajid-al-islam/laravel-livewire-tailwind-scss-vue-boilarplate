@@ -1,9 +1,9 @@
 <template>
-    <div class="canvas_backdrop" :class="{active:get_user_role_show_selected}" @click="$event.target.classList.contains('canvas_backdrop') && set_user_role_show_selected(false)">
-        <div class="content right" v-if="get_user_role_show_selected">
+    <div class="canvas_backdrop" :class="{active:this[`get_${store_prefix}_show_selected`]}" @click="$event.target.classList.contains('canvas_backdrop') && call_store(`set_${store_prefix}_show_selected`,false)">
+        <div class="content right" v-if="this[`get_${store_prefix}_show_selected`]">
             <div class="content_header">
                 <h3 class="offcanvas-title">Selected Users</h3>
-                <i @click="set_user_role_show_selected(false)" class="fa fa-times"></i>
+                <i @click="call_store(`set_${store_prefix}_show_selected`,false)" class="fa fa-times"></i>
             </div>
             <div class="cotent_body table-responsive">
                 <table class="table">
@@ -15,16 +15,15 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="item,index in get_user_role_selected" :key="item.id">
+                        <tr v-for="item in this[`get_${store_prefix}_selected`]" :key="item.id">
                             <td>
-                                <button @click.prevent="set_clear_selected_single_user_role(index)" class="btn btn-outline-danger">
+                                <button @click.prevent="call_store(`set_selected_${store_prefix}s`,item)" class="btn btn-outline-danger">
                                     <i class="fa fa-trash"></i>
                                 </button>
                             </td>
                             <td>{{ item.id }}</td>
                             <td>
-                                {{ item.first_name }}
-                                {{ item.last_name }}
+                                {{ item.name }}
                             </td>
                         </tr>
                     </tbody>
@@ -36,17 +35,29 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
+/** store prefix for export object use */
+const store_prefix = 'user_role'
 export default {
+    data: function(){
+        return {
+            /** store prefix for JSX */
+            store_prefix: "user_role"
+        }
+    },
     methods: {
         ...mapMutations([
-            'set_user_role_show_selected',
-            'set_clear_selected_single_user_role'
+            `set_selected_${store_prefix}s`,
+            `set_${store_prefix}_show_selected`,
+            `set_clear_selected_single_${store_prefix}`
         ]),
+        call_store: function(name, params=null){
+            this[name](params)
+        },
     },
     computed: {
         ...mapGetters([
-            'get_user_role_show_selected',
-            'get_user_role_selected',
+            `get_${store_prefix}_show_selected`,
+            `get_${store_prefix}_selected`,
         ])
     }
 }
