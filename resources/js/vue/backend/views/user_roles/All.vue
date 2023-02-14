@@ -23,7 +23,7 @@
                 <div class="btns d-flex gap-2 align-items-center">
                     <permission-button
                         :permission="'can_create'"
-                        :to="{name: 'CreateRole'}"
+                        :to="{name: `Create${route_prefix}`}"
                         :classList="'btn rounded-pill btn-outline-info'">
                         <i class="fa fa-pencil me-5px"></i>
                         Create
@@ -187,14 +187,17 @@ import PermissionButton from '../components/PermissionButton.vue'
 import TableTh from './components/TableTh.vue';
 import DetailsCanvas from './DetailsCanvas.vue';
 import SelectedCanvas from './SelectedCanvas.vue';
-/** store prefix for export object use */
-const store_prefix = 'user_role'
+/** store and route prefix for export object use */
+import PageSetup from './PageSetup';
+const {route_prefix, store_prefix} = PageSetup;
+
 export default {
     components: { PermissionButton, TableTh, DetailsCanvas, SelectedCanvas },
     data: function(){
         return {
             /** store prefix for JSX */
-            store_prefix: "user_role"
+            store_prefix,
+            route_prefix,
         }
     },
     created: function(){

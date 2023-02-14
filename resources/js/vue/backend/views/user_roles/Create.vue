@@ -4,7 +4,7 @@
             <div class="card-header">
                 <h4>Create</h4>
                 <div class="btns">
-                    <router-link :to="{ name: 'AllRole' }" class="btn rounded-pill btn-outline-warning" >
+                    <router-link :to="{ name: `All${route_prefix}` }" class="btn rounded-pill btn-outline-warning" >
                         <i class="fa fa-arrow-left me-5px"></i>
                         Back
                     </router-link>
@@ -45,14 +45,17 @@
 <script>
 import { mapActions } from 'vuex'
 import InputField from '../components/InputField.vue'
-/** store prefix for export object use */
-const store_prefix = 'user_role'
+/** store and route prefix for export object use */
+import PageSetup from './PageSetup';
+const {route_prefix, store_prefix} = PageSetup;
+
 export default {
     components: { InputField },
     data: function(){
         return {
             /** store prefix for JSX */
-            store_prefix
+            store_prefix,
+            route_prefix,
         }
     },
     created: function () {},

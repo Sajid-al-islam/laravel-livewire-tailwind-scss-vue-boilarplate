@@ -1,7 +1,7 @@
 <template>
     <div class="canvas_backdrop"
         :class="{active: this[`get_${store_prefix}_show_edit_canvas`]}"
-        @click="$event.target.classList.contains('canvas_backdrop') && call_store(`set_user_role_show_edit_canvas`,(false))">
+        @click="$event.target.classList.contains('canvas_backdrop') && call_store(`set_${store_prefix}_show_edit_canvas`,(false))">
         <div class="content right" v-if="this[`get_${store_prefix}_show_edit_canvas`]">
             <div class="content_header">
                 <h3 class="offcanvas-title">Edit</h3>
@@ -32,14 +32,16 @@
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 import InputField from '../components/InputField.vue'
-/** store prefix for export object use */
-const store_prefix = 'user_role'
+/** store and route prefix for export object use */
+import PageSetup from './PageSetup';
+const {route_prefix, store_prefix} = PageSetup;
 export default {
     components: { InputField },
     data: function(){
         return {
             /** store prefix for JSX */
-            store_prefix: "user_role"
+            store_prefix,
+            route_prefix,
         }
     },
     methods: {

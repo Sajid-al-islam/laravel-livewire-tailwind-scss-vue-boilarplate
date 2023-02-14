@@ -6,7 +6,7 @@
                     Import
                 </h4>
                 <div class="btns">
-                    <router-link :to="{name:'AllRole'}" class="btn rounded-pill btn-outline-warning">
+                    <router-link :to="{name:`All${route_prefix}`}" class="btn rounded-pill btn-outline-warning">
                         <i class="fa fa-arrow-left me-5px"></i>
                         Back
                     </router-link>
@@ -51,8 +51,9 @@
 
 <script>
 import { mapActions } from 'vuex';
-/** store prefix for export object use */
-const store_prefix = 'user_role'
+/** store and route prefix for export object use */
+import PageSetup from './PageSetup';
+const {route_prefix, store_prefix} = PageSetup;
 export default {
     created: function(){
 
@@ -62,7 +63,8 @@ export default {
             data: [],
             object_data: [],
             /** store prefix for JSX */
-            store_prefix: "user_role"
+            store_prefix,
+            route_prefix,
         }
     },
     methods: {

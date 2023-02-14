@@ -35,13 +35,15 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
-/** store prefix for export object use */
-const store_prefix = 'user_role'
+/** store and route prefix for export object use */
+import PageSetup from './PageSetup';
+const {route_prefix, store_prefix} = PageSetup;
 export default {
     data: function(){
         return {
             /** store prefix for JSX */
-            store_prefix: "user_role"
+            store_prefix,
+            route_prefix,
         }
     },
     methods: {
