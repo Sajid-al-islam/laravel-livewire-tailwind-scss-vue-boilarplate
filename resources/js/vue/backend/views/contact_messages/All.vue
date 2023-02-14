@@ -3,7 +3,7 @@
         <div class="card list_card">
             <div class="card-header">
                 <h4>
-                    All Contact Messages
+                    All
                     <small v-if="this[`get_${store_prefix}_selected`].length">
                         &nbsp; selected:
                         <b class="text-warning">
@@ -192,9 +192,10 @@ import TableTh from './components/TableTh.vue';
 import DetailsCanvas from './DetailsCanvas.vue';
 import SelectedCanvas from './SelectedCanvas.vue';
 
-/** store prefix for export object use */
-const store_prefix = 'contact_message';
-const route_prefix = 'ContactMessage';
+/** store and route prefix for export object use */
+import PageSetup from './PageSetup';
+const {route_prefix, store_prefix} = PageSetup;
+
 export default {
     components: { PermissionButton, TableTh, DetailsCanvas, SelectedCanvas },
     data: function(){

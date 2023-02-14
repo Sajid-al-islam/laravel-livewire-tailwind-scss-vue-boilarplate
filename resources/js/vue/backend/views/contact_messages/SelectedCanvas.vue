@@ -23,7 +23,7 @@
                             </td>
                             <td>{{ item.id }}</td>
                             <td>
-                                {{ item.name }}
+                                {{ item.full_name }}
                             </td>
                         </tr>
                     </tbody>
@@ -35,13 +35,15 @@
 
 <script>
 import { mapGetters, mapMutations } from 'vuex'
-/** store prefix for export object use */
-const store_prefix = 'contact_message'
+/** store and route prefix for export object use */
+import PageSetup from './PageSetup';
+const {route_prefix, store_prefix} = PageSetup;
 export default {
     data: function(){
         return {
             /** store prefix for JSX */
-            store_prefix: "contact_message"
+            route_prefix,
+            store_prefix
         }
     },
     methods: {
