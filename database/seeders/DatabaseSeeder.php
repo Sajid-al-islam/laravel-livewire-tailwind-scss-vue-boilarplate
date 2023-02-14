@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\ContactMessage;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -17,6 +18,9 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             ExtraUserSeeder::class,
+            ContactMessageSeeder::class,
         ]);
+
+
     }
 }

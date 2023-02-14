@@ -2,7 +2,7 @@
     <div class="canvas_backdrop" :class="{active:this[`get_${store_prefix}_show_selected`]}" @click="$event.target.classList.contains('canvas_backdrop') && call_store(`set_${store_prefix}_show_selected`,false)">
         <div class="content right" v-if="this[`get_${store_prefix}_show_selected`]">
             <div class="content_header">
-                <h3 class="offcanvas-title">Selected Users</h3>
+                <h3 class="offcanvas-title">Selected</h3>
                 <i @click="call_store(`set_${store_prefix}_show_selected`,false)" class="fa fa-times"></i>
             </div>
             <div class="cotent_body table-responsive">

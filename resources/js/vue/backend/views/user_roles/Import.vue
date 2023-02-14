@@ -76,7 +76,7 @@ export default {
             reader.onload = function (e) {
                 const text = e.target.result;
                 that.data = text.csvToArray();
-                console.log(that.data);
+                // console.log(that.data);
                 that.make_object_data();
             };
 
@@ -94,7 +94,7 @@ export default {
                 }
                 this.object_data.push(temp);
             }
-            console.log(this.object_data);
+            // console.log(this.object_data);
         },
         call_store: function(name, params=null){
             this[name](params)

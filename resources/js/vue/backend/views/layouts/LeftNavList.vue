@@ -10,9 +10,15 @@
                 <left-nav-list-item :to="'AllUser'" :text="'All users'" />
                 <left-nav-list-item :to="'CreateUser'" :text="'Create user'" />
             </left-nav-list-group>
+
             <left-nav-list-group :role_permissions="['super_admin']" :icon="`fa fa-users`" :text="`Roles`" :alert_count="0">
                 <left-nav-list-item :to="'AllRole'" :text="'All roles'" />
                 <left-nav-list-item :to="'CreateRole'" :text="'Create role'" />
+            </left-nav-list-group>
+
+            <left-nav-list-group :role_permissions="['super_admin','admin']" :icon="`fa fa-list`" :text="`Contact Message`" :alert_count="0">
+                <left-nav-list-item :to="'AllContactMessage'" :text="'All'" />
+                <left-nav-list-item :to="'CreateContactMessage'" :text="'Create'" />
             </left-nav-list-group>
 
             <li class="navigation-header">

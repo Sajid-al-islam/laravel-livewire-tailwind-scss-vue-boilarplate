@@ -6,12 +6,14 @@ Vue.use(Vuex);
 import auth_modules from './modules/auth_modules';
 import user_modules from './modules/user_modules';
 import user_role_modules from './modules/user_role_modules';
+import user_contact_message_modules from './modules/user_contact_message_modules';
 
 const store = new Vuex.Store({
     modules: {
         auth_modules,
         user_modules,
         user_role_modules,
+        user_contact_message_modules,
     },
     state: {},
     getters: {},

@@ -31,7 +31,7 @@ Route::group(
             Route::post('/logout-from-all-devices', 'Auth\ApiLoginController@logout_from_all_devices');
         });
 
-        Route::group([], function () {
+        Route::group(['middleware' => ['auth:api']], function () {
             Route::group(['prefix' => 'user'], function () {
                 Route::post('/api-logout', 'Auth\ApiLoginController@logout');
                 Route::post('/user_info', 'Auth\ApiLoginController@user_info');
@@ -63,6 +63,19 @@ Route::group(
                 Route::post('/destroy','Auth\UserRoleController@destroy');
                 Route::post('/restore','Auth\UserRoleController@restore');
                 Route::post('/bulk-import','Auth\UserRoleController@bulk_import');
+            });
+
+            Route::group(['prefix' => 'contact-message'], function () {
+                Route::get('/all','Admin\ContactMessageController@all');
+                Route::get('/{id}','Admin\ContactMessageController@show');
+                Route::post('/store','Admin\ContactMessageController@store');
+                Route::post('/canvas-store','Admin\ContactMessageController@canvas_store');
+                Route::post('/update','Admin\ContactMessageController@update');
+                Route::post('/canvas-update','Admin\ContactMessageController@canvas_update');
+                Route::post('/soft-delete','Admin\ContactMessageController@soft_delete');
+                Route::post('/destroy','Admin\ContactMessageController@destroy');
+                Route::post('/restore','Admin\ContactMessageController@restore');
+                Route::post('/bulk-import','Admin\ContactMessageController@bulk_import');
             });
 
         });

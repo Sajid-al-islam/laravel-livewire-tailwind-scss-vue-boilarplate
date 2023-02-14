@@ -4,7 +4,7 @@
             <div class="card-header">
                 <h4>Details</h4>
                 <div class="btns">
-                    <a href="" @click.prevent="call_store(`set_user_role`,null), $router.push({ name: 'AllRole' })"  class="btn rounded-pill btn-outline-warning" >
+                    <a href="" @click.prevent="call_store(`set_${store_prefix}`,null), $router.push({ name: 'AllRole' })"  class="btn rounded-pill btn-outline-warning" >
                         <i class="fa fa-arrow-left me-5px"></i>
                         <span >
                             Back
@@ -76,7 +76,7 @@ export default {
     data: function(){
         return {
             /** store prefix for JSX */
-            store_prefix: "user_role"
+            store_prefix
         }
     },
     created: function () {

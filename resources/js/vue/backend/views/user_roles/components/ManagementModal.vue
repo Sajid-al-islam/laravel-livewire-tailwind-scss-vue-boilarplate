@@ -1,5 +1,5 @@
 <template>
-    <div class="multiple_select_body" id="user_role_id">
+    <div class="multiple_select_body" :id="`${store_prefix}_id`">
         <div class="multiple_select_data"
             @click="call_store(`set_${store_prefix}_show_management_modal`,true)">
             <div v-for="item in this[`get_${store_prefix}_selected`]" :key="item.id" class="item">

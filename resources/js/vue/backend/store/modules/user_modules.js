@@ -173,6 +173,7 @@ const mutations = {
     },
     set_active_status: function(state, status=1){
         state.active_status = status;
+        state.page = 1;
         this.dispatch('fetch_users')
     },
     set_clear_selected_single_user: async function (state, index) {
@@ -241,11 +242,13 @@ const mutations = {
         } else {
             state.orderByAsc = !state.orderByAsc;
         }
+        state.page = 1;
         state.orderByCol = orderByCol;
         this.dispatch("fetch_users");
     },
     set_users_search_key: debounce(function (state, search_key) {
         state.search_key = search_key;
+        state.page = 1;
         this.dispatch("fetch_users");
     }, 500),
     set_show_selected: function (state, trigger) {

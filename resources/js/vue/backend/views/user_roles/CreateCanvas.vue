@@ -1,10 +1,10 @@
 <template>
     <div class="canvas_backdrop"
         :class="{active: this[`get_${store_prefix}_show_create_canvas`]}"
-        @click="$event.target.classList.contains('canvas_backdrop') && call_store(`set_user_role_show_create_canvas`,(false))">
+        @click="$event.target.classList.contains('canvas_backdrop') && call_store(`set_${store_prefix}_show_create_canvas`,(false))">
         <div class="content right" v-if="this[`get_${store_prefix}_show_create_canvas`]">
             <div class="content_header">
-                <h3 class="offcanvas-title">Create User</h3>
+                <h3 class="offcanvas-title">Create</h3>
                 <i @click="call_store(`set_${store_prefix}_show_create_canvas`,(false))" class="fa fa-times"></i>
             </div>
             <div :class="`cotent_body ${store_prefix}_canvas_create_form`" @keyup.enter="call_store(`upload_${store_prefix}_create_canvas_input`)">

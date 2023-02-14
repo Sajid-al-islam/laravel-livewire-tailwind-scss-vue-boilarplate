@@ -2,8 +2,8 @@
     <div class="canvas_backdrop" :class="{active:this[`get_${store_prefix}`]}" @click="$event.target.classList.contains('canvas_backdrop') && call_store(`set_${store_prefix}`,null)">
         <div class="content right" v-if="this[`get_${store_prefix}`]">
             <div class="content_header">
-                <h3 class="offcanvas-title">User Details</h3>
-                <i @click="call_store(`set_user_role`,null)" class="fa fa-times"></i>
+                <h3 class="offcanvas-title">Details</h3>
+                <i @click="call_store(`set_${store_prefix}`,null)" class="fa fa-times"></i>
             </div>
             <div class="cotent_body">
                 <table class="table">

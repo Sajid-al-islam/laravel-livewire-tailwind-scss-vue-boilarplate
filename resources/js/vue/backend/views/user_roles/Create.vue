@@ -52,7 +52,7 @@ export default {
     data: function(){
         return {
             /** store prefix for JSX */
-            store_prefix: "user_role"
+            store_prefix
         }
     },
     created: function () {},

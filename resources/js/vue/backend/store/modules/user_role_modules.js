@@ -241,14 +241,17 @@ const mutations = {
             state.orderByAsc = !state.orderByAsc;
         }
         state.orderByCol = orderByCol;
+        state[`${store_prefix}_page`] = 1;
         this.dispatch(`fetch_${store_prefix}s`);
     },
     [`set_${store_prefix}_search_key`]: debounce(function (state, search_key) {
         state[`${store_prefix}_search_key`] = search_key;
+        state[`${store_prefix}_page`] = 1;
         this.dispatch(`fetch_${store_prefix}s`);
     }, 500),
     [`set_${store_prefix}_show_active_data`]: function(state, status=1){
         state[`${store_prefix}_show_active_data`] = status;
+        state[`${store_prefix}_page`] = 1;
         this.dispatch(`fetch_${store_prefix}s`);
     },
 
