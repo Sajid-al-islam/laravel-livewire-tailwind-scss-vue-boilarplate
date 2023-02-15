@@ -112,6 +112,65 @@ class ApiLoginController extends Controller
         }
     }
 
+    public function user_update(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->first_name = $request->first_name;
+        $user->last_name = $request->last_name;
+        $user->mobile_number = $request->mobile_number;
+        $user->email = $request->email;
+        $user->update();
+
+        return response()->json([
+            'message' => 'User updated successfully',
+        ], 200);
+    }
+
+    public function update_password(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'old_password' => ['required'],
+            'newpassword' => ['required', 'min:8', 'confirmed'],
+            'newpassword_confirmation' => ['required']
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json([
+                'err_message' => 'validation error',
+                'data' => $validator->errors(),
+            ], 422);
+        }
+
+        $old_password = $request->old_password;
+        $newpassword = $request->newpassword;
+        $newpassword_confirmation = $request->newpassword_confirmation;
+        // $user = User::find(json_decode($request->user)->id);
+        $user = User::find(auth()->user()->id);
+
+        if (strlen($old_password)) {
+            if (Hash::check($old_password, $user->password)) {
+                if (strlen($newpassword) && strlen($newpassword_confirmation)) {
+                    
+
+                    $user->password = Hash::make($request->newpassword);
+                }
+            } else {
+                return response()->json([
+                    'err_message' => 'validation error',
+                    'data' => [
+                        'old_password' => ['your given old password not matching'],
+                    ],
+                    
+                ], 422);
+            }
+        }
+
+        $user->update();
+        return response()->json([
+            'message' => 'User password updated successfully',
+        ], 200);
+    }
+
     public function check_code(Request $request)
     {
         $verification = session()->get('verification');

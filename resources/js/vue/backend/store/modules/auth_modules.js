@@ -36,6 +36,17 @@ const actions = {
                 // window.location.href = '/login';
             })
     },
+    update_user_info: async function(state, data) {
+        let res = await axios.post('/user/user_update', data.formData);
+
+        return res
+    },
+    change_password: async function(state, formData) {
+        let res = await axios.post('/user/update-profile', formData);
+        
+        
+        return res 
+    },
     fetch_auth_information: function (state) {
         axios.post('/user/user_info')
             .then((res) => {
