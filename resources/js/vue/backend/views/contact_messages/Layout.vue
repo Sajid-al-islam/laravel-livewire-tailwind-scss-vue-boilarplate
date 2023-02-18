@@ -11,10 +11,18 @@
 
 <script>
 import { mapGetters } from 'vuex';
+/** store and route prefix for export object use */
+import PageSetup from './PageSetup';
+const {layout_title} = PageSetup;
 export default {
-    props: ['role_permissions','layout_title'],
+    props: ['role_permissions'],
     created: function(){
         // console.log(this.role_permissions);
+    },
+    data: function(){
+        return {
+            layout_title,
+        }
     },
     computed: {
         ...mapGetters(['get_auth_roles']),

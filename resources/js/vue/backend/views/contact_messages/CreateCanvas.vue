@@ -31,14 +31,16 @@
 <script>
 import { mapActions, mapGetters, mapMutations } from 'vuex'
 import InputField from '../components/InputField.vue'
-/** store prefix for export object use */
-const store_prefix = 'contact_message'
+/** store and route prefix for export object use */
+import PageSetup from './PageSetup';
+const {route_prefix, store_prefix} = PageSetup;
 export default {
     components: { InputField },
     data: function(){
         return {
             /** store prefix for JSX */
-            store_prefix: "contact_message"
+            route_prefix,
+            store_prefix,
         }
     },
     methods: {

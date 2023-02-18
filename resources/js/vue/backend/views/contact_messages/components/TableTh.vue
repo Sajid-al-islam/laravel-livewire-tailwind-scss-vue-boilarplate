@@ -12,15 +12,18 @@
 <script>
 import { mapMutations } from "vuex";
 import TableHeadingAscCaret from "../../components/TableHeadingAscCaret.vue";
-/** store prefix for export object use */
-const store_prefix = 'contact_message'
+/** store and route prefix for export object use */
+import PageSetup from '../PageSetup';
+const {route_prefix, store_prefix} = PageSetup;
+
 export default {
     components: { TableHeadingAscCaret },
     props: ["title", "tkey", "sort", "ariaLable"],
     data: function(){
         return {
             /** store prefix for JSX */
-            store_prefix: "contact_message"
+            store_prefix,
+            route_prefix,
         }
     },
     methods: {

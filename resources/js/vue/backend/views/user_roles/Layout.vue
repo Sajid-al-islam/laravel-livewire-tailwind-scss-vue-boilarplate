@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3 class="mb-2">Role management</h3>
+        <h3 class="mb-2">{{ layout_title }}</h3>
         <router-view v-if="is_role_permitted"></router-view>
         <div v-else class="text-center">
             <h4 class="text-warning">sorry you have no permission</h4>
@@ -11,8 +11,18 @@
 
 <script>
 import { mapGetters } from 'vuex';
+/** store and route prefix for export object use */
+import PageSetup from './PageSetup';
+const {route_prefix, store_prefix, layout_title} = PageSetup;
 export default {
     props: ['role_permissions'],
+    data: function(){
+        return {
+            route_prefix,
+            store_prefix,
+            layout_title,
+        }
+    },
     created: function(){
         // console.log(this.role_permissions);
     },

@@ -51,9 +51,9 @@
 
 <script>
 import { mapActions } from 'vuex';
-/** store prefix for export object use */
-const store_prefix = 'contact_message';
-const route_prefix = 'ContactMessage';
+/** store and route prefix for export object use */
+import PageSetup from './PageSetup';
+const {route_prefix, store_prefix} = PageSetup;
 export default {
     created: function(){
 
