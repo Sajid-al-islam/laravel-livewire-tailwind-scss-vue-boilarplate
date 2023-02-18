@@ -160,8 +160,12 @@ class UserController extends Controller
     public function canvas_store()
     {
         $validator = Validator::make(request()->all(), [
-            'name' => ['required'],
-            'role_serial' => ['required'],
+            'first_name' => ['required'],
+            'last_name' => ['required'],
+            'user_role_id' => ['required', 'array'],
+            'email' => ['required', 'unique:users'],
+            'password' => ['required', 'min:8', 'confirmed'],
+            'password_confirmation' => ['required']
         ]);
 
         if ($validator->fails()) {
@@ -171,12 +175,43 @@ class UserController extends Controller
             ], 422);
         }
 
-        $data = new UserRole();
-        $data->name = request()->name;
-        $data->role_serial = request()->role_serial;
+        $data = new User();
+        $data->first_name = request()->first_name;
+        $data->last_name = request()->last_name;
+        $data->user_name = request()->user_name;
+        $data->email = request()->email;
+        $data->mobile_number = request()->mobile_number;
+        $data->password = Hash::make(request()->password);
         $data->save();
 
-        return response()->json($data, 200);
+        try {
+            if (request()->hasFile('photo')) {
+                $file = request()->file('photo');
+                $path = 'uploads/users/pp-' . $data->id . rand(1000, 9999) . '.';
+                $height = 200;
+                $width = 200;
+                if (count($file)) {
+                    foreach ($file as $s_file) {
+                        $path .= $s_file->getClientOriginalExtension();
+                        Image::make($s_file)->fit($height, $width)->save(public_path($path));
+                        $data->photo = $path;
+                    }
+                } else {
+                    $path .= $file->getClientOriginalExtension();
+                    Image::make($file)->fit($height, $width)->save(public_path($path));
+                    $data->photo = $path;
+                }
+            }
+        } catch (\Throwable $th) {
+            //throw $th;
+            return response()->json("data created without image uploding-" . $th->getMessage(), 500);
+        }
+        $data->save();
+
+        return response()->json([
+            'message' => 'success',
+            'result' => $data->id,
+        ], 200);
     }
 
     public function update()

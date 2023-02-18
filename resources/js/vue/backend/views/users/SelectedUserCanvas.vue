@@ -1,6 +1,6 @@
 <template>
-    <div class="canvas_backdrop" :class="{active:get_show_selected}" @click="$event.target.classList.contains('canvas_backdrop') && set_show_selected(false)">
-        <div class="content right" v-if="get_show_selected">
+    <div class="canvas_backdrop" :class="{active:get_user_show_selected}" @click="$event.target.classList.contains('canvas_backdrop') && set_show_selected(false)">
+        <div class="content right" v-if="get_user_selected">
             <div class="content_header">
                 <h3 class="offcanvas-title">Selected Users</h3>
                 <i @click="set_show_selected(false)" class="fa fa-times"></i>
@@ -15,7 +15,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="item,index in get_selected_users" :key="item.id">
+                        <tr v-for="item,index in get_user_selected" :key="item.id">
                             <td>
                                 <button @click.prevent="set_clear_selected_single_user(index)" class="btn btn-outline-danger">
                                     <i class="fa fa-trash"></i>
@@ -45,8 +45,8 @@ export default {
     },
     computed: {
         ...mapGetters([
-            'get_show_selected',
-            'get_selected_users',
+            'get_user_show_selected',
+            'get_user_selected',
         ])
     }
 }

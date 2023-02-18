@@ -4,13 +4,13 @@
             <div class="card-header">
                 <h4>Create</h4>
                 <div class="btns">
-                    <router-link :to="{ name: 'AllUser' }" class="btn rounded-pill btn-outline-warning" >
+                    <router-link :to="{ name: `All${route_prefix}` }" class="btn rounded-pill btn-outline-warning" >
                         <i class="fa fa-arrow-left me-5px"></i>
                         Back
                     </router-link>
                 </div>
             </div>
-            <form @keyup.enter="store_user" class="user_create_form">
+            <form @keyup.enter="call_store(`store_${store_prefix}`,$event.target)" class="user_create_form">
                 <div class="card-body">
                     <div class="row justify-content-center">
                         <div class="col-lg-10">
@@ -70,10 +70,10 @@
                                 </div>
                                 <div class=" form-group d-grid align-content-start gap-1 mb-2 " >
                                     <input-field
-                                        :label="'photo'"
+                                        :label="`photo`"
                                         :name="`photo`"
                                         :type="`file`"
-                                        :accept="'image/*'"
+                                        :accept="`image/*`"
                                         :multiple="true"
                                         :preview="true"
                                     />
@@ -83,7 +83,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-center">
-                    <button type="button" @click.prevent="store_user" class="btn btn-outline-info" >
+                    <button type="button" @click.prevent="call_store(`store_${store_prefix}`,$event.target.parentNode.parentNode)" class="btn btn-outline-info" >
                         <i class="fa fa-upload"></i>
                         Submit
                     </button>
@@ -94,17 +94,30 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex';
-import RoleManagementModal from '../user_roles/components/ManagementModal.vue'
+import { mapActions } from "vuex";
+import RoleManagementModal from "../user_roles/components/ManagementModal.vue"
+/** store and route prefix for export object use */
+import PageSetup from "./PageSetup";
+const {route_prefix, store_prefix} = PageSetup;
+
 export default {
     components: { RoleManagementModal },
+    data: function(){
+        return {
+            route_prefix,
+            store_prefix,
+        }
+    },
     created: function () {},
     methods: {
         ...mapActions([
-            'store_user'
+            `store_${store_prefix}`
         ]),
         get_file_input_return: function () {
             console.log(arguments);
+        },
+        call_store: function(name, params=null){
+            this[name](params)
         },
     },
 };
