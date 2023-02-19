@@ -359,8 +359,8 @@ class StoreModule {
 
             /** export selected data into csv */
             [`export_selected_${store_prefix}_csv`]: function ({ state }) {
-                let col = Object.keys(state.selected[0]);
-                let values = state.selected.map((i) => Object.values(i));
+                let col = Object.keys(state[`${store_prefix}_selected`][0]);
+                let values = state[`${store_prefix}_selected`].map((i) => Object.values(i));
                 new window.CsvBuilder(`${store_prefix}_list.csv`)
                     .setColumns(col)
                     // .addRow(["Eve", "Holt"])
