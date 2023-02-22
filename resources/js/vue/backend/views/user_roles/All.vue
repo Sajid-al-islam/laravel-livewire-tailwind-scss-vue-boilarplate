@@ -176,6 +176,7 @@
             </div>
         </div>
 
+
         <details-canvas/>
         <selected-canvas/>
     </div>
