@@ -28,10 +28,14 @@ window.get_form_data = function (selector) {
              * append the single file
              */
             else{
-                form_data.append(i.name, i.value);
+                if(i.name && i.name != "undefined"){
+                    form_data.append(i.name, i.value);
+                }
             }
         }else{
-            form_data.append(i.name, i.value);
+            if(i.name && i.name != "undefined"){
+                form_data.append(i.name, i.value);
+            }
         }
         if(i.name){
             form_inputs[i.name] = i.value;
