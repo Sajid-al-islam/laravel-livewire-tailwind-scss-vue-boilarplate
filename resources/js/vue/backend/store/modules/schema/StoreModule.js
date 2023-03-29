@@ -163,7 +163,7 @@ class StoreModule {
      * @returns
      * ```js
      * return {
-            fetch_users: () => '' // fetch all data using data filters
+            fetch_users: ({commit,dispatch,getters,rootGetters,rootState,state}) => '' // fetch all data using data filters
             fetch_user: () => '' // fetch single data
 
             store_user: () => ''
