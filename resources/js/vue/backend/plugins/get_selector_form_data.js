@@ -33,7 +33,9 @@ window.get_form_data = function (selector) {
         }else{
             form_data.append(i.name, i.value);
         }
-        form_inputs[i.name] = i.value;
+        if(i.name){
+            form_inputs[i.name] = i.value;
+        }
     });
 
     return { form_values, form_inputs, form_data };
