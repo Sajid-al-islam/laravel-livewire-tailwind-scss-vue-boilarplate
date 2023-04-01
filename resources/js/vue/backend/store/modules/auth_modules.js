@@ -43,9 +43,9 @@ const actions = {
     },
     change_password: async function(state, formData) {
         let res = await axios.post('/user/update-profile', formData);
-        
-        
-        return res 
+
+
+        return res
     },
     fetch_auth_information: function (state) {
         axios.post('/user/user_info')

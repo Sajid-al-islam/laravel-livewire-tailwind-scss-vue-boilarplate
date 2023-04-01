@@ -11,6 +11,7 @@
                 </div>
             </div>
         </div>
+
         <!-- END: Content-->
         <div class="loader export_loader">
             <div class="loader_body">
@@ -53,7 +54,16 @@ export default {
         ...mapActions(["fetch_check_auth"]),
     },
     computed: {
-        ...mapGetters(["get_check_auth"]),
+        ...mapGetters({
+            get_check_auth : "get_check_auth",
+            auth_info: "get_auth_information",
+        }),
+        role_names: function(){
+            return this.auth_info.roles.map((i)=>i.name);
+        },
+        role_serials: function(){
+            return this.auth_info.roles.map((i)=>i.role_serial);
+        },
     },
 };
 </script>
