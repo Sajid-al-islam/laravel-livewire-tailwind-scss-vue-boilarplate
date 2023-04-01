@@ -6,13 +6,18 @@
                 <left-nav-list-item :to="'AdminDashboard'" :text="'Analytics'" />
             </left-nav-list-group>
 
-            <left-nav-list-group :role_permissions="['super_admin']" :icon="`fa fa-users`" :text="`Users`" :alert_count="0">
+            <left-nav-list-group :role_permissions="['super_admin','admin']" :icon="`fa fa-users`" :text="`Users`" :alert_count="0">
                 <left-nav-list-item :to="'AllUser'" :text="'All users'" />
                 <left-nav-list-item :to="'CreateUser'" :text="'Create user'" />
             </left-nav-list-group>
 
-            <left-nav-list-group :role_permissions="['super_admin','admin']" :icon="`fa fa-list`" :text="`Contact Message`" :alert_count="0">
+            <left-nav-list-group :role_permissions="['admin']" :icon="`fa fa-list`" :text="`Contact Message`" :alert_count="0">
                 <left-nav-list-item :to="'AllContactMessage'" :text="'All'" />
+            </left-nav-list-group>
+
+            <left-nav-list-group :role_permissions="['admin']" :icon="`fa fa-list`" :text="`Test`" :alert_count="0">
+                <left-nav-list-item :to="'AdminTestPage1'" :text="'All'" />
+                <left-nav-list-item :to="'AdminTestPage2'" :text="'test2'" />
             </left-nav-list-group>
 
             <li class="navigation-header">
