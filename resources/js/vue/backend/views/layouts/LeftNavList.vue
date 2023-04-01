@@ -32,14 +32,6 @@
                 <left-nav-list-item :to="'settingPassword'" :text="'Change Password'" />
             </left-nav-list-group>
 
-            <left-nav-list-group :role_permissions="['super_admin','admin','user']" :icon="`fa fa-gears`" :text="`Product management`" :alert_count="0">
-                <left-nav-list-item :to="'settingProfile'" :text="'Products'" />
-                <left-nav-list-item :to="'settingProfile'" :text="'Create product'" />
-                <left-nav-list-item :to="'settingPassword'" :text="'Product Categories'" />
-                <left-nav-list-item :to="'settingPassword'" :text="'Product Categories'" />
-            </left-nav-list-group>
-            
-
             <li class="nav-item">
                 <a @click.prevent="fetch_logout()" class="d-flex align-items-center" href="#">
                     <i class="fa-solid fa-power-off"></i>
