@@ -31,9 +31,9 @@ Route::group( ['prefix'=>'','namespace' => "Controllers" ],function(){
     Route::get('/website','WebsiteController@website');
 });
 
-Route::get('/admin', function () {
+Route::get('/dashboard', function () {
     return view('backend.dashboard');
-})->name('admin');
+})->name('dashboard');
 
 Route::get('/test', function () {
     // return view('test');

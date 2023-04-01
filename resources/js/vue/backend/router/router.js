@@ -9,6 +9,7 @@ import user_route from './dashboard_routes/user_route'
 import setting_route from './dashboard_routes/setting_route'
 import user_role_route from './dashboard_routes/user_role_route'
 import contact_meesage_route from './dashboard_routes/contact_meesage_route'
+import admin_main_routes from './admin_routes/admin_main_routes'
 
 Vue.use(VueRouter);
 window.Fire = new Vue();
@@ -26,6 +27,9 @@ const routes = [{
             user_role_route,
             contact_meesage_route,
         ]
+    },
+    {
+        ...admin_main_routes,
     },
     {
         path: '/login',

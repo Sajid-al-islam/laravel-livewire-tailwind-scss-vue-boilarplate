@@ -47,10 +47,6 @@ export default {
                     localStorage.removeItem("token");
                     location.href = "/login";
                 }
-
-                if(this.role_names.includes('admin') && this.$route.name === "Dashboard"){
-                    this.$router.replace('/admin')
-                }
             },
             deep: true,
         },
