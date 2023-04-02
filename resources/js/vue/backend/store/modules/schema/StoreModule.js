@@ -216,7 +216,7 @@ class StoreModule {
                 let form_data = new FormData(event);
                 axios.post(`/${api_prefix}/store`, form_data).then((res) => {
                     event.reset();
-                    window.s_alert("new role been created");
+                    window.s_alert("new data been created");
                 });
             },
 
@@ -300,6 +300,24 @@ class StoreModule {
                             dispatch(`fetch_${store_prefix}s`);
                             window.s_alert(
                                 `${store_prefix} has been deactivated`
+                            );
+                        });
+                }
+            },
+
+            /** Permanently delete , will be hidden from list */
+            [`destroy_${store_prefix}`]: async function (
+                { state, getters, dispatch },
+                id
+            ) {
+                let cconfirm = await window.s_confirm("Permenently delete");
+                if (cconfirm) {
+                    axios
+                        .post(`/${api_prefix}/destroy`, { id })
+                        .then(({ data }) => {
+                            dispatch(`fetch_${store_prefix}s`);
+                            window.s_alert(
+                                `${store_prefix} has been Permenently delted`
                             );
                         });
                 }
