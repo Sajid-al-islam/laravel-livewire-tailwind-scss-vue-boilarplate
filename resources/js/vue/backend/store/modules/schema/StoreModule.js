@@ -29,8 +29,8 @@ class StoreModule {
                 start_page: Number,
                 paginate: Number
             )
-        store_prefix = "", // user_module as user, user_role_module as user_role
-        api_prefix = "", // /api/user/all as user, /api/user-role/all as user-role
+        store_prefix = "", // user_module as user, user_data_module as user_data
+        api_prefix = "", // /api/user/all as user, /api/user-data/all as user-data
         route_prefix = "",
         start_page = 1,
         paginate = 10
@@ -216,6 +216,7 @@ class StoreModule {
                 let form_data = new FormData(event);
                 await axios.post(`/${api_prefix}/store`, form_data).then((res) => {
                     event.reset();
+                    document.querySelector(".file_preview").innerHTML = "";
                     window.s_alert("new data been created");
                 });
             },
@@ -225,7 +226,7 @@ class StoreModule {
                 let form_data = new FormData(event);
                 form_data.append("id", state[store_prefix].id);
                 await axios.post(`/${api_prefix}/update`, form_data).then((res) => {
-                    /** reset loaded user_role after data update */
+                    /** reset loaded user_data after data update */
                     // this.commit(`set_${store_prefix}`, null);
                     window.s_alert("data updated");
                 });
@@ -240,7 +241,8 @@ class StoreModule {
                 await axios
                     .post(`/${api_prefix}/canvas-store`, form_data)
                     .then((res) => {
-                        window.s_alert("new role been created");
+                        window.s_alert("new data been created");
+                        document.querySelector(".file_preview").innerHTML = "";
                         this.commit(
                             `set_${store_prefix}_show_create_canvas`,
                             false
@@ -266,7 +268,7 @@ class StoreModule {
                 axios
                     .post(`/${api_prefix}/canvas-update`, form_data)
                     .then((res) => {
-                        window.s_alert("role updated");
+                        window.s_alert("data updated");
                         this.commit(
                             `set_${store_prefix}_show_edit_canvas`,
                             false
