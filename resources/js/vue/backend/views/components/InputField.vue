@@ -15,6 +15,7 @@
                 :value="value"
                 :checked="checked"
                 @change="input_change_handler"
+                @keyup="keyup_handler"
                 ref="input_el"
             />
             <span v-if="input_not_text" class="ps-1">
@@ -50,6 +51,10 @@ export default {
             required: false,
         },
         mutator: {
+            type: Function,
+            default: null,
+        },
+        keyup: {
             type: Function,
             default: null,
         },
@@ -99,6 +104,14 @@ export default {
 
             this.mutator &&
             this.mutator({
+                value: event.target.value,
+                name: event.target.name,
+                event,
+            });
+        },
+        keyup_handler: function () {
+            this.keyup &&
+            this.keyup({
                 value: event.target.value,
                 name: event.target.name,
                 event,
