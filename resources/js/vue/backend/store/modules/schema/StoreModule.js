@@ -212,19 +212,19 @@ class StoreModule {
             },
 
             /** store data */
-            [`store_${store_prefix}`]: function ({ state }, event) {
+            [`store_${store_prefix}`]: async function ({ state }, event) {
                 let form_data = new FormData(event);
-                axios.post(`/${api_prefix}/store`, form_data).then((res) => {
+                await axios.post(`/${api_prefix}/store`, form_data).then((res) => {
                     event.reset();
                     window.s_alert("new data been created");
                 });
             },
 
             /** update data */
-            [`update_${store_prefix}`]: function ({ state }, event) {
+            [`update_${store_prefix}`]: async function ({ state }, event) {
                 let form_data = new FormData(event);
                 form_data.append("id", state[store_prefix].id);
-                axios.post(`/${api_prefix}/update`, form_data).then((res) => {
+                await axios.post(`/${api_prefix}/update`, form_data).then((res) => {
                     /** reset loaded user_role after data update */
                     // this.commit(`set_${store_prefix}`, null);
                     window.s_alert("data updated");
@@ -232,12 +232,12 @@ class StoreModule {
             },
 
             /** store data canvas form */
-            [`upload_${store_prefix}_create_canvas_input`]: function ({
+            [`upload_${store_prefix}_create_canvas_input`]:async function ({
                 state,
             }) {
                 const { form_values, form_inputs, form_data } =
                     window.get_form_data(`.${store_prefix}_canvas_create_form`);
-                axios
+                await axios
                     .post(`/${api_prefix}/canvas-store`, form_data)
                     .then((res) => {
                         window.s_alert("new role been created");
