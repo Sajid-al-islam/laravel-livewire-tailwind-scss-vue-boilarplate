@@ -29,8 +29,8 @@ class StoreModule {
                 start_page: Number,
                 paginate: Number
             )
-        store_prefix = "", // user_module as user, user_data_module as user_data
-        api_prefix = "", // /api/user/all as user, /api/user-data/all as user-data
+        store_prefix = "", // user_module as user, user_role_module as user_role
+        api_prefix = "", // /api/user/all as user, /api/user-role/all as user-role
         route_prefix = "",
         start_page = 1,
         paginate = 10
@@ -103,6 +103,7 @@ class StoreModule {
 
             /* trigger showing data modal */
             [`${store_prefix}_show_management_modal`]: false,
+            [`${store_prefix}_show_management_modal_qty`]: 20,
 
             /* trigger showing data form canvas */
             [`${store_prefix}_show_create_canvas`]: false,
@@ -150,6 +151,7 @@ class StoreModule {
             [`get_${store_prefix}_show_create_canvas`]: (state) => state[`${store_prefix}_show_create_canvas`],
             [`get_${store_prefix}_show_edit_canvas`]: (state) => state[`${store_prefix}_show_edit_canvas`],
             [`get_${store_prefix}_show_management_modal`]: (state) => state[`${store_prefix}_show_management_modal`],
+            [`get_${store_prefix}_show_management_modal_qty`]: (state) => state[`${store_prefix}_show_management_modal_qty`],
         };
 
         return getters;
@@ -222,18 +224,18 @@ class StoreModule {
             },
 
             /** update data */
-            [`update_${store_prefix}`]: async function ({ state }, event) {
+            [`update_${store_prefix}`]:async function ({ state }, event) {
                 let form_data = new FormData(event);
                 form_data.append("id", state[store_prefix].id);
                 await axios.post(`/${api_prefix}/update`, form_data).then((res) => {
-                    /** reset loaded user_data after data update */
+                    /** reset loaded user_role after data update */
                     // this.commit(`set_${store_prefix}`, null);
                     window.s_alert("data updated");
                 });
             },
 
             /** store data canvas form */
-            [`upload_${store_prefix}_create_canvas_input`]:async function ({
+            [`upload_${store_prefix}_create_canvas_input`]: async function ({
                 state,
             }) {
                 const { form_values, form_inputs, form_data } =
@@ -241,8 +243,7 @@ class StoreModule {
                 await axios
                     .post(`/${api_prefix}/canvas-store`, form_data)
                     .then((res) => {
-                        window.s_alert("new data been created");
-                        document.querySelector(".file_preview").innerHTML = "";
+                        window.s_alert("new role been created");
                         this.commit(
                             `set_${store_prefix}_show_create_canvas`,
                             false
@@ -261,14 +262,14 @@ class StoreModule {
                         window.render_form_errors(object, "data-name");
                     });
             },
-            [`upload_${store_prefix}_edit_canvas_input`]: function ({ state }) {
+            [`upload_${store_prefix}_edit_canvas_input`]: async function ({ state }) {
                 const { form_values, form_inputs, form_data } =
                     window.get_form_data(`.${store_prefix}_canvas_edit_form`);
                 form_data.append("id", state[store_prefix].id);
-                axios
+                await axios
                     .post(`/${api_prefix}/canvas-update`, form_data)
                     .then((res) => {
-                        window.s_alert("data updated");
+                        window.s_alert("role updated");
                         this.commit(
                             `set_${store_prefix}_show_edit_canvas`,
                             false
@@ -296,7 +297,7 @@ class StoreModule {
             ) {
                 let cconfirm = await window.s_confirm("Deactive");
                 if (cconfirm) {
-                    axios
+                    await axios
                         .post(`/${api_prefix}/soft-delete`, { id })
                         .then(({ data }) => {
                             dispatch(`fetch_${store_prefix}s`);
@@ -314,7 +315,7 @@ class StoreModule {
             ) {
                 let cconfirm = await window.s_confirm("Permenently delete");
                 if (cconfirm) {
-                    axios
+                    await axios
                         .post(`/${api_prefix}/destroy`, { id })
                         .then(({ data }) => {
                             dispatch(`fetch_${store_prefix}s`);
@@ -355,26 +356,29 @@ class StoreModule {
 
             /** export all data into csv */
             [`export_${store_prefix}_all`]: async function ({ state }) {
-                let col = Object.keys(state[`${store_prefix}s`].data[0]);
-                var export_csv = new window.CsvBuilder(
-                    `${store_prefix}_list.csv`
-                ).setColumns(col);
-                window.start_loader();
-                let last_page = state[`${store_prefix}s`].last_page;
-                for (let index = 1; index <= last_page; index++) {
-                    state.page = index;
-                    state.paginate = 10;
-                    await this.dispatch(`fetch_${store_prefix}s`);
-                    let values = state[`${store_prefix}s`].data.map((i) =>
-                        Object.values(i)
-                    );
-                    export_csv.addRows(values);
+                let cconfirm = await window.s_confirm("export all");
+                if (cconfirm) {
+                    let col = Object.keys(state[`${store_prefix}s`].data[0]);
+                    var export_csv = new window.CsvBuilder(
+                        `${store_prefix}_list.csv`
+                    ).setColumns(col);
+                    window.start_loader();
+                    let last_page = state[`${store_prefix}s`].last_page;
+                    for (let index = 1; index <= last_page; index++) {
+                        state.page = index;
+                        state.paginate = 10;
+                        await this.dispatch(`fetch_${store_prefix}s`);
+                        let values = state[`${store_prefix}s`].data.map((i) =>
+                            Object.values(i)
+                        );
+                        export_csv.addRows(values);
 
-                    let progress = Math.round((100 * index) / last_page);
-                    window.update_loader(progress);
+                        let progress = Math.round((100 * index) / last_page);
+                        window.update_loader(progress);
+                    }
+                    await export_csv.exportFile();
+                    window.remove_loader();
                 }
-                await export_csv.exportFile();
-                window.remove_loader();
             },
 
             /** export selected data into csv */
@@ -511,6 +515,9 @@ class StoreModule {
 
             /** set selected data array */
             [`set_selected_${store_prefix}s`]: function (state, data) {
+                if(!data){
+                    return 0;
+                }
                 let temp_selected = state[`${store_prefix}_selected`];
                 let check_index = temp_selected.findIndex((i) => i.id == data.id);
                 if (check_index >= 0) {
@@ -523,6 +530,12 @@ class StoreModule {
                     temp_selected.push(data);
                 }
                 state[`${store_prefix}_selected`] = temp_selected;
+
+                if(state[`${store_prefix}_show_management_modal_qty`] == 1 && temp_selected.length){
+                    state[`${store_prefix}_selected`] = [{...temp_selected[temp_selected.length - 1]}];
+                    [...document.querySelectorAll(`input[type="checkbox"]`)].forEach(el=>el.checked=false);
+                    event.target.checked = true;
+                }
             },
 
             /** select all data */
@@ -581,6 +594,9 @@ class StoreModule {
             [`set_${store_prefix}_show_management_modal`]: function (state, trigger = true) {
                 state[`${store_prefix}_show_management_modal`] = trigger; // true or false
             },
+            [`set_${store_prefix}_show_management_modal_qty`]: function (state, qty) {
+                state[`${store_prefix}_show_management_modal_qty`] = qty; // true or false
+            },
 
             /** trigger data create canvas ( sidebar) */
             [`set_${store_prefix}_show_create_canvas`]: function (state, trigger = true) {
@@ -595,7 +611,5 @@ class StoreModule {
         return mutations;
     }
 }
-
-
 
 export default StoreModule;
