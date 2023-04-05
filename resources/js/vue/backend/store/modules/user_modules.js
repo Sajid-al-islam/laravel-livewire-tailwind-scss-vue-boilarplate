@@ -55,7 +55,6 @@ const actions = {
 // mutators
 const mutations = {
     ...test_module.mutations(),
-
 };
 
 export default {
