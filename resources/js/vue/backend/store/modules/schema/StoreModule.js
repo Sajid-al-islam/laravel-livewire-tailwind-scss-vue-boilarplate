@@ -166,7 +166,7 @@ class StoreModule {
      * ```js
      * return {
             fetch_users: ({commit,dispatch,getters,rootGetters,rootState,state}) => '' // fetch all data using data filters
-            fetch_user: () => '' // fetch single data
+            fetch_user: (context, {id, render_to_form:boolean}) => '' // fetch single data
 
             store_user: () => ''
             update_user: () => ''
@@ -206,11 +206,19 @@ class StoreModule {
             },
 
             /** fetch single data */
-            [`fetch_${store_prefix}`]: async function ({ state }, { id }) {
+            [`fetch_${store_prefix}`]: async function ({ state }, { id, render_to_form }) {
                 let url = `/${api_prefix}/${id}`;
                 await axios.get(url).then((res) => {
                     this.commit(`set_${store_prefix}`, res.data);
                 });
+
+                if (render_to_form) {
+                    commit("set_clear_selected_user_roles", true)
+                    data.roles.forEach((i) =>
+                        commit("set_selected_user_roles", i)
+                    );
+                    window.set_form_data(".user_edit_form", data);
+                }
             },
 
             /** store data */
