@@ -145,6 +145,7 @@ class StoreModule {
         const getters = {
             [`get_${store_prefix}s`]: (state) => state[`${store_prefix}s`],
             [`get_${store_prefix}`]: (state) => state[`${store_prefix}`],
+            [`get_${store_prefix}_search_key`]: (state) => state[`${store_prefix}_search_key`],
             [`get_${store_prefix}_show_active_data`]: (state) => state[`${store_prefix}_show_active_data`],
             [`get_${store_prefix}_selected`]: (state) => state[`${store_prefix}_selected`],
             [`get_${store_prefix}_show_selected`]: (state) => state[`${store_prefix}_show_selected`],
@@ -213,11 +214,7 @@ class StoreModule {
                 });
 
                 if (render_to_form) {
-                    commit("set_clear_selected_user_roles", true)
-                    data.roles.forEach((i) =>
-                        commit("set_selected_user_roles", i)
-                    );
-                    window.set_form_data(".user_edit_form", data);
+                    window.set_form_data(".admin_form", data);
                 }
             },
 

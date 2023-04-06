@@ -17,7 +17,7 @@
                 </h4>
                 <div class="search">
                     <form action="#">
-                        <input @keyup="call_store(`set_${store_prefix}_search_key`,$event.target.value)" class="form-control border border-info" placeholder="search..." type="search">
+                        <input :value="this[`get_${store_prefix}_search_key`]" @keyup="call_store(`set_${store_prefix}_search_key`,$event.target.value)" class="form-control border border-info" placeholder="search..." type="search">
                     </form>
                 </div>
                 <div class="btns d-flex gap-2 align-items-center">
@@ -252,7 +252,8 @@ export default {
         ...mapGetters([
             `get_${store_prefix}s`,
             `get_${store_prefix}_selected`,
-            `get_${store_prefix}_show_active_data`
+            `get_${store_prefix}_show_active_data`,
+            `get_${store_prefix}_search_key`,
         ]),
     }
 }
