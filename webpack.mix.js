@@ -1,14 +1,16 @@
 const mix = require("laravel-mix");
 require("mix-tailwindcss");
 
-mix.sourceMaps();
+console.log("Mode: "+process.env.NODE_ENV);
+if(process.env.NODE_ENV != "production"){
+    mix.sourceMaps();
+    mix.webpackConfig({
+        devtool: "source-map",
+    });
+}
 mix.js("resources/js/app.js", "public/js");
 mix.js("resources/js/vue/backend/dashboard.js", "public/js/vue").vue({
     version: 2,
-});
-
-mix.webpackConfig({
-    devtool: "inline-source-map",
 });
 
 mix.sass("resources/scss/backend/backend.scss", "public/css", {
