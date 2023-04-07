@@ -4570,9 +4570,9 @@ var render = function render() {
     attrs: {
       "aria-labelledby": "dropdown-user"
     }
-  }, [_vm._m(1), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3), _vm._v(" "), _vm._m(4), _vm._v(" "), _c("div", {
+  }, [_vm._m(1), _vm._v(" "), _c("div", {
     staticClass: "dropdown-divider"
-  }), _vm._v(" "), _vm._m(5), _vm._v(" "), _vm._m(6), _vm._v(" "), _vm._m(7), _vm._v(" "), _vm._m(8)])]);
+  }), _vm._v(" "), _vm._m(2), _vm._v(" "), _vm._m(3)])]);
 };
 var staticRenderFns = [function () {
   var _vm = this,
@@ -4615,79 +4615,9 @@ var staticRenderFns = [function () {
   }, [_c("i", {
     staticClass: "me-50",
     attrs: {
-      "data-feather": "mail"
-    }
-  }), _vm._v("\n            Inbox\n        ")]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("i", {
-    staticClass: "me-50",
-    attrs: {
-      "data-feather": "check-square"
-    }
-  }), _vm._v(" Task")]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("i", {
-    staticClass: "me-50",
-    attrs: {
-      "data-feather": "message-square"
-    }
-  }), _vm._v(" Chats")]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("i", {
-    staticClass: "me-50",
-    attrs: {
       "data-feather": "settings"
     }
   }), _vm._v(" Settings")]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("i", {
-    staticClass: "me-50",
-    attrs: {
-      "data-feather": "credit-card"
-    }
-  }), _vm._v(" Pricing")]);
-}, function () {
-  var _vm = this,
-    _c = _vm._self._c;
-  return _c("a", {
-    staticClass: "dropdown-item",
-    attrs: {
-      href: "#"
-    }
-  }, [_c("i", {
-    staticClass: "me-50",
-    attrs: {
-      "data-feather": "help-circle"
-    }
-  }), _vm._v(" FAQ")]);
 }, function () {
   var _vm = this,
     _c = _vm._self._c;
