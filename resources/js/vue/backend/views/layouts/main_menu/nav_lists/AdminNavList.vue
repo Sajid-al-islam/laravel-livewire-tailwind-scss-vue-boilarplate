@@ -2,7 +2,7 @@
     <div @mouseover="mouseover" @mouseleave="mouseleave">
         <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-            <left-nav-list-group :role_permissions="['super_admin','admin']" :icon="`fa fa-home`" :text="`Dashboard`" :alert_count="0">
+            <left-nav-list-group :role_permissions="['admin']" :icon="`fa fa-home`" :text="`Dashboard`" :alert_count="0">
                 <left-nav-list-item :to="'AdminDashboard'" :text="'Analytics'" />
             </left-nav-list-group>
 
@@ -11,7 +11,7 @@
                 <left-nav-list-item :to="'CreateUser'" :text="'Create user'" />
             </left-nav-list-group>
 
-            <left-nav-list-group :role_permissions="['admin']" :icon="`fa fa-list`" :text="`Contact Message`" :alert_count="0">
+            <left-nav-list-group :role_permissions="['super_admin','admin']" :icon="`fa fa-list`" :text="`Contact Message`" :alert_count="0">
                 <left-nav-list-item :to="'AllContactMessage'" :text="'All'" />
             </left-nav-list-group>
 

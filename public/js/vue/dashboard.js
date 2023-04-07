@@ -214,7 +214,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony default export */ __webpack_exports__["default"] = ({});
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['role_permissions', 'layout_title'],
+  created: function created() {
+    // console.log(this.role_permissions);
+  },
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)(['get_auth_roles'])), {}, {
+    is_role_permitted: function is_role_permitted() {
+      for (var i = 0; i < ((_this$role_permission = this.role_permissions) === null || _this$role_permission === void 0 ? void 0 : _this$role_permission.length); i++) {
+        var _this$role_permission;
+        var item = this.role_permissions[i];
+        if (this.get_auth_roles.includes(item)) {
+          return true;
+        }
+      }
+      return false;
+    }
+  })
+});
 
 /***/ }),
 
@@ -2951,7 +2973,20 @@ __webpack_require__.r(__webpack_exports__);
 var render = function render() {
   var _vm = this,
     _c = _vm._self._c;
-  return _c("div", [_c("h2", [_vm._v("test")]), _vm._v(" "), _c("router-view")], 1);
+  return _c("div", [_c("h3", {
+    staticClass: "mb-2"
+  }, [_vm._v(_vm._s(_vm.layout_title))]), _vm._v(" "), _vm.is_role_permitted ? _c("router-view") : _c("div", {
+    staticClass: "text-center"
+  }, [_c("h4", {
+    staticClass: "text-warning"
+  }, [_vm._v("sorry you have no permission")]), _vm._v(" "), _c("router-link", {
+    staticClass: "btn btn-outline-warning mt-3",
+    attrs: {
+      to: {
+        name: "Dashboard"
+      }
+    }
+  }, [_vm._v("Go Back")])], 1)], 1);
 };
 var staticRenderFns = [];
 render._withStripped = true;
@@ -5129,7 +5164,7 @@ var render = function render() {
     }
   }, [_c("left-nav-list-group", {
     attrs: {
-      role_permissions: ["super_admin", "admin"],
+      role_permissions: ["admin"],
       icon: "fa fa-home",
       text: "Dashboard",
       alert_count: 0
@@ -5158,7 +5193,7 @@ var render = function render() {
     }
   })], 1), _vm._v(" "), _c("left-nav-list-group", {
     attrs: {
-      role_permissions: ["admin"],
+      role_permissions: ["super_admin", "admin"],
       icon: "fa fa-list",
       text: "Contact Message",
       alert_count: 0
@@ -9034,6 +9069,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = ({
   path: 'test',
   component: _views_admin_test_Layout__WEBPACK_IMPORTED_MODULE_0__["default"],
+  props: {
+    role_permissions: ['admin'],
+    layout_title: 'Management'
+  },
   children: [{
     path: '',
     name: 'AdminTestPage1',
@@ -9211,7 +9250,7 @@ __webpack_require__.r(__webpack_exports__);
   path: 'user',
   component: _views_users_Layout__WEBPACK_IMPORTED_MODULE_0__["default"],
   props: {
-    role_permissions: ['super_admin']
+    role_permissions: ['super_admin', 'admin']
   },
   children: [{
     path: '',

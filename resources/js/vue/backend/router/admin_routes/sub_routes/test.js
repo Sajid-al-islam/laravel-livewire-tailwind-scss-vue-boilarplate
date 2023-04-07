@@ -4,6 +4,10 @@ import AdminTestPage2 from '../../../views/admin/test/Page2'
 export default {
     path: 'test',
     component: AdminTestLayout,
+    props: {
+        role_permissions: ['admin'],
+        layout_title: 'Management',
+    },
     children: [{
             path: '',
             name: 'AdminTestPage1',

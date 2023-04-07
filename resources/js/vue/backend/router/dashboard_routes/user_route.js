@@ -8,7 +8,7 @@ import ImportUser from '../../views/users/ImportUser'
 export default {
     path: 'user',
     component: userLayout,
-    props: {role_permissions: ['super_admin']},
+    props: {role_permissions: ['super_admin','admin']},
     children: [{
             path: '',
             name: 'AllUser',
