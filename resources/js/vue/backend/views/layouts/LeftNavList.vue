@@ -7,8 +7,18 @@
             </left-nav-list-group>
 
             <left-nav-list-group :role_permissions="['super_admin']" :icon="`fa fa-users`" :text="`Users`" :alert_count="0">
-                <left-nav-list-item :to="'AllUser'" :text="'All user'" />
+                <left-nav-list-item :to="'AllUser'" :text="'All users'" />
                 <left-nav-list-item :to="'CreateUser'" :text="'Create user'" />
+            </left-nav-list-group>
+
+            <left-nav-list-group :role_permissions="['super_admin']" :icon="`fa fa-users`" :text="`Roles`" :alert_count="0">
+                <left-nav-list-item :to="'AllRole'" :text="'All roles'" />
+                <left-nav-list-item :to="'CreateRole'" :text="'Create role'" />
+            </left-nav-list-group>
+
+            <left-nav-list-group :role_permissions="['super_admin','admin']" :icon="`fa fa-list`" :text="`Contact Message`" :alert_count="0">
+                <left-nav-list-item :to="'AllContactMessage'" :text="'All'" />
+                <left-nav-list-item :to="'CreateContactMessage'" :text="'Create'" />
             </left-nav-list-group>
 
             <li class="navigation-header">
@@ -25,7 +35,7 @@
             <li class="nav-item">
                 <a @click.prevent="fetch_logout()" class="d-flex align-items-center" href="#">
                     <i class="fa-solid fa-power-off"></i>
-                    <span class="menu-title text-truncate" >Logouts</span>
+                    <span class="menu-title text-truncate" >Logout</span>
                 </a>
             </li>
         </ul>

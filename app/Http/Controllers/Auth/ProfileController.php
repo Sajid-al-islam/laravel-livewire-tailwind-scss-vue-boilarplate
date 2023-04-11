@@ -99,6 +99,8 @@ class ProfileController extends Controller
         // }
 
         $user->save();
-        return response()->json('success');
+        return response()->json([
+            'message' => 'User password updated successfully',
+        ], 200);
     }
 }

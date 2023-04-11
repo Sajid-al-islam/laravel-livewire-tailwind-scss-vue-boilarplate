@@ -48,13 +48,13 @@
                 toast.addEventListener('mouseleave', Swal.resumeTimer)
             }
         })
-        window.s_alert = (icon='success',title="success") => {
+        window.s_alert = (title="success",icon='success') => {
             Toast.fire({
                 icon,
                 title
             })
         };
-        window.s_confirm = async (confirmButtonText='Yes, do it!',title="Are you sure?",icon='warning') => {
+        window.s_confirm = async (title="Are you sure?",confirmButtonText='Yes, do it!',icon='warning') => {
             let result = await Swal.fire({
                 title,
                 text: "",
@@ -78,6 +78,11 @@
         <ex-app></ex-app>
     </div>
 
+    @if(env('APP_DEBUG')==true)
+        <button class="upload_demo_form" onclick="demo_data()" title="upload demo data into form element">
+            <i class="fa-solid fa-upload text-info"></i>
+        </button>
+    @endif
     <!-- BEGIN: Footer-->
     <footer class="footer footer-static d-none footer-light">
         <p class="clearfix mb-0">

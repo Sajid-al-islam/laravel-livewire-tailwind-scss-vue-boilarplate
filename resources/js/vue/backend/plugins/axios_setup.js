@@ -11,7 +11,7 @@ axios.interceptors.request.use(function (config) {
     $('.loader_body').css({'top': $('.main_content').scrollTop()});
     $('#backend_body .main_content').css({overflowY:'hidden !mportant'});
     $('form button').prop('disabled',true);
-    Pace.restart();
+    Pace?.restart();
 
     window.count_left_time_sec = 1;
 
@@ -29,77 +29,45 @@ axios.interceptors.request.use(function (config) {
     return Promise.reject(error);
 });
 
+window.remove_form_action_classes = function() {
+    $('.loader_body').removeClass('active');
+    $('input,select,textarea').removeClass('border-warning');
+    $('form button').prop('disabled',false);
+    $(`.error.text-warning`).remove();
+}
+
+window.render_form_errors = function(object, selector="name") {
+    for (const key in object) {
+        if (Object.hasOwnProperty.call(object, key)) {
+            const element = object[key];
+            let el = document.querySelector(`input[${selector}="${key}`);
+            if (!el) {
+                el = document.getElementById(`${key}`);
+            }
+
+            /**
+             *  if html element found then take action
+             */
+            if(el){
+                $(`<div class="error text-warning">${element[0]}</div>`).insertAfter(el);
+                el.classList.add('border-warning')
+            }
+        }
+    }
+}
+
 window.axios.interceptors.response.use(
     (response) => {
-        $('.loader_body').removeClass('active');
-        $('#backend_body .main_content').css({overflowY:'scroll'});
-        $('form button').prop('disabled',false);
-        $(`label`).siblings(".text-danger").remove();
-        $(`select`).siblings(".text-danger").remove();
-        $(`input`).siblings(".text-danger").remove();
-        $(`textarea`).siblings(".text-danger").remove();
-        $('.form_errors').html('');
+        remove_form_action_classes();
         return response;
     },
     (error) => {
-        $('.loader_body').removeClass('active');
-        $('form button').prop('disabled',false);
-        $('#backend_body .main_content').css({overflowY:'scroll'});
-        // whatever you want to do with the error
-        // console.log(error.response.data.errors);
+        remove_form_action_classes();
         let object = error.response?.data?.errors;
-        $(`label`).siblings(".text-danger").remove();
-        $(`select`).siblings(".text-danger").remove();
-        $(`input`).siblings(".text-danger").remove();
-        $(`textarea`).siblings(".text-danger").remove();
-        $('.form_errors').html('');
-
-        let error_html = ``;
-
-        for (const key in object) {
-            if (Object.hasOwnProperty.call(object, key)) {
-                const element = object[key];
-                if (document.getElementById(`${key}`)) {
-                    $(`#${key}`)
-                        .parent("div")
-                        .append(`<div class="text-danger">${element[0]}</div>`);
-                } else {
-                    $(`input[name="${key}"]`)
-                        .parent("div")
-                        .append(`<div class="text-danger">${element[0]}</div>`);
-
-                    $(`select[name="${key}"]`)
-                        .parent("div")
-                        .append(`<div class="text-danger">${element[0]}</div>`);
-
-                    $(`input[name="${key}"]`).trigger("focus");
-
-                    $(`textarea[name="${key}"]`)
-                        .parent("div")
-                        .append(`<div class="text-danger">${element[0]}</div>`);
-
-                    $(`textarea[name="${key}"]`).trigger("focus");
-                }
-                // console.log({
-                //     [key]: element,
-                // });
-
-                error_html += `
-                    <div class="alert alert_${key} my-1 mx-2 alert-danger pe-5 inverse alert-dismissible fade show" role="alert">
-                        <i class="icon-alert txt-dark rounded-0"></i>
-                        <div>${element}</div>
-                        <button type="button" class="btn-close txt-light" data-bs-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true"></span>
-                        </button>
-                    </div>
-                `;
-            }
-        }
-
-        $('.form_errors').html(error_html);
+        render_form_errors(object);
 
         if (typeof error ?.response ?.data === "string") {
-            console.log("error", error ?.response ?.data ?error ?.response ?.data : error.response);
+            console.log("error", error?.response?.data ? error?.response?.data : error.response);
         } else {
             console.log(error.response);
         }
@@ -107,9 +75,9 @@ window.axios.interceptors.response.use(
         // if(error.response.status == 401){
         //     window.clear_session();
         // }
-        console.log(error);
-
-        window.s_alert('error',error.response?.statusText)
+        // console.log(error);
+        let status = error.response.status;
+        window.s_alert('error '+status+': '+error.response?.statusText,'error')
         throw error;
     }
 );

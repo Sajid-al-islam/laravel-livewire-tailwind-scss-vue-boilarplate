@@ -7,6 +7,9 @@ import Login from '../views/auth/Login'
 
 import user_route from './dashboard_routes/user_route'
 import setting_route from './dashboard_routes/setting_route'
+import user_role_route from './dashboard_routes/user_role_route'
+import contact_meesage_route from './dashboard_routes/contact_meesage_route'
+import admin_main_routes from './admin_routes/admin_main_routes'
 
 Vue.use(VueRouter);
 window.Fire = new Vue();
@@ -20,8 +23,13 @@ const routes = [{
                 component: Dashboard,
             },
             setting_route,
-            user_route
+            user_route,
+            user_role_route,
+            contact_meesage_route,
         ]
+    },
+    {
+        ...admin_main_routes,
     },
     {
         path: '/login',
@@ -38,6 +46,8 @@ const management_router = new VueRouter({
     //     return { x: 0, y: 0 }
     // }
 });
+
+window.management_router = management_router;
 
 management_router.beforeEach((to, from, next) => {
     let isAuthenticated = window.localStorage?.token?.length ? true : false;

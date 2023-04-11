@@ -46,7 +46,7 @@
                 let access_token = message.response.serverMemo.data?.access_token;
                 if(access_token){
                     window.localStorage.setItem('token',access_token);
-                    window.location.href = "/admin";
+                    window.location.href = "/dashboard";
                 }
             })
             Livewire.hook('message.processed', (message, component) => {
