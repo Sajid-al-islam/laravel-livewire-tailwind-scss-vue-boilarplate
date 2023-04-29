@@ -12,16 +12,22 @@
         }
     }
 
-    &.col_2{
-        @media (min-width: 992px) {
-            grid-template-columns: repeat(2, 1fr);
-        }
-    }
-
     .full_width {
         @media (min-width: 992px) {
             grid-column-start: 1;
             grid-column-end: 4;
+        }
+    }
+
+    &.col_2{
+        @media (min-width: 992px) {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .full_width {
+            @media (min-width: 992px) {
+                grid-column-end: 3;
+            }
         }
     }
 }
