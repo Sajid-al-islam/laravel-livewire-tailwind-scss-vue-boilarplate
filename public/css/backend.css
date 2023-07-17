@@ -831,14 +831,19 @@ html.nav-hide-hover .header-navbar.floating-nav {
   }
 }
 @media (min-width: 992px) {
+  .admin_form .full_width {
+    grid-column-start: 1;
+    grid-column-end: 4;
+  }
+}
+@media (min-width: 992px) {
   .admin_form.col_2 {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (min-width: 992px) {
-  .admin_form .full_width {
-    grid-column-start: 1;
-    grid-column-end: 4;
+  .admin_form.col_2 .full_width {
+    grid-column-end: 3;
   }
 }
 
