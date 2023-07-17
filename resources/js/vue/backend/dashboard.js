@@ -18,16 +18,21 @@ window.CsvBuilder = require('filefy').CsvBuilder;
 import Vue from 'vue'
 import router from './router/router';
 import store from './store/index';
+import { createPinia, PiniaVuePlugin } from 'pinia'
 
 Vue.component('pagination', require('laravel-vue-pagination'));
 Vue.component('input-field', require('./views/components/InputField.vue').default);
 Vue.component('user-management-modal', require('./views/users/components/UserManagementModal.vue').default);
 Vue.component('ex-app', require('./App.vue').default);
 
+Vue.use(PiniaVuePlugin)
+const pinia = createPinia()
+
 if (document.getElementById('app')) {
     new Vue({
         store,
         router,
+        pinia,
         el: '#app',
         created: function () {
             console.log('dashboard started');
